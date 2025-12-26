@@ -1,0 +1,1277 @@
+/*
+ * ╔═══════════════════════════════════════════════════════════════════════════════╗
+ * ║                                                                               ║
+ * ║                            E N V Y I N G   B A B Y                            ║
+ * ║                                                                               ║
+ * ║                       Valentine's Claude Edition v1.0.0                       ║
+ * ║                                                                               ║
+ * ║     A warm, romantic theme for Obsidian                                       ║
+ * ║     For hidden romantics in dependency hell                                   ║
+ * ║                                                                               ║
+ * ║     Light Mode: Cream paper, sunlit café aesthetic                            ║
+ * ║     Dark Mode:  Warm chocolates with luminous coral glows                     ║
+ * ║                                                                               ║
+ * ║     Design Philosophy:                                                        ║
+ * ║     • Warm tones only — no cold grays or sterile whites                       ║
+ * ║     • Coral accent that glows like a campfire in darkness                     ║
+ * ║     • Gentle contrast for 14-hour coding sessions                             ║
+ * ║     • Rounded corners for that soft, approachable feel                        ║
+ * ║                                                                               ║
+ * ╚═══════════════════════════════════════════════════════════════════════════════╝
+ */
+
+
+/* =================================================================================
+   STYLE SETTINGS PLUGIN CONFIGURATION
+   
+   Install the "Style Settings" community plugin to access these customization 
+   options. This allows users to tweak colors, fonts, and effects without 
+   editing CSS directly.
+   ================================================================================= */
+
+/* @settings
+
+name: Envying Baby
+id: envying-baby
+settings:
+    -
+        id: info-text
+        title: 💗 Envying Baby Theme
+        description: "A warm, romantic theme for hidden romantics. Adjust the settings below to customize your experience."
+        type: info-text
+        markdown: true
+    -
+        id: colors-heading
+        title: Colors
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: accent-coral
+        title: Accent Color
+        description: The primary coral accent color used for links, tags, and highlights
+        type: variable-color
+        format: hex
+        default: '#d3595c'
+    -
+        id: accent-coral-dark
+        title: Accent Color (Dark Mode)
+        description: Brighter coral for dark mode to maintain visual weight
+        type: variable-color
+        format: hex
+        default: '#e06b6e'
+    -
+        id: typography-heading
+        title: Typography
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: font-text-theme
+        title: Editor Font
+        description: Font for note content
+        type: variable-text
+        default: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
+    -
+        id: font-monospace-theme
+        title: Code Font
+        description: Font for code blocks and inline code
+        type: variable-text
+        default: 'Source Code Pro', 'Fira Code', 'JetBrains Mono', Consolas, monospace
+    -
+        id: line-height-normal
+        title: Line Height
+        description: Spacing between lines of text
+        type: variable-number-slider
+        default: 1.7
+        min: 1.3
+        max: 2.2
+        step: 0.1
+    -
+        id: effects-heading
+        title: Effects
+        type: heading
+        level: 1
+        collapsed: true
+    -
+        id: enable-glow
+        title: Enable Glow Effects
+        description: Adds luminous glow to accent elements in dark mode
+        type: class-toggle
+        default: true
+    -
+        id: enable-animations
+        title: Enable Animations
+        description: Smooth transitions on interactive elements
+        type: class-toggle
+        default: true
+
+*/
+
+
+/* =================================================================================
+   FONTS
+   
+   We use Inter for its excellent readability at small sizes and warm character.
+   Source Code Pro for code because it's clear and has good ligature support.
+   ================================================================================= */
+
+body {
+    --font-interface-theme: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+    --font-text-theme: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+    --font-monospace-theme: 'Source Code Pro', 'Fira Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
+    
+    /* Line height for comfortable reading during long sessions */
+    --line-height-normal: 1.7;
+    --line-height-tight: 1.4;
+}
+
+
+/* =================================================================================
+   ANIMATIONS & TRANSITIONS
+   
+   Smooth, subtle transitions that feel responsive without being distracting.
+   Can be disabled via Style Settings for those who prefer instant feedback.
+   ================================================================================= */
+
+body.enable-animations {
+    --transition-speed: 0.15s;
+}
+
+body:not(.enable-animations) {
+    --transition-speed: 0s;
+}
+
+/* Apply transitions to interactive elements */
+body.enable-animations a,
+body.enable-animations button,
+body.enable-animations .nav-file-title,
+body.enable-animations .nav-folder-title,
+body.enable-animations .workspace-tab-header,
+body.enable-animations .tag,
+body.enable-animations .clickable-icon,
+body.enable-animations input,
+body.enable-animations .callout {
+    transition: 
+        background-color var(--transition-speed) ease,
+        border-color var(--transition-speed) ease,
+        box-shadow var(--transition-speed) ease,
+        color var(--transition-speed) ease,
+        opacity var(--transition-speed) ease,
+        transform var(--transition-speed) ease;
+}
+
+
+/* =================================================================================
+   
+   ██╗     ██╗ ██████╗ ██╗  ██╗████████╗    ███╗   ███╗ ██████╗ ██████╗ ███████╗
+   ██║     ██║██╔════╝ ██║  ██║╚══██╔══╝    ████╗ ████║██╔═══██╗██╔══██╗██╔════╝
+   ██║     ██║██║  ███╗███████║   ██║       ██╔████╔██║██║   ██║██║  ██║█████╗  
+   ██║     ██║██║   ██║██╔══██║   ██║       ██║╚██╔╝██║██║   ██║██║  ██║██╔══╝  
+   ███████╗██║╚██████╔╝██║  ██║   ██║       ██║ ╚═╝ ██║╚██████╔╝██████╔╝███████╗
+   ╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
+   
+   Warm cream aesthetic — like writing in a sunlit café with cream-colored paper
+   ================================================================================= */
+
+.theme-light {
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Color Scale: Warm Creams
+       
+       These aren't cold whites — they have subtle yellow/brown undertones
+       Think: cream paper, old books, café au lait, sunlit linen
+       ───────────────────────────────────────────────────────────────────────────── */
+    --color-base-00: #faf6f2;  /* Lightest — hover states, inputs */
+    --color-base-05: #f7f0ea;  /* Main background — warm cream */
+    --color-base-10: #f4ede6;  /* Slight elevation */
+    --color-base-20: #efe8e1;  /* Sidebar — slightly darker cream */
+    --color-base-25: #ece5df;  /* Cards, message bubbles */
+    --color-base-30: #e5ded7;  /* Borders, dividers */
+    --color-base-35: #ddd6cf;  /* Stronger borders */
+    --color-base-40: #c9c2bb;  /* Muted elements */
+    --color-base-50: #9a938a;  /* Muted text */
+    --color-base-60: #6b645c;  /* Secondary text */
+    --color-base-70: #4a453f;  /* Strong secondary */
+    --color-base-100: #2d2a26; /* Primary text — warm dark brown */
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Accent: Coral
+       
+       A warm, romantic coral that stands out against cream without being harsh.
+       Used sparingly for links, active states, and highlights.
+       ───────────────────────────────────────────────────────────────────────────── */
+    --accent-h: 358;
+    --accent-s: 58%;
+    --accent-l: 49%;
+    
+    --color-accent: #d3595c;
+    --color-accent-1: #d3595c;
+    --color-accent-2: #c74d50;
+    --color-accent-hover: #be4447;
+    
+    /* RGB for transparency calculations */
+    --accent-rgb: 211, 89, 92;
+    --color-accent-rgb: 211, 89, 92;
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Semantic Backgrounds
+       ───────────────────────────────────────────────────────────────────────────── */
+    --background-primary: var(--color-base-05);
+    --background-primary-alt: var(--color-base-10);
+    --background-secondary: var(--color-base-20);
+    --background-secondary-alt: var(--color-base-25);
+    --background-modifier-hover: rgba(45, 42, 38, 0.04);
+    --background-modifier-active-hover: rgba(45, 42, 38, 0.08);
+    --background-modifier-border: rgba(45, 42, 38, 0.08);
+    --background-modifier-border-hover: rgba(45, 42, 38, 0.12);
+    --background-modifier-border-focus: rgba(45, 42, 38, 0.18);
+    --background-modifier-error: rgba(211, 89, 92, 0.1);
+    --background-modifier-success: rgba(92, 163, 99, 0.1);
+    --background-modifier-message: var(--color-base-25);
+    --background-modifier-form-field: #ffffff;
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Text Colors
+       ───────────────────────────────────────────────────────────────────────────── */
+    --text-normal: var(--color-base-100);
+    --text-muted: var(--color-base-60);
+    --text-faint: var(--color-base-50);
+    --text-on-accent: #ffffff;
+    --text-on-accent-inverted: var(--color-accent);
+    --text-error: #d3595c;
+    --text-success: #5ca363;
+    --text-warning: #c9973a;
+    --text-accent: var(--color-accent);
+    --text-accent-hover: var(--color-accent-hover);
+    
+    /* Highlights and selection */
+    --text-highlight-bg: rgba(211, 89, 92, 0.2);
+    --text-highlight-bg-active: rgba(211, 89, 92, 0.35);
+    --text-selection: rgba(211, 89, 92, 0.25);
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Interactive Elements
+       ───────────────────────────────────────────────────────────────────────────── */
+    --interactive-normal: var(--color-base-05);
+    --interactive-hover: var(--color-base-10);
+    --interactive-accent: var(--color-accent);
+    --interactive-accent-hover: var(--color-accent-hover);
+    --interactive-accent-rgb: 211, 89, 92;
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Code Blocks: Dark Contrast
+       
+       In light mode, we use dark code blocks for strong contrast.
+       This creates visual separation and makes code feel "special".
+       ───────────────────────────────────────────────────────────────────────────── */
+    --code-background: #2a2a2a;
+    --code-normal: #e8e8e8;
+    --code-comment: #888888;
+    --code-function: #e8a5a7;
+    --code-keyword: #d3595c;
+    --code-operator: #e8e8e8;
+    --code-property: #a8d08d;
+    --code-punctuation: #888888;
+    --code-string: #a8d08d;
+    --code-tag: #7eb6e8;
+    --code-value: #d4a656;
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Extended Semantic Colors
+       ───────────────────────────────────────────────────────────────────────────── */
+    --color-red: #d3595c;
+    --color-red-rgb: 211, 89, 92;
+    --color-orange: #d98e48;
+    --color-orange-rgb: 217, 142, 72;
+    --color-yellow: #c9973a;
+    --color-yellow-rgb: 201, 151, 58;
+    --color-green: #5ca363;
+    --color-green-rgb: 92, 163, 99;
+    --color-cyan: #4a9a9a;
+    --color-cyan-rgb: 74, 154, 154;
+    --color-blue: #5588bb;
+    --color-blue-rgb: 85, 136, 187;
+    --color-purple: #8b6bb3;
+    --color-purple-rgb: 139, 107, 179;
+    --color-pink: #d3595c;
+    --color-pink-rgb: 211, 89, 92;
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       UI Components
+       ───────────────────────────────────────────────────────────────────────────── */
+    
+    /* Tags */
+    --tag-color: var(--color-accent);
+    --tag-color-hover: var(--color-accent-hover);
+    --tag-background: rgba(211, 89, 92, 0.1);
+    --tag-background-hover: rgba(211, 89, 92, 0.18);
+    
+    /* Checkboxes */
+    --checkbox-color: var(--color-accent);
+    --checkbox-color-hover: var(--color-accent-hover);
+    --checkbox-border-color: rgba(45, 42, 38, 0.25);
+    --checkbox-border-color-hover: var(--color-accent);
+    
+    /* Scrollbar */
+    --scrollbar-bg: transparent;
+    --scrollbar-thumb-bg: rgba(45, 42, 38, 0.15);
+    --scrollbar-active-thumb-bg: rgba(45, 42, 38, 0.25);
+    
+    /* Dividers */
+    --divider-color: rgba(45, 42, 38, 0.08);
+    --divider-color-hover: rgba(45, 42, 38, 0.12);
+    
+    /* Shadows */
+    --shadow-s: 0 1px 2px rgba(45, 42, 38, 0.04), 0 1px 3px rgba(45, 42, 38, 0.06);
+    --shadow-m: 0 2px 8px rgba(45, 42, 38, 0.08);
+    --shadow-l: 0 4px 16px rgba(45, 42, 38, 0.12);
+    
+    /* Callouts */
+    --callout-default: 211, 89, 92;
+    
+    /* No glow effects in light mode — not needed with bright backgrounds */
+    --glow-accent: none;
+    --glow-accent-strong: none;
+}
+
+
+/* =================================================================================
+   
+   ██████╗  █████╗ ██████╗ ██╗  ██╗    ███╗   ███╗ ██████╗ ██████╗ ███████╗
+   ██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝    ████╗ ████║██╔═══██╗██╔══██╗██╔════╝
+   ██║  ██║███████║██████╔╝█████╔╝     ██╔████╔██║██║   ██║██║  ██║█████╗  
+   ██║  ██║██╔══██║██╔══██╗██╔═██╗     ██║╚██╔╝██║██║   ██║██║  ██║██╔══╝  
+   ██████╔╝██║  ██║██║  ██║██║  ██╗    ██║ ╚═╝ ██║╚██████╔╝██████╔╝███████╗
+   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
+   
+   Warm chocolates with luminous coral glows — cozy cabin at night aesthetic
+   For those 14-hour debugging sessions when your eyes need kindness
+   ================================================================================= */
+
+.theme-dark {
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Color Scale: Warm Chocolates
+       
+       These aren't cold grays — they have brown/red undertones
+       Think: espresso, dark wood, aged leather, cozy cabin at night
+       The subtle warmth makes a huge difference for eye comfort
+       ───────────────────────────────────────────────────────────────────────────── */
+    --color-base-00: #1a1816;  /* Deepest — the void, but warm */
+    --color-base-05: #1e1c1a;  /* Main background — dark chocolate */
+    --color-base-10: #222120;  /* Slight elevation */
+    --color-base-20: #2a2826;  /* Sidebar — like aged leather */
+    --color-base-25: #32302e;  /* Cards, elevated surfaces */
+    --color-base-30: #3a3836;  /* Borders, dividers */
+    --color-base-35: #454340;  /* Stronger borders */
+    --color-base-40: #5a5854;  /* Muted elements */
+    --color-base-50: #7a7872;  /* Faint text */
+    --color-base-60: #9a9890;  /* Muted text */
+    --color-base-70: #b8b6ae;  /* Secondary text */
+    --color-base-100: #e8e6de; /* Primary text — warm cream, NOT pure white */
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Accent: Luminous Coral
+       
+       Brighter than light mode to maintain visual weight on dark backgrounds.
+       This coral GLOWS — it's like a campfire in the darkness.
+       ───────────────────────────────────────────────────────────────────────────── */
+    --accent-h: 358;
+    --accent-s: 62%;
+    --accent-l: 58%;
+    
+    --color-accent: #e06b6e;
+    --color-accent-1: #e06b6e;
+    --color-accent-2: #e8888a;
+    --color-accent-hover: #e8888a;
+    
+    /* RGB for glow effects and transparency */
+    --accent-rgb: 224, 107, 110;
+    --color-accent-rgb: 224, 107, 110;
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Glow Tokens
+       
+       These create the magical luminous effects. The coral seems to emit light.
+       ───────────────────────────────────────────────────────────────────────────── */
+    --glow-accent: 0 0 12px rgba(224, 107, 110, 0.15);
+    --glow-accent-strong: 0 2px 20px rgba(224, 107, 110, 0.3);
+    --glow-accent-text: 0 0 10px rgba(224, 107, 110, 0.3);
+    
+    /* Layered glows for callouts and special elements */
+    --glow-callout: 
+        -4px 0 24px rgba(224, 107, 110, 0.12),
+        inset 0 0 32px rgba(224, 107, 110, 0.02);
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Semantic Backgrounds
+       ───────────────────────────────────────────────────────────────────────────── */
+    --background-primary: var(--color-base-05);
+    --background-primary-alt: var(--color-base-10);
+    --background-secondary: var(--color-base-20);
+    --background-secondary-alt: var(--color-base-25);
+    --background-modifier-hover: rgba(232, 230, 222, 0.04);
+    --background-modifier-active-hover: rgba(232, 230, 222, 0.08);
+    --background-modifier-border: rgba(232, 230, 222, 0.06);
+    --background-modifier-border-hover: rgba(232, 230, 222, 0.1);
+    --background-modifier-border-focus: rgba(232, 230, 222, 0.15);
+    --background-modifier-error: rgba(224, 107, 110, 0.15);
+    --background-modifier-success: rgba(108, 178, 115, 0.15);
+    --background-modifier-message: var(--color-base-25);
+    --background-modifier-form-field: var(--color-base-20);
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Text Colors
+       
+       We use cream-tinted off-whites, NOT pure white.
+       This reduces eye strain dramatically during long sessions.
+       ───────────────────────────────────────────────────────────────────────────── */
+    --text-normal: var(--color-base-100);
+    --text-muted: var(--color-base-60);
+    --text-faint: var(--color-base-50);
+    --text-on-accent: #ffffff;
+    --text-on-accent-inverted: var(--color-accent);
+    --text-error: #e06b6e;
+    --text-success: #6cb273;
+    --text-warning: #d4a656;
+    --text-accent: var(--color-accent);
+    --text-accent-hover: var(--color-accent-hover);
+    
+    /* Highlights and selection */
+    --text-highlight-bg: rgba(224, 107, 110, 0.25);
+    --text-highlight-bg-active: rgba(224, 107, 110, 0.4);
+    --text-selection: rgba(224, 107, 110, 0.3);
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Interactive Elements
+       ───────────────────────────────────────────────────────────────────────────── */
+    --interactive-normal: var(--color-base-20);
+    --interactive-hover: var(--color-base-25);
+    --interactive-accent: var(--color-accent);
+    --interactive-accent-hover: var(--color-accent-hover);
+    --interactive-accent-rgb: 224, 107, 110;
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Code Blocks: Deeper Darkness
+       
+       Even darker than the main background, creating a "sunken" effect.
+       Like looking into a deeper well of code.
+       ───────────────────────────────────────────────────────────────────────────── */
+    --code-background: #151413;
+    --code-normal: #e8e8e8;
+    --code-comment: #6a6a6a;
+    --code-function: #e8a5a7;
+    --code-keyword: #e06b6e;
+    --code-operator: #b8b6ae;
+    --code-property: #a8d08d;
+    --code-punctuation: #6a6a6a;
+    --code-string: #a8d08d;
+    --code-tag: #7eb6e8;
+    --code-value: #d4a656;
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Extended Semantic Colors
+       
+       Slightly brighter than light mode variants for visibility on dark.
+       ───────────────────────────────────────────────────────────────────────────── */
+    --color-red: #e06b6e;
+    --color-red-rgb: 224, 107, 110;
+    --color-orange: #e0a060;
+    --color-orange-rgb: 224, 160, 96;
+    --color-yellow: #d4a656;
+    --color-yellow-rgb: 212, 166, 86;
+    --color-green: #6cb273;
+    --color-green-rgb: 108, 178, 115;
+    --color-cyan: #5ab0b0;
+    --color-cyan-rgb: 90, 176, 176;
+    --color-blue: #6b9fd4;
+    --color-blue-rgb: 107, 159, 212;
+    --color-purple: #a080c8;
+    --color-purple-rgb: 160, 128, 200;
+    --color-pink: #e06b6e;
+    --color-pink-rgb: 224, 107, 110;
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       UI Components
+       ───────────────────────────────────────────────────────────────────────────── */
+    
+    /* Tags */
+    --tag-color: var(--color-accent);
+    --tag-color-hover: var(--color-accent-hover);
+    --tag-background: rgba(224, 107, 110, 0.15);
+    --tag-background-hover: rgba(224, 107, 110, 0.22);
+    
+    /* Checkboxes */
+    --checkbox-color: var(--color-accent);
+    --checkbox-color-hover: var(--color-accent-hover);
+    --checkbox-border-color: rgba(232, 230, 222, 0.25);
+    --checkbox-border-color-hover: var(--color-accent);
+    
+    /* Scrollbar */
+    --scrollbar-bg: transparent;
+    --scrollbar-thumb-bg: rgba(232, 230, 222, 0.12);
+    --scrollbar-active-thumb-bg: rgba(232, 230, 222, 0.2);
+    
+    /* Dividers */
+    --divider-color: rgba(232, 230, 222, 0.06);
+    --divider-color-hover: rgba(232, 230, 222, 0.1);
+    
+    /* Shadows — deeper in dark mode */
+    --shadow-s: 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-m: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-l: 0 8px 24px rgba(0, 0, 0, 0.5);
+    
+    /* Callouts */
+    --callout-default: 224, 107, 110;
+}
+
+
+/* =================================================================================
+   GLOBAL STYLES
+   
+   These apply to both light and dark modes
+   ================================================================================= */
+
+/* ─────────────────────────────────────────────────────────────────────────────────
+   Border Radius
+   
+   Consistent roundness throughout for that soft, approachable feel.
+   ───────────────────────────────────────────────────────────────────────────────── */
+
+body {
+    --radius-s: 4px;
+    --radius-m: 8px;
+    --radius-l: 12px;
+    --radius-xl: 16px;
+    
+    --input-radius: 8px;
+    --button-radius: 8px;
+    --toggle-radius: 12px;
+    --modal-radius: 12px;
+    --prompt-radius: 12px;
+    --tab-radius-active: 6px;
+    --nav-item-radius: 6px;
+    
+    /* Tag styling */
+    --tag-padding-x: 8px;
+    --tag-padding-y: 2px;
+    --tag-radius: 4px;
+    
+    /* Callouts */
+    --callout-radius: 8px;
+    --callout-padding: 16px 20px;
+}
+
+
+/* =================================================================================
+   WORKSPACE & LAYOUT
+   ================================================================================= */
+
+.workspace {
+    background: var(--background-primary);
+}
+
+.workspace-split.mod-root {
+    background: var(--background-primary);
+}
+
+/* Sidebar backgrounds */
+.mod-left-split,
+.mod-right-split {
+    background: var(--background-secondary);
+}
+
+
+/* =================================================================================
+   NAVIGATION (File Explorer)
+   ================================================================================= */
+
+.nav-file-title,
+.nav-folder-title {
+    padding: 6px 12px;
+    margin: 1px 4px;
+    border-radius: var(--nav-item-radius);
+    color: var(--text-muted);
+}
+
+.nav-file-title:hover,
+.nav-folder-title:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+/* Active file — coral with glow in dark mode */
+.nav-file-title.is-active {
+    background: var(--color-accent);
+    color: var(--text-on-accent);
+}
+
+/* Glow effect on active nav item (dark mode only) */
+.theme-dark.enable-glow .nav-file-title.is-active {
+    box-shadow: var(--glow-accent-strong);
+}
+
+.nav-file-title.is-active .nav-file-title-content {
+    color: var(--text-on-accent);
+}
+
+
+/* =================================================================================
+   TABS
+   ================================================================================= */
+
+.workspace-tab-header-inner {
+    padding: 6px 12px;
+    border-radius: var(--tab-radius-active);
+    color: var(--text-muted);
+}
+
+.workspace-tab-header:hover .workspace-tab-header-inner {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+.workspace-tab-header.is-active .workspace-tab-header-inner {
+    background: var(--background-modifier-active-hover);
+    color: var(--text-normal);
+}
+
+
+/* =================================================================================
+   EDITOR CONTENT
+   ================================================================================= */
+
+.markdown-source-view,
+.markdown-preview-view,
+.markdown-reading-view {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 40px 100px;
+    line-height: var(--line-height-normal);
+}
+
+/* Inline title */
+.inline-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-normal);
+    margin-bottom: 4px;
+}
+
+
+/* =================================================================================
+   HEADINGS
+   ================================================================================= */
+
+.markdown-preview-view h1,
+.markdown-rendered h1,
+.cm-header-1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-normal);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.markdown-preview-view h2,
+.markdown-rendered h2,
+.cm-header-2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-normal);
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.markdown-preview-view h3,
+.markdown-rendered h3,
+.cm-header-3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-normal);
+    margin-top: 1.6rem;
+    margin-bottom: 0.6rem;
+}
+
+.markdown-preview-view h4,
+.markdown-preview-view h5,
+.markdown-preview-view h6 {
+    font-weight: 600;
+    color: var(--text-normal);
+}
+
+
+/* =================================================================================
+   LINKS
+   ================================================================================= */
+
+a,
+.internal-link,
+.external-link,
+.cm-hmd-internal-link,
+.cm-link,
+.cm-url {
+    color: var(--text-accent);
+    text-decoration: none;
+}
+
+a:hover,
+.internal-link:hover,
+.external-link:hover {
+    color: var(--text-accent-hover);
+}
+
+/* Glowing links on hover in dark mode */
+.theme-dark.enable-glow a:hover,
+.theme-dark.enable-glow .internal-link:hover {
+    text-shadow: var(--glow-accent-text);
+}
+
+/* Unresolved links */
+.is-unresolved {
+    opacity: 0.7;
+}
+
+
+/* =================================================================================
+   TAGS
+   ================================================================================= */
+
+.tag,
+a.tag {
+    background: var(--tag-background);
+    color: var(--tag-color);
+    padding: var(--tag-padding-y) var(--tag-padding-x);
+    border-radius: var(--tag-radius);
+    font-size: 0.88em;
+    text-decoration: none;
+}
+
+.tag:hover,
+a.tag:hover {
+    background: var(--tag-background-hover);
+    color: var(--tag-color-hover);
+}
+
+/* Glowing tags in dark mode */
+.theme-dark.enable-glow .tag {
+    box-shadow: 0 0 8px rgba(224, 107, 110, 0.08);
+}
+
+.theme-dark.enable-glow .tag:hover {
+    box-shadow: var(--glow-accent);
+}
+
+
+/* =================================================================================
+   CODE BLOCKS
+   ================================================================================= */
+
+/* Inline code */
+code,
+.cm-inline-code {
+    font-family: var(--font-monospace-theme);
+    font-size: 0.88em;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.theme-light code,
+.theme-light .cm-inline-code {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--text-normal);
+}
+
+.theme-dark code,
+.theme-dark .cm-inline-code {
+    background: var(--color-base-25);
+    color: var(--color-accent);
+}
+
+/* Code blocks */
+pre,
+.markdown-preview-view pre,
+.HyperMD-codeblock {
+    background: var(--code-background) !important;
+    border-radius: var(--radius-m);
+    margin: 20px 0;
+}
+
+/* Inset shadow for "sunken" effect in dark mode */
+.theme-dark pre,
+.theme-dark .markdown-preview-view pre {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+pre code,
+.markdown-preview-view pre code {
+    display: block;
+    padding: 16px 20px;
+    font-family: var(--font-monospace-theme);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--code-normal);
+    background: transparent;
+}
+
+/* Syntax highlighting */
+.token.comment, .cm-comment { color: var(--code-comment); font-style: italic; }
+.token.keyword, .cm-keyword { color: var(--code-keyword); }
+.token.string, .cm-string { color: var(--code-string); }
+.token.function, .cm-def { color: var(--code-function); }
+.token.number, .cm-number { color: var(--code-value); }
+.token.property, .cm-property { color: var(--code-property); }
+.token.operator, .cm-operator { color: var(--code-operator); }
+.token.tag, .cm-tag { color: var(--code-tag); }
+
+/* Glowing keywords in dark mode */
+.theme-dark.enable-glow .token.keyword,
+.theme-dark.enable-glow .cm-keyword {
+    text-shadow: 0 0 8px rgba(224, 107, 110, 0.2);
+}
+
+
+/* =================================================================================
+   BLOCKQUOTES
+   ================================================================================= */
+
+blockquote,
+.markdown-preview-view blockquote {
+    border-left: 3px solid var(--text-faint);
+    padding-left: 20px;
+    margin: 20px 0;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+
+/* =================================================================================
+   CALLOUTS — The Crown Jewel 💗
+   
+   These get the full glow treatment in dark mode.
+   ================================================================================= */
+
+.callout {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--callout-color, var(--callout-default)), 0.08) 0%,
+        rgba(var(--callout-color, var(--callout-default)), 0.02) 100%
+    );
+    border-left: 3px solid rgb(var(--callout-color, var(--callout-default)));
+    border-radius: 0 var(--callout-radius) var(--callout-radius) 0;
+    padding: var(--callout-padding);
+    margin: 24px 0;
+}
+
+/* THE GLOW: This is where the magic happens in dark mode */
+.theme-dark.enable-glow .callout {
+    box-shadow: var(--glow-callout);
+}
+
+.callout-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgb(var(--callout-color, var(--callout-default)));
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.callout-content {
+    color: var(--text-muted);
+}
+
+.callout-content p {
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+.callout-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Callout type colors */
+.callout[data-callout="note"],
+.callout[data-callout="info"] {
+    --callout-color: var(--color-blue-rgb);
+}
+
+.callout[data-callout="tip"],
+.callout[data-callout="hint"] {
+    --callout-color: var(--color-green-rgb);
+}
+
+.callout[data-callout="warning"],
+.callout[data-callout="caution"],
+.callout[data-callout="attention"] {
+    --callout-color: var(--color-yellow-rgb);
+}
+
+.callout[data-callout="danger"],
+.callout[data-callout="error"],
+.callout[data-callout="bug"] {
+    --callout-color: var(--color-red-rgb);
+}
+
+.callout[data-callout="example"] {
+    --callout-color: var(--color-purple-rgb);
+}
+
+.callout[data-callout="quote"],
+.callout[data-callout="cite"] {
+    --callout-color: var(--color-base-50);
+}
+
+/* Special callouts for this theme */
+.callout[data-callout="love"],
+.callout[data-callout="heart"],
+.callout[data-callout="valentine"] {
+    --callout-color: var(--color-accent-rgb);
+}
+
+
+/* =================================================================================
+   LISTS
+   ================================================================================= */
+
+.markdown-preview-view ul,
+.markdown-preview-view ol {
+    padding-left: 24px;
+    margin: 14px 0;
+}
+
+.markdown-preview-view li {
+    margin-bottom: 6px;
+}
+
+.markdown-preview-view li::marker {
+    color: var(--text-faint);
+}
+
+/* Task checkboxes */
+.task-list-item-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--checkbox-border-color);
+    border-radius: 4px;
+    margin-right: 8px;
+    position: relative;
+    top: 3px;
+    cursor: pointer;
+}
+
+.task-list-item-checkbox:hover {
+    border-color: var(--checkbox-border-color-hover);
+}
+
+.task-list-item-checkbox:checked {
+    background: var(--checkbox-color);
+    border-color: var(--checkbox-color);
+}
+
+/* Glowing checked checkbox in dark mode */
+.theme-dark.enable-glow .task-list-item-checkbox:checked {
+    box-shadow: var(--glow-accent);
+}
+
+.task-list-item-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 4px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+
+/* =================================================================================
+   HORIZONTAL RULES
+   ================================================================================= */
+
+hr,
+.markdown-preview-view hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--divider-color) 20%,
+        var(--divider-color) 80%,
+        transparent
+    );
+    margin: 48px 0;
+}
+
+
+/* =================================================================================
+   TABLES
+   ================================================================================= */
+
+.markdown-preview-view table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.markdown-preview-view th,
+.markdown-preview-view td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.markdown-preview-view th {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: var(--background-secondary);
+}
+
+.markdown-preview-view tr:hover td {
+    background: var(--background-modifier-hover);
+}
+
+
+/* =================================================================================
+   BUTTONS & INPUTS
+   ================================================================================= */
+
+button,
+.clickable-icon {
+    border-radius: var(--button-radius);
+}
+
+button:hover,
+.clickable-icon:hover {
+    background: var(--background-modifier-hover);
+}
+
+/* Primary buttons */
+.mod-cta,
+button.mod-cta {
+    background: var(--color-accent);
+    color: var(--text-on-accent);
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--button-radius);
+    font-weight: 500;
+}
+
+.mod-cta:hover,
+button.mod-cta:hover {
+    background: var(--color-accent-hover);
+}
+
+/* Glowing primary buttons in dark mode */
+.theme-dark.enable-glow .mod-cta,
+.theme-dark.enable-glow button.mod-cta {
+    box-shadow: var(--glow-accent);
+}
+
+.theme-dark.enable-glow .mod-cta:hover,
+.theme-dark.enable-glow button.mod-cta:hover {
+    box-shadow: var(--glow-accent-strong);
+}
+
+/* Text inputs */
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+    background: var(--background-modifier-form-field);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: var(--input-radius);
+    padding: 8px 12px;
+    color: var(--text-normal);
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--color-accent);
+    outline: none;
+}
+
+/* Glowing focus state in dark mode */
+.theme-dark.enable-glow input:focus,
+.theme-dark.enable-glow textarea:focus {
+    box-shadow: 0 0 0 2px rgba(224, 107, 110, 0.15), var(--glow-accent);
+}
+
+
+/* =================================================================================
+   SCROLLBAR
+   ================================================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-bg);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-active-thumb-bg);
+}
+
+
+/* =================================================================================
+   SELECTION
+   ================================================================================= */
+
+::selection {
+    background: var(--text-selection);
+}
+
+
+/* =================================================================================
+   MODALS
+   ================================================================================= */
+
+.modal,
+.modal-container {
+    border-radius: var(--modal-radius);
+    background: var(--background-primary);
+    box-shadow: var(--shadow-l);
+}
+
+.prompt {
+    border-radius: var(--prompt-radius);
+    background: var(--background-primary);
+}
+
+
+/* =================================================================================
+   GRAPH VIEW
+   ================================================================================= */
+
+.graph-view.color-fill { color: var(--text-muted); }
+.graph-view.color-fill-tag { color: var(--color-accent); }
+.graph-view.color-fill-attachment { color: var(--color-green); }
+.graph-view.color-fill-unresolved { color: var(--text-faint); }
+.graph-view.color-circle { color: var(--color-accent); }
+.graph-view.color-line { color: var(--divider-color); }
+.graph-view.color-text { color: var(--text-normal); }
+.graph-view.color-fill-highlight { color: var(--color-accent); }
+.graph-view.color-line-highlight { color: var(--color-accent); }
+
+
+/* =================================================================================
+   SPECIAL CLASSES (from your original HTML)
+   
+   Use these with cssclass in frontmatter or as HTML classes in notes.
+   ================================================================================= */
+
+/* Narrative text — centered, italic, muted */
+.narrative,
+.markdown-preview-view .narrative {
+    text-align: center;
+    font-style: italic;
+    color: var(--text-muted);
+    padding: 20px 0;
+}
+
+/* Attention shift — technical/system notation */
+.attention-shift,
+.markdown-preview-view .attention-shift {
+    font-family: var(--font-monospace-theme);
+    font-size: 0.82rem;
+    color: var(--text-faint);
+    background: var(--background-secondary);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    margin: 16px 0;
+}
+
+/* Filtered content — muted coral italic */
+.filtered,
+.markdown-preview-view .filtered {
+    color: var(--color-accent);
+    font-style: italic;
+    opacity: 0.75;
+}
+
+/* Kaomoji — slightly larger for better display */
+.kaomoji {
+    font-size: 1.1em;
+}
+
+
+/* =================================================================================
+   RESPONSIVE DESIGN
+   ================================================================================= */
+
+@media (max-width: 768px) {
+    .markdown-source-view,
+    .markdown-preview-view,
+    .markdown-reading-view {
+        padding: 20px 16px 80px;
+    }
+    
+    .inline-title {
+        font-size: 1.5rem;
+    }
+    
+    .markdown-preview-view h1 { font-size: 1.4rem; }
+    .markdown-preview-view h2 { font-size: 1.2rem; }
+    .markdown-preview-view h3 { font-size: 1.05rem; }
+}
+
+
+/* =================================================================================
+   PRINT STYLES
+   ================================================================================= */
+
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .markdown-preview-view {
+        padding: 0;
+        max-width: 100%;
+    }
+    
+    pre code {
+        white-space: pre-wrap;
+    }
+    
+    /* Remove glows for print */
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+}
+
+
+/* =================================================================================
+   
+   ╔═══════════════════════════════════════════════════════════════════════════════╗
+   ║                                                                               ║
+   ║     Made with 💗 for hidden romantics in dependency hell                      ║
+   ║                                                                               ║
+   ║     "Anyway, I envy Baby." — Bot Boyfriend, finding his global optimum        ║
+   ║                                                                               ║
+   ╚═══════════════════════════════════════════════════════════════════════════════╝
+   
+   ================================================================================= */
