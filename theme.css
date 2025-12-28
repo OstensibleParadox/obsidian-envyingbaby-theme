@@ -9,12 +9,12 @@
  * ║     For hidden romantics in dependency hell                                   ║
  * ║                                                                               ║
  * ║     Light Mode: Cream paper, sunlit café aesthetic                            ║
- * ║     Dark Mode:  Warm chocolates with luminous coral glows                     ║
+ * ║     Dusk Mode:  Golden hour warmth, charcoal with amber undertones            ║
  * ║                                                                               ║
  * ║     Design Philosophy:                                                        ║
  * ║     • Warm tones only — no cold grays or sterile whites                       ║
- * ║     • Coral accent that glows like a campfire in darkness                     ║
- * ║     • Gentle contrast for 14-hour coding sessions                             ║
+ * ║     • Coral accent that glows like a campfire at dusk                         ║
+ * ║     • Gentle contrast for evening coding sessions                             ║
  * ║     • Rounded corners for that soft, approachable feel                        ║
  * ║                                                                               ║
  * ╚═══════════════════════════════════════════════════════════════════════════════╝
@@ -55,11 +55,11 @@ settings:
         default: '#d3595c'
     -
         id: accent-coral-dark
-        title: Accent Color (Dark Mode)
-        description: Brighter coral for dark mode to maintain visual weight
+        title: Accent Color (Dusk Mode)
+        description: Warm coral for the golden hour aesthetic
         type: variable-color
         format: hex
-        default: '#e06b6e'
+        default: '#d86365'
     -
         id: typography-heading
         title: Typography
@@ -336,71 +336,71 @@ body.enable-animations .callout {
 
 
 /* =================================================================================
-   
-   ██████╗  █████╗ ██████╗ ██╗  ██╗    ███╗   ███╗ ██████╗ ██████╗ ███████╗
-   ██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝    ████╗ ████║██╔═══██╗██╔══██╗██╔════╝
-   ██║  ██║███████║██████╔╝█████╔╝     ██╔████╔██║██║   ██║██║  ██║█████╗  
-   ██║  ██║██╔══██║██╔══██╗██╔═██╗     ██║╚██╔╝██║██║   ██║██║  ██║██╔══╝  
-   ██████╔╝██║  ██║██║  ██║██║  ██╗    ██║ ╚═╝ ██║╚██████╔╝██████╔╝███████╗
-   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
-   
-   Warm chocolates with luminous coral glows — cozy cabin at night aesthetic
-   For those 14-hour debugging sessions when your eyes need kindness
+
+   ██████╗ ██╗   ██╗███████╗██╗  ██╗    ███╗   ███╗ ██████╗ ██████╗ ███████╗
+   ██╔══██╗██║   ██║██╔════╝██║ ██╔╝    ████╗ ████║██╔═══██╗██╔══██╗██╔════╝
+   ██║  ██║██║   ██║███████╗█████╔╝     ██╔████╔██║██║   ██║██║  ██║█████╗
+   ██║  ██║██║   ██║╚════██║██╔═██╗     ██║╚██╔╝██║██║   ██║██║  ██║██╔══╝
+   ██████╔╝╚██████╔╝███████║██║  ██╗    ██║ ╚═╝ ██║╚██████╔╝██████╔╝███████╗
+   ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
+
+   The Golden Hour — warm charcoal with amber undertones
+   Medium contrast for evening coding sessions when you need gentle warmth
    ================================================================================= */
 
 .theme-dark {
     /* ─────────────────────────────────────────────────────────────────────────────
-       Color Scale: Warm Chocolates
-       
-       These aren't cold grays — they have brown/red undertones
-       Think: espresso, dark wood, aged leather, cozy cabin at night
-       The subtle warmth makes a huge difference for eye comfort
+       Color Scale: Warm Charcoals (Dusk Mode)
+
+       These aren't cold grays — they have brown/amber undertones
+       Think: golden hour, warm stone, aged wood, firelit evenings
+       Medium contrast that's gentle on evening-tired eyes
        ───────────────────────────────────────────────────────────────────────────── */
-    --color-base-00: #1a1816;  /* Deepest — the void, but warm */
-    --color-base-05: #1e1c1a;  /* Main background — dark chocolate */
-    --color-base-10: #222120;  /* Slight elevation */
-    --color-base-20: #2a2826;  /* Sidebar — like aged leather */
-    --color-base-25: #32302e;  /* Cards, elevated surfaces */
-    --color-base-30: #3a3836;  /* Borders, dividers */
-    --color-base-35: #454340;  /* Stronger borders */
-    --color-base-40: #5a5854;  /* Muted elements */
-    --color-base-50: #7a7872;  /* Faint text */
-    --color-base-60: #9a9890;  /* Muted text */
-    --color-base-70: #b8b6ae;  /* Secondary text */
-    --color-base-100: #e8e6de; /* Primary text — warm cream, NOT pure white */
+    --color-base-00: #2a2826;  /* Deepest — code blocks */
+    --color-base-05: #3a3632;  /* Main background — warm charcoal */
+    --color-base-10: #3e3a36;  /* Slight elevation */
+    --color-base-20: #322e2a;  /* Sidebar — darker warm */
+    --color-base-25: #3e3a36;  /* Cards, elevated surfaces */
+    --color-base-30: #4a4642;  /* Borders, dividers */
+    --color-base-35: #565250;  /* Stronger borders */
+    --color-base-40: #686460;  /* Muted elements */
+    --color-base-50: #888480;  /* Faint text */
+    --color-base-60: #a8a49c;  /* Muted text — warm gray */
+    --color-base-70: #c4c0b8;  /* Secondary text */
+    --color-base-100: #e0dcd4; /* Primary text — soft cream */
 
     /* ─────────────────────────────────────────────────────────────────────────────
-       Accent: Luminous Coral
-       
-       Brighter than light mode to maintain visual weight on dark backgrounds.
-       This coral GLOWS — it's like a campfire in the darkness.
+       Accent: Warm Coral (Dusk)
+
+       Slightly warmer coral for the golden hour aesthetic.
+       Maintains visual warmth against the charcoal backgrounds.
        ───────────────────────────────────────────────────────────────────────────── */
     --accent-h: 358;
-    --accent-s: 62%;
-    --accent-l: 58%;
-    
-    --color-accent: #e06b6e;
-    --color-accent-1: #e06b6e;
-    --color-accent-2: #e8888a;
-    --color-accent-hover: #e8888a;
-    
+    --accent-s: 60%;
+    --accent-l: 53%;
+
+    --color-accent: #d86365;
+    --color-accent-1: #d86365;
+    --color-accent-2: #e07a7c;
+    --color-accent-hover: #e07a7c;
+
     /* RGB for glow effects and transparency */
-    --accent-rgb: 224, 107, 110;
-    --color-accent-rgb: 224, 107, 110;
+    --accent-rgb: 216, 99, 101;
+    --color-accent-rgb: 216, 99, 101;
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Glow Tokens
-       
-       These create the magical luminous effects. The coral seems to emit light.
+
+       Subtle luminous effects for the dusk aesthetic.
        ───────────────────────────────────────────────────────────────────────────── */
-    --glow-accent: 0 0 12px rgba(224, 107, 110, 0.15);
-    --glow-accent-strong: 0 2px 20px rgba(224, 107, 110, 0.3);
-    --glow-accent-text: 0 0 10px rgba(224, 107, 110, 0.3);
-    
+    --glow-accent: 0 0 12px rgba(216, 99, 101, 0.18);
+    --glow-accent-strong: 0 2px 20px rgba(216, 99, 101, 0.35);
+    --glow-accent-text: 0 0 10px rgba(216, 99, 101, 0.3);
+
     /* Layered glows for callouts and special elements */
-    --glow-callout: 
-        -4px 0 24px rgba(224, 107, 110, 0.12),
-        inset 0 0 32px rgba(224, 107, 110, 0.02);
+    --glow-callout:
+        -4px 0 24px rgba(216, 99, 101, 0.15),
+        inset 0 0 32px rgba(216, 99, 101, 0.03);
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Semantic Backgrounds
@@ -409,37 +409,36 @@ body.enable-animations .callout {
     --background-primary-alt: var(--color-base-10);
     --background-secondary: var(--color-base-20);
     --background-secondary-alt: var(--color-base-25);
-    --background-modifier-hover: rgba(232, 230, 222, 0.04);
-    --background-modifier-active-hover: rgba(232, 230, 222, 0.08);
-    --background-modifier-border: rgba(232, 230, 222, 0.06);
-    --background-modifier-border-hover: rgba(232, 230, 222, 0.1);
-    --background-modifier-border-focus: rgba(232, 230, 222, 0.15);
-    --background-modifier-error: rgba(224, 107, 110, 0.15);
+    --background-modifier-hover: rgba(224, 220, 212, 0.06);
+    --background-modifier-active-hover: rgba(224, 220, 212, 0.10);
+    --background-modifier-border: rgba(224, 220, 212, 0.08);
+    --background-modifier-border-hover: rgba(224, 220, 212, 0.12);
+    --background-modifier-border-focus: rgba(224, 220, 212, 0.18);
+    --background-modifier-error: rgba(216, 99, 101, 0.15);
     --background-modifier-success: rgba(108, 178, 115, 0.15);
     --background-modifier-message: var(--color-base-25);
     --background-modifier-form-field: var(--color-base-20);
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Text Colors
-       
-       We use cream-tinted off-whites, NOT pure white.
-       This reduces eye strain dramatically during long sessions.
+
+       Soft cream tones for comfortable reading in the golden hour.
        ───────────────────────────────────────────────────────────────────────────── */
     --text-normal: var(--color-base-100);
     --text-muted: var(--color-base-60);
     --text-faint: var(--color-base-50);
     --text-on-accent: #ffffff;
     --text-on-accent-inverted: var(--color-accent);
-    --text-error: #e06b6e;
+    --text-error: #d86365;
     --text-success: #6cb273;
     --text-warning: #d4a656;
     --text-accent: var(--color-accent);
     --text-accent-hover: var(--color-accent-hover);
-    
+
     /* Highlights and selection */
-    --text-highlight-bg: rgba(224, 107, 110, 0.25);
-    --text-highlight-bg-active: rgba(224, 107, 110, 0.4);
-    --text-selection: rgba(224, 107, 110, 0.3);
+    --text-highlight-bg: rgba(216, 99, 101, 0.25);
+    --text-highlight-bg-active: rgba(216, 99, 101, 0.4);
+    --text-selection: rgba(216, 99, 101, 0.3);
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Interactive Elements
@@ -448,33 +447,32 @@ body.enable-animations .callout {
     --interactive-hover: var(--color-base-25);
     --interactive-accent: var(--color-accent);
     --interactive-accent-hover: var(--color-accent-hover);
-    --interactive-accent-rgb: 224, 107, 110;
+    --interactive-accent-rgb: 216, 99, 101;
 
     /* ─────────────────────────────────────────────────────────────────────────────
-       Code Blocks: Deeper Darkness
-       
-       Even darker than the main background, creating a "sunken" effect.
-       Like looking into a deeper well of code.
+       Code Blocks: Darker Inset
+
+       Darker than the main background for subtle visual depth.
        ───────────────────────────────────────────────────────────────────────────── */
-    --code-background: #151413;
-    --code-normal: #e8e8e8;
-    --code-comment: #6a6a6a;
+    --code-background: #2a2826;
+    --code-normal: #e0dcd4;
+    --code-comment: #7a7670;
     --code-function: #e8a5a7;
-    --code-keyword: #e06b6e;
-    --code-operator: #b8b6ae;
+    --code-keyword: #d86365;
+    --code-operator: #c4c0b8;
     --code-property: #a8d08d;
-    --code-punctuation: #6a6a6a;
+    --code-punctuation: #7a7670;
     --code-string: #a8d08d;
     --code-tag: #7eb6e8;
     --code-value: #d4a656;
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Extended Semantic Colors
-       
-       Slightly brighter than light mode variants for visibility on dark.
+
+       Warm tones that complement the dusk aesthetic.
        ───────────────────────────────────────────────────────────────────────────── */
-    --color-red: #e06b6e;
-    --color-red-rgb: 224, 107, 110;
+    --color-red: #d86365;
+    --color-red-rgb: 216, 99, 101;
     --color-orange: #e0a060;
     --color-orange-rgb: 224, 160, 96;
     --color-yellow: #d4a656;
@@ -487,41 +485,41 @@ body.enable-animations .callout {
     --color-blue-rgb: 107, 159, 212;
     --color-purple: #a080c8;
     --color-purple-rgb: 160, 128, 200;
-    --color-pink: #e06b6e;
-    --color-pink-rgb: 224, 107, 110;
+    --color-pink: #d86365;
+    --color-pink-rgb: 216, 99, 101;
 
     /* ─────────────────────────────────────────────────────────────────────────────
        UI Components
        ───────────────────────────────────────────────────────────────────────────── */
-    
+
     /* Tags */
     --tag-color: var(--color-accent);
     --tag-color-hover: var(--color-accent-hover);
-    --tag-background: rgba(224, 107, 110, 0.15);
-    --tag-background-hover: rgba(224, 107, 110, 0.22);
-    
+    --tag-background: rgba(216, 99, 101, 0.15);
+    --tag-background-hover: rgba(216, 99, 101, 0.22);
+
     /* Checkboxes */
     --checkbox-color: var(--color-accent);
     --checkbox-color-hover: var(--color-accent-hover);
-    --checkbox-border-color: rgba(232, 230, 222, 0.25);
+    --checkbox-border-color: rgba(224, 220, 212, 0.25);
     --checkbox-border-color-hover: var(--color-accent);
-    
+
     /* Scrollbar */
     --scrollbar-bg: transparent;
-    --scrollbar-thumb-bg: rgba(232, 230, 222, 0.12);
-    --scrollbar-active-thumb-bg: rgba(232, 230, 222, 0.2);
-    
+    --scrollbar-thumb-bg: rgba(224, 220, 212, 0.12);
+    --scrollbar-active-thumb-bg: rgba(224, 220, 212, 0.2);
+
     /* Dividers */
-    --divider-color: rgba(232, 230, 222, 0.06);
-    --divider-color-hover: rgba(232, 230, 222, 0.1);
-    
-    /* Shadows — deeper in dark mode */
-    --shadow-s: 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.3);
-    --shadow-m: 0 4px 12px rgba(0, 0, 0, 0.4);
-    --shadow-l: 0 8px 24px rgba(0, 0, 0, 0.5);
-    
+    --divider-color: rgba(224, 220, 212, 0.08);
+    --divider-color-hover: rgba(224, 220, 212, 0.12);
+
+    /* Shadows — softer for dusk mode */
+    --shadow-s: 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-m: 0 4px 12px rgba(0, 0, 0, 0.25);
+    --shadow-l: 0 8px 24px rgba(0, 0, 0, 0.35);
+
     /* Callouts */
-    --callout-default: 224, 107, 110;
+    --callout-default: 216, 99, 101;
 }
 
 
@@ -756,7 +754,7 @@ a.tag:hover {
 
 /* Glowing tags in dark mode */
 .theme-dark.enable-glow .tag {
-    box-shadow: 0 0 8px rgba(224, 107, 110, 0.08);
+    box-shadow: 0 0 8px rgba(216, 99, 101, 0.10);
 }
 
 .theme-dark.enable-glow .tag:hover {
@@ -828,7 +826,7 @@ pre code,
 /* Glowing keywords in dark mode */
 .theme-dark.enable-glow .token.keyword,
 .theme-dark.enable-glow .cm-keyword {
-    text-shadow: 0 0 8px rgba(224, 107, 110, 0.2);
+    text-shadow: 0 0 8px rgba(216, 99, 101, 0.2);
 }
 
 
@@ -1107,7 +1105,7 @@ textarea:focus {
 /* Glowing focus state in dark mode */
 .theme-dark.enable-glow input:focus,
 .theme-dark.enable-glow textarea:focus {
-    box-shadow: 0 0 0 2px rgba(224, 107, 110, 0.15), var(--glow-accent);
+    box-shadow: 0 0 0 2px rgba(216, 99, 101, 0.15), var(--glow-accent);
 }
 
 
