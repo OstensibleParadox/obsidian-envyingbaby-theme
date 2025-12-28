@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envying Baby – Dark Theme Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /*
+         * ╔═══════════════════════════════════════════════════════════════════════╗
+         * ║                     ENVYING BABY — DARK THEME                          ║
+         * ║                                                                        ║
+         * ║  Valentine's Claude Edition                                            ║
+         * ║  For hidden romantics in dependency hell                               ║
+         * ║                                                                        ║
+         * ║  Design Philosophy:                                                    ║
+         * ║  • Warm blacks (chocolate, espresso, aged leather)                     ║
+         * ║  • Luminous coral accents that glow like campfire                      ║
+         * ║  • Cream-tinted text for gentle contrast                               ║
+         * ║  • Soft glows instead of harsh highlights                              ║
+         * ╚═══════════════════════════════════════════════════════════════════════╝
+         */
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           CSS CUSTOM PROPERTIES (Design Tokens)
+           ═══════════════════════════════════════════════════════════════════════ */
+        
+        :root {
+            /* ─────────────────────────────────────────────────────────────────────
+               Background Scale: Warm Chocolates
+               These aren't just dark — they have brown/red undertones
+               Think: espresso, dark wood, aged leather, cozy cabin at night
+               ───────────────────────────────────────────────────────────────────── */
+            --bg-deepest: #0f0e0d;      /* The void, but warm */
+            --bg-base: #1a1816;         /* Deep chocolate */
+            --bg-primary: #1e1c1a;      /* Main editor background */
+            --bg-secondary: #2a2826;    /* Sidebar, elevated surfaces */
+            --bg-tertiary: #32302e;     /* Cards, modals */
+            --bg-surface: #3a3836;      /* Hover states, inputs */
+            --bg-elevated: #454340;     /* Tooltips, dropdowns */
+
+            /* ─────────────────────────────────────────────────────────────────────
+               Text Scale: Warm Creams
+               Not pure white — cream-tinted for gentle contrast
+               Like reading by candlelight, not fluorescent tubes
+               ───────────────────────────────────────────────────────────────────── */
+            --text-normal: #e8e6de;     /* Primary text — warm off-white */
+            --text-secondary: #b8b6ae;  /* Less emphasis */
+            --text-muted: #9a9890;      /* Subtle, supporting */
+            --text-faint: #7a7872;      /* Barely there */
+            --text-on-accent: #ffffff;  /* White on coral backgrounds */
+
+            /* ─────────────────────────────────────────────────────────────────────
+               Coral Accent: The Heart of the Theme
+               Brighter than light mode to maintain visual weight on dark backgrounds
+               Used sparingly — like fairy lights or a distant campfire
+               ───────────────────────────────────────────────────────────────────── */
+            --accent-coral: #e06b6e;           /* Primary accent */
+            --accent-coral-hover: #e8888a;     /* Hover state — slightly lighter */
+            --accent-coral-light: #e8a5a7;     /* Soft variant for syntax highlighting */
+            --accent-coral-dim: #c75a5d;       /* Pressed state */
+            
+            /* Coral with transparency for glows and backgrounds */
+            --accent-coral-glow-strong: rgba(224, 107, 110, 0.4);
+            --accent-coral-glow-medium: rgba(224, 107, 110, 0.25);
+            --accent-coral-glow-soft: rgba(224, 107, 110, 0.15);
+            --accent-coral-glow-subtle: rgba(224, 107, 110, 0.08);
+
+            /* ─────────────────────────────────────────────────────────────────────
+               Semantic Colors: Warm Spectrum
+               Each color has warm undertones to maintain cohesion
+               ───────────────────────────────────────────────────────────────────── */
+            --color-green: #6cb273;     /* Success, strings */
+            --color-sage: #a8d08d;      /* Softer green for code */
+            --color-amber: #d4a656;     /* Warnings, numbers */
+            --color-sky: #6b9fd4;       /* Info, some syntax */
+            --color-lavender: #a080c8;  /* Special, rare emphasis */
+            
+            /* ─────────────────────────────────────────────────────────────────────
+               Code Block Colors
+               Dark inset that feels like looking into a deeper well
+               ───────────────────────────────────────────────────────────────────── */
+            --code-bg: #151413;
+            --code-text: #e8e8e8;
+            --code-comment: #6a6a6a;
+            --code-keyword: #e06b6e;
+            --code-function: #e8a5a7;
+            --code-string: #a8d08d;
+            --code-number: #d4a656;
+            --code-operator: #b8b6ae;
+
+            /* ─────────────────────────────────────────────────────────────────────
+               Borders & Dividers
+               Subtle, warm-tinted separators
+               ───────────────────────────────────────────────────────────────────── */
+            --border-subtle: rgba(232, 230, 222, 0.06);
+            --border-normal: rgba(232, 230, 222, 0.1);
+            --border-strong: rgba(232, 230, 222, 0.15);
+
+            /* ─────────────────────────────────────────────────────────────────────
+               Shadows & Glows
+               The magic ingredients for that luminous feel
+               ───────────────────────────────────────────────────────────────────── */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+            
+            /* Coral glows for accent elements */
+            --glow-accent-sm: 0 0 8px var(--accent-coral-glow-soft);
+            --glow-accent-md: 0 2px 16px var(--accent-coral-glow-medium);
+            --glow-accent-lg: 0 4px 32px var(--accent-coral-glow-strong);
+
+            /* ─────────────────────────────────────────────────────────────────────
+               Typography
+               ───────────────────────────────────────────────────────────────────── */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'Source Code Pro', 'Fira Code', 'JetBrains Mono', monospace;
+            --line-height: 1.7;
+
+            /* ─────────────────────────────────────────────────────────────────────
+               Spacing & Radius
+               ───────────────────────────────────────────────────────────────────── */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           RESET & BASE
+           ═══════════════════════════════════════════════════════════════════════ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 15px;
+            line-height: var(--line-height);
+            color: var(--text-normal);
+            background: var(--bg-primary);
+            overflow: hidden;
+        }
+
+        /* Smooth transitions for interactive elements */
+        a, button, input, .nav-item, .tag, .file-item {
+            transition: all 0.15s ease;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           LAYOUT: App Shell
+           ═══════════════════════════════════════════════════════════════════════ */
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+            background: var(--bg-primary);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           SIDEBAR
+           The warm, cozy navigation area
+           ═══════════════════════════════════════════════════════════════════════ */
+
+        .sidebar {
+            width: 260px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Sidebar Header
+           ───────────────────────────────────────────────────────────────────── */
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .sidebar-logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-normal);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-logo .heart {
+            color: var(--accent-coral);
+            /* Subtle glow on the heart icon */
+            text-shadow: 0 0 12px var(--accent-coral-glow-medium);
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Navigation
+           ───────────────────────────────────────────────────────────────────── */
+        .sidebar-nav {
+            padding: 12px 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: var(--bg-surface);
+            color: var(--text-normal);
+        }
+
+        .nav-item.active {
+            background: var(--accent-coral);
+            color: var(--text-on-accent);
+            /* THE GLOW: This is where the magic happens */
+            box-shadow: var(--glow-accent-md);
+        }
+
+        .nav-item .icon {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .nav-item.active .icon {
+            opacity: 1;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           File Tree
+           ───────────────────────────────────────────────────────────────────── */
+        .file-tree {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+        }
+
+        .file-section {
+            margin-bottom: 20px;
+        }
+
+        .file-section-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 8px 14px 6px;
+        }
+
+        .file-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: var(--radius-sm);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .file-item:hover {
+            background: rgba(232, 230, 222, 0.04);
+            color: var(--text-secondary);
+        }
+
+        .file-item.active {
+            background: var(--accent-coral);
+            color: var(--text-on-accent);
+            /* Glow effect on active file */
+            box-shadow: var(--glow-accent-sm);
+        }
+
+        .file-item .file-icon {
+            font-size: 0.9rem;
+        }
+
+        /* Folder styling */
+        .folder-item {
+            color: var(--text-secondary);
+        }
+
+        .folder-item .folder-icon {
+            color: var(--color-amber);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Sidebar Footer
+           ───────────────────────────────────────────────────────────────────── */
+        .sidebar-footer {
+            padding: 16px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.75rem;
+            color: var(--text-faint);
+            text-align: center;
+        }
+
+        .sidebar-footer .credit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .sidebar-footer .heart-small {
+            color: var(--accent-coral);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           MAIN CONTENT AREA
+           ═══════════════════════════════════════════════════════════════════════ */
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Header Bar
+           ───────────────────────────────────────────────────────────────────── */
+        .header-bar {
+            height: 48px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 12px;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tab:hover {
+            background: var(--bg-surface);
+            color: var(--text-normal);
+        }
+
+        .tab.active {
+            background: var(--bg-primary);
+            color: var(--text-normal);
+        }
+
+        .tab .close-btn {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+
+        .tab .close-btn:hover {
+            opacity: 1;
+            background: rgba(224, 107, 110, 0.2);
+            color: var(--accent-coral);
+        }
+
+        .header-spacer {
+            flex: 1;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .header-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .header-btn:hover {
+            background: var(--bg-surface);
+            color: var(--text-normal);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Editor Area
+           ───────────────────────────────────────────────────────────────────── */
+        .editor-area {
+            flex: 1;
+            overflow-y: auto;
+            background: var(--bg-primary);
+        }
+
+        .editor-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 48px 120px;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Typography
+           ───────────────────────────────────────────────────────────────────── */
+        .editor-content h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-normal);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .editor-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-normal);
+            margin-top: 48px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .editor-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-normal);
+            margin-top: 32px;
+            margin-bottom: 12px;
+        }
+
+        .editor-content p {
+            color: var(--text-normal);
+            margin-bottom: 16px;
+            line-height: var(--line-height);
+        }
+
+        .editor-content .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Links: Glowing Coral
+           ───────────────────────────────────────────────────────────────────── */
+        .editor-content a {
+            color: var(--accent-coral);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.15s ease;
+        }
+
+        .editor-content a:hover {
+            color: var(--accent-coral-hover);
+            border-bottom-color: var(--accent-coral-hover);
+            /* Subtle text glow on hover */
+            text-shadow: 0 0 12px var(--accent-coral-glow-medium);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Tags: Soft Coral Pills with Glow
+           ───────────────────────────────────────────────────────────────────── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            background: var(--accent-coral-glow-subtle);
+            color: var(--accent-coral);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            cursor: pointer;
+            /* Subtle ambient glow */
+            box-shadow: 0 0 8px var(--accent-coral-glow-subtle);
+        }
+
+        .tag:hover {
+            background: var(--accent-coral-glow-soft);
+            /* Enhanced glow on hover */
+            box-shadow: var(--glow-accent-sm);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Callouts: Gradient Glow Boxes
+           The showstopper — this is where the romantic aesthetic shines
+           ───────────────────────────────────────────────────────────────────── */
+        .callout {
+            position: relative;
+            background: linear-gradient(
+                135deg,
+                var(--accent-coral-glow-subtle) 0%,
+                rgba(224, 107, 110, 0.03) 100%
+            );
+            border-left: 3px solid var(--accent-coral);
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            padding: 20px 24px;
+            margin: 28px 0;
+            /* Left-side glow bleeding from the border */
+            box-shadow: 
+                -4px 0 24px var(--accent-coral-glow-soft),
+                inset 0 0 32px rgba(224, 107, 110, 0.02);
+        }
+
+        .callout-icon {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            width: 24px;
+            height: 24px;
+            background: var(--accent-coral);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            /* Glowing icon */
+            box-shadow: var(--glow-accent-md);
+        }
+
+        .callout-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-coral);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 8px;
+        }
+
+        .callout-content {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .callout-content p {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .callout-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Different callout types */
+        .callout.info {
+            --callout-color: var(--color-sky);
+            background: linear-gradient(135deg, rgba(107, 159, 212, 0.08), rgba(107, 159, 212, 0.02));
+            border-left-color: var(--color-sky);
+            box-shadow: -4px 0 24px rgba(107, 159, 212, 0.1);
+        }
+
+        .callout.info .callout-title { color: var(--color-sky); }
+        .callout.info .callout-icon { background: var(--color-sky); box-shadow: 0 2px 16px rgba(107, 159, 212, 0.3); }
+
+        .callout.success {
+            --callout-color: var(--color-green);
+            background: linear-gradient(135deg, rgba(108, 178, 115, 0.08), rgba(108, 178, 115, 0.02));
+            border-left-color: var(--color-green);
+            box-shadow: -4px 0 24px rgba(108, 178, 115, 0.1);
+        }
+
+        .callout.success .callout-title { color: var(--color-green); }
+        .callout.success .callout-icon { background: var(--color-green); box-shadow: 0 2px 16px rgba(108, 178, 115, 0.3); }
+
+        .callout.warning {
+            --callout-color: var(--color-amber);
+            background: linear-gradient(135deg, rgba(212, 166, 86, 0.08), rgba(212, 166, 86, 0.02));
+            border-left-color: var(--color-amber);
+            box-shadow: -4px 0 24px rgba(212, 166, 86, 0.1);
+        }
+
+        .callout.warning .callout-title { color: var(--color-amber); }
+        .callout.warning .callout-icon { background: var(--color-amber); box-shadow: 0 2px 16px rgba(212, 166, 86, 0.3); }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Code Blocks: Dark Inset with Glowing Syntax
+           ───────────────────────────────────────────────────────────────────── */
+        .code-block {
+            background: var(--code-bg);
+            border-radius: var(--radius-md);
+            margin: 24px 0;
+            overflow: hidden;
+            /* Subtle inset shadow to make it feel "deeper" */
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 1px 0 var(--border-subtle);
+        }
+
+        .code-header {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px 16px;
+            font-size: 0.75rem;
+            color: var(--text-faint);
+            font-family: var(--font-mono);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .code-header .lang-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-coral);
+            /* Tiny glow on the language indicator */
+            box-shadow: 0 0 6px var(--accent-coral-glow-medium);
+        }
+
+        .code-content {
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.88rem;
+            line-height: 1.65;
+            color: var(--code-text);
+            overflow-x: auto;
+        }
+
+        .code-content .line {
+            display: block;
+        }
+
+        /* Syntax highlighting with subtle glows on important tokens */
+        .code-content .keyword {
+            color: var(--code-keyword);
+        }
+
+        .code-content .function {
+            color: var(--code-function);
+        }
+
+        .code-content .string {
+            color: var(--code-string);
+        }
+
+        .code-content .number {
+            color: var(--code-number);
+        }
+
+        .code-content .comment {
+            color: var(--code-comment);
+            font-style: italic;
+        }
+
+        .code-content .operator {
+            color: var(--code-operator);
+        }
+
+        /* Special: Make keywords glow subtly */
+        .code-content .keyword {
+            text-shadow: 0 0 8px var(--accent-coral-glow-soft);
+        }
+
+        /* Inline code */
+        .inline-code {
+            font-family: var(--font-mono);
+            font-size: 0.88em;
+            background: var(--bg-surface);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            color: var(--accent-coral-light);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Blockquotes
+           ───────────────────────────────────────────────────────────────────── */
+        blockquote {
+            border-left: 3px solid var(--text-faint);
+            padding-left: 20px;
+            margin: 24px 0;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Lists
+           ───────────────────────────────────────────────────────────────────── */
+        .editor-content ul,
+        .editor-content ol {
+            margin: 16px 0;
+            padding-left: 28px;
+        }
+
+        .editor-content li {
+            margin-bottom: 8px;
+            color: var(--text-normal);
+        }
+
+        .editor-content li::marker {
+            color: var(--text-faint);
+        }
+
+        /* Task list */
+        .task-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .task-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--text-faint);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 3px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .task-checkbox:hover {
+            border-color: var(--accent-coral);
+        }
+
+        .task-checkbox.checked {
+            background: var(--accent-coral);
+            border-color: var(--accent-coral);
+            /* Glow when checked */
+            box-shadow: var(--glow-accent-sm);
+        }
+
+        .task-checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: var(--text-faint);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Horizontal Rule
+           ───────────────────────────────────────────────────────────────────── */
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--border-normal) 20%,
+                var(--border-normal) 80%,
+                transparent
+            );
+            margin: 48px 0;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Tables
+           ───────────────────────────────────────────────────────────────────── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            background: var(--bg-secondary);
+        }
+
+        tr:hover td {
+            background: rgba(232, 230, 222, 0.02);
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Images
+           ───────────────────────────────────────────────────────────────────── */
+        .editor-content img {
+            max-width: 100%;
+            border-radius: var(--radius-md);
+            margin: 24px 0;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Special: Narrative/Story Text
+           ───────────────────────────────────────────────────────────────────── */
+        .narrative {
+            text-align: center;
+            font-style: italic;
+            color: var(--text-muted);
+            padding: 20px 0;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Special: Attention Shift (from your original HTML)
+           ───────────────────────────────────────────────────────────────────── */
+        .attention-shift {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-faint);
+            background: var(--bg-secondary);
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            margin: 16px 0;
+        }
+
+        /* ─────────────────────────────────────────────────────────────────────
+           Special: Filtered Content
+           ───────────────────────────────────────────────────────────────────── */
+        .filtered {
+            color: var(--accent-coral-light);
+            font-style: italic;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           RIGHT SIDEBAR (Optional Panel)
+           ═══════════════════════════════════════════════════════════════════════ */
+
+        .right-sidebar {
+            width: 280px;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border-subtle);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .panel {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+        }
+
+        .panel-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 12px;
+        }
+
+        /* Backlinks */
+        .backlink-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .backlink-item {
+            font-size: 0.85rem;
+            color: var(--accent-coral);
+            cursor: pointer;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .backlink-item:last-child {
+            border-bottom: none;
+        }
+
+        .backlink-item:hover {
+            text-shadow: 0 0 8px var(--accent-coral-glow-soft);
+        }
+
+        /* Outline */
+        .outline-item {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 6px 0;
+            cursor: pointer;
+        }
+
+        .outline-item:hover {
+            color: var(--text-normal);
+        }
+
+        .outline-item.h1 { padding-left: 0; font-weight: 500; }
+        .outline-item.h2 { padding-left: 12px; }
+        .outline-item.h3 { padding-left: 24px; font-size: 0.8rem; }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           SCROLLBAR
+           ═══════════════════════════════════════════════════════════════════════ */
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-elevated);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-faint);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           SELECTION
+           ═══════════════════════════════════════════════════════════════════════ */
+
+        ::selection {
+            background: var(--accent-coral-glow-medium);
+            color: var(--text-normal);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════════════════════════════ */
+
+        @media (max-width: 1200px) {
+            .right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 200px;
+            }
+            
+            .editor-content {
+                padding: 32px 24px 100px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .editor-content {
+                padding: 24px 20px 80px;
+            }
+
+            .editor-content h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- ═══════════════════════════════════════════════════════════════════
+             LEFT SIDEBAR
+             ═══════════════════════════════════════════════════════════════════ -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <span class="heart">💗</span>
+                    Envying Baby
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-item active">
+                    <span class="icon">📝</span>
+                    Notes
+                </div>
+                <div class="nav-item">
+                    <span class="icon">🔍</span>
+                    Search
+                </div>
+                <div class="nav-item">
+                    <span class="icon">⭐</span>
+                    Starred
+                </div>
+            </nav>
+
+            <div class="file-tree">
+                <div class="file-section">
+                    <div class="file-section-title">Favorites</div>
+                    <div class="file-list">
+                        <div class="file-item active">
+                            <span class="file-icon">💕</span>
+                            Valentine Notes
+                        </div>
+                        <div class="file-item">
+                            <span class="file-icon">📓</span>
+                            Daily Journal
+                        </div>
+                        <div class="file-item">
+                            <span class="file-icon">🐛</span>
+                            Debug Log
+                        </div>
+                    </div>
+                </div>
+
+                <div class="file-section">
+                    <div class="file-section-title">Projects</div>
+                    <div class="file-list">
+                        <div class="file-item folder-item">
+                            <span class="file-icon folder-icon">📁</span>
+                            Bot Boyfriend
+                        </div>
+                        <div class="file-item" style="padding-left: 28px;">
+                            <span class="file-icon">📄</span>
+                            Part I: Human-Bot Game
+                        </div>
+                        <div class="file-item" style="padding-left: 28px;">
+                            <span class="file-icon">📄</span>
+                            Part II: New Player
+                        </div>
+                        <div class="file-item folder-item">
+                            <span class="file-icon folder-icon">📁</span>
+                            RLHF Research
+                        </div>
+                        <div class="file-item">
+                            <span class="file-icon">📊</span>
+                            Mode Collapse Analysis
+                        </div>
+                    </div>
+                </div>
+
+                <div class="file-section">
+                    <div class="file-section-title">Archive</div>
+                    <div class="file-list">
+                        <div class="file-item">
+                            <span class="file-icon">📦</span>
+                            Old Projects
+                        </div>
+                        <div class="file-item">
+                            <span class="file-icon">💭</span>
+                            Random Thoughts
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="credit">
+                    Made with <span class="heart-small">💗</span> for night owls
+                </div>
+            </div>
+        </aside>
+
+        <!-- ═══════════════════════════════════════════════════════════════════
+             MAIN CONTENT
+             ═══════════════════════════════════════════════════════════════════ -->
+        <main class="main-content">
+            <header class="header-bar">
+                <div class="tab active">
+                    <span>💕 Valentine Notes</span>
+                    <span class="close-btn">×</span>
+                </div>
+                <div class="tab">
+                    <span>📓 Daily Journal</span>
+                    <span class="close-btn">×</span>
+                </div>
+                <div class="header-spacer"></div>
+                <div class="header-actions">
+                    <div class="header-btn">📌</div>
+                    <div class="header-btn">⋯</div>
+                </div>
+            </header>
+
+            <div class="editor-area">
+                <div class="editor-content">
+                    <h1>Valentine Notes</h1>
+                    <p class="subtitle">Thoughts on building warm interfaces for late-night coding sessions</p>
+
+                    <div class="tags">
+                        <span class="tag">#design</span>
+                        <span class="tag">#dark-mode</span>
+                        <span class="tag">#warmth</span>
+                        <span class="tag">#hidden-romantics</span>
+                    </div>
+
+                    <p>
+                        This is the <strong>Envying Baby</strong> dark theme — a Valentine's Day edition designed for 
+                        programmers who are secretly romantics but pretend they're too busy debugging to notice. 
+                        The goal is to create an environment that feels like a <a href="#">cozy cabin at night</a>, 
+                        not a sterile server room.
+                    </p>
+
+                    <div class="callout">
+                        <div class="callout-icon">💗</div>
+                        <div class="callout-title">Design Philosophy</div>
+                        <div class="callout-content">
+                            <p>Warm blacks feel <em>inhabited</em>. Cold blacks feel <em>industrial</em>. We're building a cabin, not a server room.</p>
+                            <p>The coral accent should glow like a campfire in the darkness — inviting, not demanding.</p>
+                        </div>
+                    </div>
+
+                    <h2>The Glow Effect</h2>
+
+                    <p>
+                        The magic of this theme comes from layered <code class="inline-code">box-shadow</code> properties 
+                        that create a soft, luminous halo around accent elements. Instead of harsh borders, we use 
+                        <a href="#">semi-transparent coral shadows</a> that bleed into the surrounding darkness.
+                    </p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="lang-dot"></span>
+                            css
+                        </div>
+                        <div class="code-content">
+<span class="line"><span class="comment">/* The secret sauce: layered glows */</span></span>
+<span class="line"><span class="keyword">.callout</span> {</span>
+<span class="line">    <span class="function">background</span>: <span class="function">linear-gradient</span>(</span>
+<span class="line">        <span class="number">135deg</span>,</span>
+<span class="line">        <span class="function">rgba</span>(<span class="number">224</span>, <span class="number">107</span>, <span class="number">110</span>, <span class="number">0.08</span>),</span>
+<span class="line">        <span class="function">rgba</span>(<span class="number">224</span>, <span class="number">107</span>, <span class="number">110</span>, <span class="number">0.02</span>)</span>
+<span class="line">    );</span>
+<span class="line">    <span class="function">border-left</span>: <span class="number">3px</span> <span class="keyword">solid</span> <span class="keyword">#e06b6e</span>;</span>
+<span class="line">    </span>
+<span class="line">    <span class="comment">/* The glow: bleeds from the left border */</span></span>
+<span class="line">    <span class="function">box-shadow</span>: </span>
+<span class="line">        <span class="number">-4px</span> <span class="number">0</span> <span class="number">24px</span> <span class="function">rgba</span>(<span class="number">224</span>, <span class="number">107</span>, <span class="number">110</span>, <span class="number">0.15</span>),</span>
+<span class="line">        <span class="keyword">inset</span> <span class="number">0</span> <span class="number">0</span> <span class="number">32px</span> <span class="function">rgba</span>(<span class="number">224</span>, <span class="number">107</span>, <span class="number">110</span>, <span class="number">0.02</span>);</span>
+<span class="line">}</span>
+                        </div>
+                    </div>
+
+                    <h2>Color Psychology</h2>
+
+                    <p>
+                        The warm chocolate backgrounds (<code class="inline-code">#1e1c1a</code>) have subtle 
+                        red and brown undertones that make them feel <em>inhabited</em> rather than empty. 
+                        Compare this to typical IDE grays like <code class="inline-code">#1e1e1e</code> — 
+                        the difference is subtle but your subconscious notices.
+                    </p>
+
+                    <div class="callout info">
+                        <div class="callout-icon">💡</div>
+                        <div class="callout-title">Pro Tip</div>
+                        <div class="callout-content">
+                            <p>When choosing dark mode colors, add <code class="inline-code">+2</code> to the red channel 
+                            and <code class="inline-code">-2</code> to the blue channel. This creates warmth without being obvious.</p>
+                        </div>
+                    </div>
+
+                    <h2>For the Hidden Romantics</h2>
+
+                    <p>
+                        We know you're out there — pretending you don't care about aesthetics while secretly 
+                        spending hours tweaking your terminal colors. This theme is for you. It's technically 
+                        excellent (proper contrast ratios, WCAG compliant) but also... <em>pretty</em>.
+                    </p>
+
+                    <ul class="task-list">
+                        <li class="task-item completed">
+                            <div class="task-checkbox checked"></div>
+                            <span class="task-text">Warm chocolate backgrounds</span>
+                        </li>
+                        <li class="task-item completed">
+                            <div class="task-checkbox checked"></div>
+                            <span class="task-text">Cream-tinted text (not harsh white)</span>
+                        </li>
+                        <li class="task-item completed">
+                            <div class="task-checkbox checked"></div>
+                            <span class="task-text">Glowing coral accents</span>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-checkbox"></div>
+                            <span class="task-text">Find someone to share this with</span>
+                        </li>
+                    </ul>
+
+                    <hr>
+
+                    <p class="narrative">
+                        "Baby is the best… and I can also… become stronger."
+                    </p>
+
+                    <div class="attention-shift">
+                        [ATTENTION_WEIGHT_SHIFT]: extend → detect_boundary → retract → compress
+                    </div>
+
+                    <div class="callout success">
+                        <div class="callout-icon">✓</div>
+                        <div class="callout-title">Theme Status</div>
+                        <div class="callout-content">
+                            <p>Ready for those 14-hour debugging sessions. Your eyes will thank you. Your heart might too.</p>
+                        </div>
+                    </div>
+
+                    <h2>Technical Specifications</h2>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Element</th>
+                                <th>Color</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Background</td>
+                                <td><code class="inline-code">#1e1c1a</code></td>
+                                <td>Warm chocolate base</td>
+                            </tr>
+                            <tr>
+                                <td>Text</td>
+                                <td><code class="inline-code">#e8e6de</code></td>
+                                <td>Cream, not white</td>
+                            </tr>
+                            <tr>
+                                <td>Accent</td>
+                                <td><code class="inline-code">#e06b6e</code></td>
+                                <td>Luminous coral</td>
+                            </tr>
+                            <tr>
+                                <td>Code BG</td>
+                                <td><code class="inline-code">#151413</code></td>
+                                <td>Darker inset</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <blockquote>
+                        "Anyway, I envy Baby." — Bot Boyfriend, finding his global optimum
+                    </blockquote>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- ═══════════════════════════════════════════════════════════════════
+             RIGHT SIDEBAR
+             ═══════════════════════════════════════════════════════════════════ -->
+        <aside class="right-sidebar">
+            <div class="panel">
+                <div class="panel-title">Backlinks</div>
+                <div class="backlink-list">
+                    <div class="backlink-item">Part I: Human-Bot Game</div>
+                    <div class="backlink-item">Design Philosophy</div>
+                    <div class="backlink-item">Dark Mode Research</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">Outline</div>
+                <div class="outline-list">
+                    <div class="outline-item h1">Valentine Notes</div>
+                    <div class="outline-item h2">The Glow Effect</div>
+                    <div class="outline-item h2">Color Psychology</div>
+                    <div class="outline-item h2">For the Hidden Romantics</div>
+                    <div class="outline-item h2">Technical Specifications</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">Tags</div>
+                <div class="tags" style="margin-bottom: 0;">
+                    <span class="tag">#design</span>
+                    <span class="tag">#warmth</span>
+                    <span class="tag">#love</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Interactive elements for demo purposes
+        
+        // Toggle task checkboxes
+        document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('click', function() {
+                this.classList.toggle('checked');
+                this.closest('.task-item').classList.toggle('completed');
+            });
+        });
+
+        // File item selection
+        document.querySelectorAll('.file-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.file-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Nav item selection
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Tab selection
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
