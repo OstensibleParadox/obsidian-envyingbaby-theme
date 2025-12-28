@@ -110,8 +110,42 @@ settings:
 
 
 /* =================================================================================
+   HEARTBEAT ANIMATION
+
+   A subtle pulsing effect for heart icons and special accent elements.
+   Use the .heartbeat class on any element to apply this effect.
+   ================================================================================= */
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Apply to elements with .heartbeat class */
+.heartbeat {
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+/* Glowing heart variant for dark mode */
+.theme-dark .heartbeat {
+    filter: drop-shadow(0 0 8px rgba(216, 99, 101, 0.4));
+}
+
+/* Can be used on inline elements like emoji hearts */
+.markdown-preview-view .heartbeat,
+.markdown-rendered .heartbeat {
+    display: inline-block;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+
+/* =================================================================================
    FONTS
-   
+
    We use Inter for its excellent readability at small sizes and warm character.
    Source Code Pro for code because it's clear and has good ligature support.
    ================================================================================= */
@@ -397,10 +431,26 @@ body.enable-animations .callout {
     --glow-accent-strong: 0 2px 20px rgba(216, 99, 101, 0.35);
     --glow-accent-text: 0 0 10px rgba(216, 99, 101, 0.3);
 
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Granular Glow Variables
+
+       Fine-tuned opacity levels for different glow intensities.
+       Use these for backgrounds, borders, and layered effects.
+       ───────────────────────────────────────────────────────────────────────────── */
+    --accent-coral-glow-strong: rgba(216, 99, 101, 0.4);
+    --accent-coral-glow-medium: rgba(216, 99, 101, 0.25);
+    --accent-coral-glow-soft: rgba(216, 99, 101, 0.15);
+    --accent-coral-glow-subtle: rgba(216, 99, 101, 0.08);
+
+    /* Composed glow shadows using the granular variables */
+    --glow-accent-sm: 0 0 8px var(--accent-coral-glow-soft);
+    --glow-accent-md: 0 2px 16px var(--accent-coral-glow-medium);
+    --glow-accent-lg: 0 4px 32px var(--accent-coral-glow-strong);
+
     /* Layered glows for callouts and special elements */
     --glow-callout:
-        -4px 0 24px rgba(216, 99, 101, 0.15),
-        inset 0 0 32px rgba(216, 99, 101, 0.03);
+        -4px 0 24px var(--accent-coral-glow-soft),
+        inset 0 0 32px rgba(216, 99, 101, 0.02);
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Semantic Backgrounds
@@ -791,13 +841,13 @@ a.tag:hover {
     color: var(--tag-color-hover);
 }
 
-/* Glowing tags in dark mode */
+/* Glowing tags in dark mode — using granular glow variables */
 .theme-dark.enable-glow .tag {
-    box-shadow: 0 0 8px rgba(216, 99, 101, 0.10);
+    box-shadow: 0 0 8px var(--accent-coral-glow-subtle);
 }
 
 .theme-dark.enable-glow .tag:hover {
-    box-shadow: var(--glow-accent);
+    box-shadow: var(--glow-accent-sm);
 }
 
 
@@ -862,10 +912,10 @@ pre code,
 .token.operator, .cm-operator { color: var(--code-operator); }
 .token.tag, .cm-tag { color: var(--code-tag); }
 
-/* Glowing keywords in dark mode */
+/* Glowing keywords in dark mode — using granular glow variables */
 .theme-dark.enable-glow .token.keyword,
 .theme-dark.enable-glow .cm-keyword {
-    text-shadow: 0 0 8px rgba(216, 99, 101, 0.2);
+    text-shadow: 0 0 8px var(--accent-coral-glow-soft);
 }
 
 
@@ -1143,10 +1193,10 @@ textarea:focus {
     outline: none;
 }
 
-/* Glowing focus state in dark mode */
+/* Glowing focus state in dark mode — using granular glow variables */
 .theme-dark.enable-glow input:focus,
 .theme-dark.enable-glow textarea:focus {
-    box-shadow: 0 0 0 2px rgba(216, 99, 101, 0.15), var(--glow-accent);
+    box-shadow: 0 0 0 2px var(--accent-coral-glow-soft), var(--glow-accent);
 }
 
 
