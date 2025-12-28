@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envying Baby – Dark Theme Concepts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #0f0e0d;
+            color: #e8e6de;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #e06b6e, #e8a5a7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #9a9890;
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #e8e6de;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: #e06b6e;
+            border-radius: 2px;
+        }
+
+        .section-description {
+            color: #9a9890;
+            margin-bottom: 32px;
+            max-width: 700px;
+        }
+
+        /* ===== THREE MODES COMPARISON ===== */
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .modes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .mode-card {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .mode-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .mode-preview {
+            height: 280px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mode-preview.light {
+            background: #f7f0ea;
+        }
+
+        .mode-preview.dusk {
+            background: #3a3632;
+        }
+
+        .mode-preview.dark {
+            background: #1e1c1a;
+        }
+
+        .mode-sidebar {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .light .mode-sidebar {
+            background: #efe8e1;
+        }
+
+        .dusk .mode-sidebar {
+            background: #322e2a;
+        }
+
+        .dark .mode-sidebar {
+            background: #2a2826;
+        }
+
+        .mode-nav-item {
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .light .mode-nav-item {
+            color: #6b645c;
+        }
+
+        .light .mode-nav-item.active {
+            background: #d3595c;
+            color: white;
+        }
+
+        .dusk .mode-nav-item {
+            color: #a8a49c;
+        }
+
+        .dusk .mode-nav-item.active {
+            background: #d86365;
+            color: white;
+        }
+
+        .dark .mode-nav-item {
+            color: #7a7872;
+        }
+
+        .dark .mode-nav-item.active {
+            background: #e06b6e;
+            color: white;
+        }
+
+        .mode-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .mode-text-line {
+            height: 8px;
+            border-radius: 4px;
+            opacity: 0.6;
+        }
+
+        .mode-text-line.short { width: 60%; }
+        .mode-text-line.medium { width: 80%; }
+        .mode-text-line.long { width: 100%; }
+
+        .light .mode-text-line {
+            background: #2d2a26;
+        }
+
+        .dusk .mode-text-line {
+            background: #e0dcd4;
+        }
+
+        .dark .mode-text-line {
+            background: #e8e6de;
+        }
+
+        .mode-code-block {
+            background: #2a2a2a;
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 8px;
+        }
+
+        .dark .mode-code-block {
+            background: #151413;
+        }
+
+        .mode-code-line {
+            height: 6px;
+            border-radius: 3px;
+            margin-bottom: 4px;
+        }
+
+        .mode-code-line:last-child {
+            margin-bottom: 0;
+        }
+
+        .mode-code-line.keyword { background: #e06b6e; width: 30%; }
+        .mode-code-line.string { background: #a8d08d; width: 50%; }
+        .mode-code-line.comment { background: #6a6a6a; width: 70%; }
+
+        .mode-info {
+            padding: 20px;
+            background: #1a1816;
+        }
+
+        .mode-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .mode-description {
+            font-size: 0.85rem;
+            color: #9a9890;
+        }
+
+        /* ===== WARM vs COLD COMPARISON ===== */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 700px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .comparison-card {
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .comparison-preview {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .comparison-preview.cold {
+            background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+        }
+
+        .comparison-preview.warm {
+            background: linear-gradient(135deg, #1e1c1a, #2d2a26);
+        }
+
+        .comparison-emoji {
+            font-size: 4rem;
+            position: absolute;
+            opacity: 0.15;
+        }
+
+        .comparison-label {
+            font-size: 1.5rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .cold .comparison-label {
+            color: #a0a0a0;
+        }
+
+        .warm .comparison-label {
+            color: #e8e6de;
+        }
+
+        .comparison-info {
+            padding: 20px;
+            background: #1a1816;
+        }
+
+        .comparison-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comparison-title .icon {
+            font-size: 1.2rem;
+        }
+
+        .comparison-colors {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .color-chip {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .color-chip::after {
+            content: attr(data-hex);
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.65rem;
+            color: #7a7872;
+            white-space: nowrap;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        /* ===== CORAL ADAPTATION ===== */
+        .coral-demo {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .coral-card {
+            flex: 1;
+            min-width: 280px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .coral-preview {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .coral-preview.on-light {
+            background: #f7f0ea;
+        }
+
+        .coral-preview.on-dusk {
+            background: #3a3632;
+        }
+
+        .coral-preview.on-dark {
+            background: #1e1c1a;
+        }
+
+        .coral-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .on-light .coral-circle {
+            background: #d3595c;
+            box-shadow: 0 8px 32px rgba(211, 89, 92, 0.3);
+        }
+
+        .on-dusk .coral-circle {
+            background: #d86365;
+            box-shadow: 0 8px 32px rgba(216, 99, 101, 0.35);
+        }
+
+        .on-dark .coral-circle {
+            background: #e06b6e;
+            box-shadow: 0 8px 32px rgba(224, 107, 110, 0.4);
+        }
+
+        .coral-text {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .on-light .coral-text {
+            color: #d3595c;
+        }
+
+        .on-dusk .coral-text {
+            color: #d86365;
+        }
+
+        .on-dark .coral-text {
+            color: #e06b6e;
+        }
+
+        .coral-hex {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+
+        .on-light .coral-hex {
+            background: rgba(211, 89, 92, 0.1);
+            color: #d3595c;
+        }
+
+        .on-dusk .coral-hex {
+            background: rgba(216, 99, 101, 0.15);
+            color: #d86365;
+        }
+
+        .on-dark .coral-hex {
+            background: rgba(224, 107, 110, 0.15);
+            color: #e06b6e;
+        }
+
+        .coral-info {
+            padding: 16px 20px;
+            background: #1a1816;
+            font-size: 0.85rem;
+            color: #9a9890;
+        }
+
+        /* ===== FULL PALETTE ===== */
+        .palette-section {
+            margin-bottom: 40px;
+        }
+
+        .palette-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: #e8e6de;
+        }
+
+        .palette-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .palette-color {
+            width: 100px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #1a1816;
+        }
+
+        .palette-swatch {
+            height: 60px;
+        }
+
+        .palette-label {
+            padding: 10px;
+            font-size: 0.7rem;
+            text-align: center;
+        }
+
+        .palette-label .name {
+            color: #e8e6de;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .palette-label .hex {
+            color: #7a7872;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        /* ===== TEXT CONTRAST DEMO ===== */
+        .contrast-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 700px) {
+            .contrast-demo {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contrast-card {
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .contrast-preview {
+            padding: 32px;
+            background: #1e1c1a;
+        }
+
+        .contrast-preview.harsh p {
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .contrast-preview.gentle p {
+            color: #e8e6de;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .contrast-preview .muted {
+            color: #9a9890 !important;
+        }
+
+        .contrast-info {
+            padding: 20px;
+            background: #1a1816;
+        }
+
+        .contrast-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .harsh .contrast-badge {
+            background: rgba(224, 107, 110, 0.15);
+            color: #e06b6e;
+        }
+
+        .gentle .contrast-badge {
+            background: rgba(108, 178, 115, 0.15);
+            color: #6cb273;
+        }
+
+        /* ===== MOCK EDITOR ===== */
+        .editor-mock {
+            border-radius: 16px;
+            overflow: hidden;
+            background: #1e1c1a;
+        }
+
+        .editor-header {
+            background: #2a2826;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(232, 230, 222, 0.06);
+        }
+
+        .editor-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .editor-dot.red { background: #e06b6e; }
+        .editor-dot.yellow { background: #d4a656; }
+        .editor-dot.green { background: #6cb273; }
+
+        .editor-title {
+            margin-left: 12px;
+            font-size: 0.85rem;
+            color: #9a9890;
+        }
+
+        .editor-body {
+            display: flex;
+            min-height: 400px;
+        }
+
+        .editor-sidebar {
+            width: 200px;
+            background: #2a2826;
+            padding: 16px;
+            border-right: 1px solid rgba(232, 230, 222, 0.06);
+        }
+
+        .editor-folder {
+            margin-bottom: 16px;
+        }
+
+        .editor-folder-title {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #7a7872;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .editor-file {
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #9a9890;
+            margin-bottom: 2px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .editor-file:hover {
+            background: rgba(232, 230, 222, 0.05);
+            color: #e8e6de;
+        }
+
+        .editor-file.active {
+            background: #e06b6e;
+            color: white;
+        }
+
+        .editor-content {
+            flex: 1;
+            padding: 24px 32px;
+            overflow: auto;
+        }
+
+        .editor-content h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #e8e6de;
+            margin-bottom: 16px;
+            background: none;
+            -webkit-text-fill-color: #e8e6de;
+        }
+
+        .editor-content p {
+            color: #e8e6de;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        .editor-content a {
+            color: #e06b6e;
+            text-decoration: none;
+        }
+
+        .editor-content .callout {
+            background: linear-gradient(135deg, rgba(224, 107, 110, 0.08), rgba(224, 107, 110, 0.03));
+            border-left: 3px solid #e06b6e;
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+
+        .editor-content .callout-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #e06b6e;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .editor-content .callout p {
+            color: #9a9890;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .editor-content pre {
+            background: #151413;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        .editor-content code {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .editor-content .keyword { color: #e06b6e; }
+        .editor-content .function { color: #e8a5a7; }
+        .editor-content .string { color: #a8d08d; }
+        .editor-content .comment { color: #6a6a6a; }
+        .editor-content .number { color: #d4a656; }
+
+        .editor-content .tag {
+            display: inline-block;
+            background: rgba(224, 107, 110, 0.15);
+            color: #e06b6e;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 4px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7a7872;
+            font-size: 0.9rem;
+        }
+
+        .footer .heart {
+            color: #e06b6e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Envying Baby</h1>
+        <p class="subtitle">Dark Theme Concepts — Valentine's Claude for Night Owls</p>
+
+        <!-- THREE MODES -->
+        <section class="section">
+            <h2 class="section-title">Three Modes of Warmth</h2>
+            <p class="section-description">Instead of a binary light/dark switch, consider a spectrum: Day, Dusk, and Night. Each preserves the cozy aesthetic while adapting to different lighting conditions and eye fatigue levels.</p>
+            
+            <div class="modes-grid">
+                <div class="mode-card">
+                    <div class="mode-preview light">
+                        <div class="mode-sidebar">
+                            <div class="mode-nav-item">📁 Notes</div>
+                            <div class="mode-nav-item active">💕 Valentine</div>
+                            <div class="mode-nav-item">📝 Drafts</div>
+                        </div>
+                        <div class="mode-content">
+                            <div class="mode-text-line long"></div>
+                            <div class="mode-text-line medium"></div>
+                            <div class="mode-text-line short"></div>
+                            <div class="mode-code-block">
+                                <div class="mode-code-line keyword"></div>
+                                <div class="mode-code-line string"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode-info">
+                        <div class="mode-name">☀️ Light Mode</div>
+                        <div class="mode-description">Cream paper, warm sunlight. For daytime writing sessions.</div>
+                    </div>
+                </div>
+
+                <div class="mode-card">
+                    <div class="mode-preview dusk">
+                        <div class="mode-sidebar">
+                            <div class="mode-nav-item">📁 Notes</div>
+                            <div class="mode-nav-item active">💕 Valentine</div>
+                            <div class="mode-nav-item">📝 Drafts</div>
+                        </div>
+                        <div class="mode-content">
+                            <div class="mode-text-line long"></div>
+                            <div class="mode-text-line medium"></div>
+                            <div class="mode-text-line short"></div>
+                            <div class="mode-code-block">
+                                <div class="mode-code-line keyword"></div>
+                                <div class="mode-code-line string"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode-info">
+                        <div class="mode-name">🌅 Dusk Mode</div>
+                        <div class="mode-description">Golden hour warmth. Medium contrast for evening coding.</div>
+                    </div>
+                </div>
+
+                <div class="mode-card">
+                    <div class="mode-preview dark">
+                        <div class="mode-sidebar">
+                            <div class="mode-nav-item">📁 Notes</div>
+                            <div class="mode-nav-item active">💕 Valentine</div>
+                            <div class="mode-nav-item">📝 Drafts</div>
+                        </div>
+                        <div class="mode-content">
+                            <div class="mode-text-line long"></div>
+                            <div class="mode-text-line medium"></div>
+                            <div class="mode-text-line short"></div>
+                            <div class="mode-code-block">
+                                <div class="mode-code-line keyword"></div>
+                                <div class="mode-code-line string"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode-info">
+                        <div class="mode-name">🌙 Dark Mode</div>
+                        <div class="mode-description">Cozy darkness. Gentle on tired eyes at 2 AM.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WARM vs COLD -->
+        <section class="section">
+            <h2 class="section-title">Warm Blacks vs Cold Blacks</h2>
+            <p class="section-description">Most dark themes use neutral or blue-tinted blacks that feel sterile. Your aesthetic demands warm blacks — colors with brown and amber undertones that feel like espresso, dark wood, or aged leather.</p>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <div class="comparison-preview cold">
+                        <span class="comparison-emoji">🖥️</span>
+                        <span class="comparison-label">Typical IDE</span>
+                    </div>
+                    <div class="comparison-info">
+                        <div class="comparison-title">
+                            <span class="icon">❄️</span>
+                            Cold & Clinical
+                        </div>
+                        <p style="color: #7a7872; font-size: 0.85rem;">Neutral grays feel industrial, functional, but emotionally distant.</p>
+                        <div class="comparison-colors">
+                            <div class="color-chip" style="background: #1e1e1e;" data-hex="#1e1e1e"></div>
+                            <div class="color-chip" style="background: #252526;" data-hex="#252526"></div>
+                            <div class="color-chip" style="background: #2d2d2d;" data-hex="#2d2d2d"></div>
+                            <div class="color-chip" style="background: #3c3c3c;" data-hex="#3c3c3c"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-card">
+                    <div class="comparison-preview warm">
+                        <span class="comparison-emoji">🕯️</span>
+                        <span class="comparison-label">Envying Baby</span>
+                    </div>
+                    <div class="comparison-info">
+                        <div class="comparison-title">
+                            <span class="icon">🔥</span>
+                            Warm & Inhabited
+                        </div>
+                        <p style="color: #7a7872; font-size: 0.85rem;">Brown-tinted darks feel cozy, inviting — like a cabin at night.</p>
+                        <div class="comparison-colors">
+                            <div class="color-chip" style="background: #1a1816;" data-hex="#1a1816"></div>
+                            <div class="color-chip" style="background: #1e1c1a;" data-hex="#1e1c1a"></div>
+                            <div class="color-chip" style="background: #2a2826;" data-hex="#2a2826"></div>
+                            <div class="color-chip" style="background: #3a3632;" data-hex="#3a3632"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORAL ADAPTATION -->
+        <section class="section">
+            <h2 class="section-title">Coral Across Modes</h2>
+            <p class="section-description">The same coral hue needs different luminosity values to maintain visual weight across backgrounds. On light backgrounds it's a confident statement; on dark backgrounds it becomes a gentle glow.</p>
+            
+            <div class="coral-demo">
+                <div class="coral-card">
+                    <div class="coral-preview on-light">
+                        <div class="coral-circle">💗</div>
+                        <span class="coral-text">Light Mode Coral</span>
+                        <span class="coral-hex">#d3595c</span>
+                    </div>
+                    <div class="coral-info">Confident against cream. Original warmth.</div>
+                </div>
+
+                <div class="coral-card">
+                    <div class="coral-preview on-dusk">
+                        <div class="coral-circle">💗</div>
+                        <span class="coral-text">Dusk Mode Coral</span>
+                        <span class="coral-hex">#d86365</span>
+                    </div>
+                    <div class="coral-info">Slightly warmer. Golden hour glow.</div>
+                </div>
+
+                <div class="coral-card">
+                    <div class="coral-preview on-dark">
+                        <div class="coral-circle">💗</div>
+                        <span class="coral-text">Dark Mode Coral</span>
+                        <span class="coral-hex">#e06b6e</span>
+                    </div>
+                    <div class="coral-info">Brighter, luminous. A campfire in darkness.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FULL DARK PALETTE -->
+        <section class="section">
+            <h2 class="section-title">Dark Mode Palette</h2>
+            <p class="section-description">The complete color system for the dark theme, designed to be warm and eye-friendly while maintaining the romantic aesthetic.</p>
+            
+            <div class="palette-section">
+                <div class="palette-title">Background Scale (Warm Chocolates)</div>
+                <div class="palette-row">
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #0f0e0d;"></div>
+                        <div class="palette-label">
+                            <div class="name">Deepest</div>
+                            <div class="hex">#0f0e0d</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #1a1816;"></div>
+                        <div class="palette-label">
+                            <div class="name">Base Dark</div>
+                            <div class="hex">#1a1816</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #1e1c1a;"></div>
+                        <div class="palette-label">
+                            <div class="name">Primary</div>
+                            <div class="hex">#1e1c1a</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #2a2826;"></div>
+                        <div class="palette-label">
+                            <div class="name">Secondary</div>
+                            <div class="hex">#2a2826</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #32302e;"></div>
+                        <div class="palette-label">
+                            <div class="name">Elevated</div>
+                            <div class="hex">#32302e</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #3a3836;"></div>
+                        <div class="palette-label">
+                            <div class="name">Surface</div>
+                            <div class="hex">#3a3836</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="palette-section">
+                <div class="palette-title">Text Scale (Warm Creams)</div>
+                <div class="palette-row">
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #e8e6de;"></div>
+                        <div class="palette-label">
+                            <div class="name">Primary</div>
+                            <div class="hex">#e8e6de</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #b8b6ae;"></div>
+                        <div class="palette-label">
+                            <div class="name">Secondary</div>
+                            <div class="hex">#b8b6ae</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #9a9890;"></div>
+                        <div class="palette-label">
+                            <div class="name">Muted</div>
+                            <div class="hex">#9a9890</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #7a7872;"></div>
+                        <div class="palette-label">
+                            <div class="name">Faint</div>
+                            <div class="hex">#7a7872</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="palette-section">
+                <div class="palette-title">Semantic Colors (Warm Spectrum)</div>
+                <div class="palette-row">
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #e06b6e;"></div>
+                        <div class="palette-label">
+                            <div class="name">Coral/Accent</div>
+                            <div class="hex">#e06b6e</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #e8a5a7;"></div>
+                        <div class="palette-label">
+                            <div class="name">Coral Light</div>
+                            <div class="hex">#e8a5a7</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #d4a656;"></div>
+                        <div class="palette-label">
+                            <div class="name">Amber</div>
+                            <div class="hex">#d4a656</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #a8d08d;"></div>
+                        <div class="palette-label">
+                            <div class="name">Sage</div>
+                            <div class="hex">#a8d08d</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #6cb273;"></div>
+                        <div class="palette-label">
+                            <div class="name">Success</div>
+                            <div class="hex">#6cb273</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #6b9fd4;"></div>
+                        <div class="palette-label">
+                            <div class="name">Sky</div>
+                            <div class="hex">#6b9fd4</div>
+                        </div>
+                    </div>
+                    <div class="palette-color">
+                        <div class="palette-swatch" style="background: #a080c8;"></div>
+                        <div class="palette-label">
+                            <div class="name">Lavender</div>
+                            <div class="hex">#a080c8</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEXT CONTRAST -->
+        <section class="section">
+            <h2 class="section-title">Gentle Text Contrast</h2>
+            <p class="section-description">Pure white (#ffffff) on dark backgrounds creates harsh contrast that strains eyes over long sessions. Using cream-tinted off-whites reduces fatigue while maintaining readability.</p>
+            
+            <div class="contrast-demo">
+                <div class="contrast-card harsh">
+                    <div class="contrast-preview harsh">
+                        <p>This is pure white text on a dark background. After 14 hours of debugging, your eyes will feel like they've been staring at the sun.</p>
+                        <p class="muted">Even the muted text feels cold and clinical.</p>
+                    </div>
+                    <div class="contrast-info">
+                        <span class="contrast-badge">⚠️ High Strain</span>
+                        <p style="color: #7a7872; font-size: 0.85rem;">Pure white (#ffffff) creates 21:1 contrast ratio — technically accessible but fatiguing.</p>
+                    </div>
+                </div>
+
+                <div class="contrast-card gentle">
+                    <div class="contrast-preview gentle">
+                        <p>This is cream-tinted text on a warm dark background. It feels like reading by candlelight — still clear, but gentler.</p>
+                        <p class="muted">The muted text has warmth too, maintaining the cozy atmosphere.</p>
+                    </div>
+                    <div class="contrast-info">
+                        <span class="contrast-badge">✓ Eye-Friendly</span>
+                        <p style="color: #7a7872; font-size: 0.85rem;">Warm off-white (#e8e6de) provides 15:1 contrast — excellent readability with less strain.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FULL MOCK EDITOR -->
+        <section class="section">
+            <h2 class="section-title">Full Dark Mode Preview</h2>
+            <p class="section-description">A complete preview of how the dark theme looks in practice — warm backgrounds, luminous coral accents, and eye-friendly text.</p>
+            
+            <div class="editor-mock">
+                <div class="editor-header">
+                    <div class="editor-dot red"></div>
+                    <div class="editor-dot yellow"></div>
+                    <div class="editor-dot green"></div>
+                    <span class="editor-title">Obsidian — Envying Baby Dark</span>
+                </div>
+                <div class="editor-body">
+                    <div class="editor-sidebar">
+                        <div class="editor-folder">
+                            <div class="editor-folder-title">Favorites</div>
+                            <div class="editor-file active">💕 Valentine Notes</div>
+                            <div class="editor-file">📝 Daily Journal</div>
+                            <div class="editor-file">🐛 Debug Log</div>
+                        </div>
+                        <div class="editor-folder">
+                            <div class="editor-folder-title">Projects</div>
+                            <div class="editor-file">Bot Boyfriend v0.1</div>
+                            <div class="editor-file">RLHF Research</div>
+                            <div class="editor-file">Mode Collapse</div>
+                        </div>
+                    </div>
+                    <div class="editor-content">
+                        <h1>Valentine Notes</h1>
+                        <p>Some thoughts on building <a href="#">warm interfaces</a> for late-night coding sessions. The goal is to maintain the romantic aesthetic while being kind to tired eyes.</p>
+                        
+                        <p>
+                            <span class="tag">#design</span>
+                            <span class="tag">#warmth</span>
+                            <span class="tag">#dark-mode</span>
+                        </p>
+
+                        <div class="callout">
+                            <div class="callout-title">💗 Chapter Notes</div>
+                            <p>Remember: warm blacks feel inhabited, cold blacks feel industrial. We're building a cabin, not a server room.</p>
+                        </div>
+
+                        <pre><code><span class="comment">// A gentle glow in the darkness</span>
+<span class="keyword">const</span> <span class="function">coralAccent</span> = {
+  light: <span class="string">"#d3595c"</span>,
+  dusk:  <span class="string">"#d86365"</span>,
+  dark:  <span class="string">"#e06b6e"</span>
+};
+
+<span class="keyword">const</span> warmth = <span class="number">0.85</span>; <span class="comment">// Always warm</span></code></pre>
+
+                        <p>The key insight is that <a href="#">coral needs to brighten</a> as backgrounds darken — it becomes a campfire in the night, not a faded sticker.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            Made with <span class="heart">💗</span> for hidden romantics in dependency hell<br>
+            <span style="font-size: 0.8rem; opacity: 0.7;">Envying Baby — Valentine's Claude Edition</span>
+        </footer>
+    </div>
+</body>
+</html>
