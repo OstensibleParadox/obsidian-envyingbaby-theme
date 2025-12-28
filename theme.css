@@ -583,12 +583,22 @@ body {
    NAVIGATION (File Explorer)
    ================================================================================= */
 
+/* Folder section headers — refined uppercase style from mockup */
+.nav-folder-title-content {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-faint);
+}
+
 .nav-file-title,
 .nav-folder-title {
-    padding: 6px 12px;
+    padding: 6px 10px;
     margin: 1px 4px;
     border-radius: var(--nav-item-radius);
     color: var(--text-muted);
+    font-size: 0.85rem;
 }
 
 .nav-file-title:hover,
@@ -610,6 +620,34 @@ body {
 
 .nav-file-title.is-active .nav-file-title-content {
     color: var(--text-on-accent);
+}
+
+/* Folder collapse icon */
+.nav-folder-collapse-indicator {
+    color: var(--text-faint);
+}
+
+/* Subtle gradient border on sidebar (dark mode) — the "Claude glow" */
+.theme-dark .mod-left-split,
+.theme-dark .mod-right-split {
+    position: relative;
+}
+
+.theme-dark.enable-glow .mod-left-split::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+        180deg,
+        rgba(216, 99, 101, 0.0) 0%,
+        rgba(216, 99, 101, 0.15) 30%,
+        rgba(216, 99, 101, 0.15) 70%,
+        rgba(216, 99, 101, 0.0) 100%
+    );
+    pointer-events: none;
 }
 
 
@@ -643,16 +681,16 @@ body {
 .markdown-reading-view {
     max-width: 800px;
     margin: 0 auto;
-    padding: 32px 40px 100px;
+    padding: 24px 32px 100px;
     line-height: var(--line-height-normal);
 }
 
 /* Inline title */
 .inline-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-normal);
-    margin-bottom: 4px;
+    margin-bottom: 16px;
 }
 
 
@@ -663,11 +701,11 @@ body {
 .markdown-preview-view h1,
 .markdown-rendered h1,
 .cm-header-1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-normal);
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 16px;
 }
 
 .markdown-preview-view h2,
@@ -740,10 +778,11 @@ a:hover,
 a.tag {
     background: var(--tag-background);
     color: var(--tag-color);
-    padding: var(--tag-padding-y) var(--tag-padding-x);
-    border-radius: var(--tag-radius);
-    font-size: 0.88em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
     text-decoration: none;
+    margin-right: 4px;
 }
 
 .tag:hover,
@@ -854,12 +893,12 @@ blockquote,
     background: linear-gradient(
         135deg,
         rgba(var(--callout-color, var(--callout-default)), 0.08) 0%,
-        rgba(var(--callout-color, var(--callout-default)), 0.02) 100%
+        rgba(var(--callout-color, var(--callout-default)), 0.03) 100%
     );
     border-left: 3px solid rgb(var(--callout-color, var(--callout-default)));
     border-radius: 0 var(--callout-radius) var(--callout-radius) 0;
-    padding: var(--callout-padding);
-    margin: 24px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
 }
 
 /* THE GLOW: This is where the magic happens in dark mode */
@@ -868,7 +907,7 @@ blockquote,
 }
 
 .callout-title {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: rgb(var(--callout-color, var(--callout-default)));
     text-transform: uppercase;
@@ -881,11 +920,13 @@ blockquote,
 
 .callout-content {
     color: var(--text-muted);
+    font-size: 0.9rem;
 }
 
 .callout-content p {
     margin-bottom: 8px;
     color: var(--text-muted);
+    margin: 0;
 }
 
 .callout-content p:last-child {
