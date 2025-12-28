@@ -655,24 +655,30 @@ body {
 
 /* =================================================================================
    NAVIGATION (File Explorer)
+
+   Larger, more spacious design inspired by the HTML mockup.
+   Chat window-like feel with generous padding and readable fonts.
    ================================================================================= */
 
-/* Folder section headers — refined uppercase style from mockup */
+/* Folder section headers — small uppercase labels */
 .nav-folder-title-content {
-    font-size: 0.75rem;
-    font-weight: 500;
+    font-size: 0.7rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     color: var(--text-faint);
+    padding: 8px 14px 6px;
 }
 
+/* File and folder items — larger, more spacious like chat messages */
 .nav-file-title,
 .nav-folder-title {
-    padding: 6px 10px;
-    margin: 1px 4px;
-    border-radius: var(--nav-item-radius);
+    padding: 10px 14px;
+    margin: 2px 8px;
+    border-radius: var(--radius-m);
     color: var(--text-muted);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    gap: 10px;
 }
 
 .nav-file-title:hover,
@@ -694,6 +700,12 @@ body {
 
 .nav-file-title.is-active .nav-file-title-content {
     color: var(--text-on-accent);
+}
+
+/* File icons — slightly larger */
+.nav-file-title .nav-file-icon,
+.nav-folder-title .nav-folder-icon {
+    font-size: 1rem;
 }
 
 /* Folder collapse icon */
