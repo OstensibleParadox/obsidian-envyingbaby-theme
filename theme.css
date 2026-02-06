@@ -59,7 +59,7 @@ settings:
         description: Warm coral for the golden hour aesthetic
         type: variable-color
         format: hex
-        default: '#e06b6e'
+        default: '#d86365'
     -
         id: typography-heading
         title: Typography
@@ -132,7 +132,7 @@ settings:
 
 /* Glowing heart variant for dark mode */
 .theme-dark .heartbeat {
-    filter: drop-shadow(0 0 8px rgba(224, 107, 110, 0.4));
+    filter: drop-shadow(0 0 8px rgba(216, 99, 101, 0.4));
 }
 
 /* Can be used on inline elements like emoji hearts */
@@ -403,58 +403,58 @@ body.enable-animations .callout {
    ██████╔╝╚██████╔╝███████║██║  ██╗    ██║ ╚═╝ ██║╚██████╔╝██████╔╝███████╗
    ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝    ╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝
 
-   Warm Chocolates — espresso depths with campfire glow
-   Deep brown warmth for cozy evening sessions by candlelight
+   Dusk Mode — golden hour warmth with warm charcoal
+   Medium contrast for evening sessions when you need gentle warmth
    ================================================================================= */
 
 .theme-dark {
     /* ─────────────────────────────────────────────────────────────────────────────
-       Color Scale: Warm Chocolates (Dusk Mode)
+       Color Scale: Warm Charcoals (Dusk Mode)
 
-       These aren't cold grays — they have brown/red undertones
-       Think: espresso, dark wood, aged leather, cozy cabin at night
-       The subtle warmth makes a huge difference for eye comfort
+       These aren't cold grays — they have brown/amber undertones
+       Think: golden hour, warm stone, aged wood, firelit evenings
+       Lighter than typical dark themes — that's the point
        ───────────────────────────────────────────────────────────────────────────── */
-    --color-base-00: #1a1816;  /* Deepest — the void, but warm */
-    --color-base-05: #1e1c1a;  /* Main background — dark chocolate */
-    --color-base-10: #222120;  /* Slight elevation */
-    --color-base-20: #2a2826;  /* Sidebar — like aged leather */
-    --color-base-25: #32302e;  /* Cards, elevated surfaces */
-    --color-base-30: #3a3836;  /* Borders, dividers */
-    --color-base-35: #454340;  /* Stronger borders */
-    --color-base-40: #5a5854;  /* Muted elements */
-    --color-base-50: #7a7872;  /* Faint text */
-    --color-base-60: #9a9890;  /* Muted text */
-    --color-base-70: #b8b6ae;  /* Secondary text */
-    --color-base-100: #e8e6de; /* Primary text — warm cream, NOT pure white */
+    --color-base-00: #2a2826;  /* Deepest — code blocks */
+    --color-base-05: #3a3632;  /* Main background — warm charcoal */
+    --color-base-10: #3e3a36;  /* Slight elevation */
+    --color-base-20: #322e2a;  /* Sidebar — darker warm */
+    --color-base-25: #3e3a36;  /* Cards, elevated surfaces */
+    --color-base-30: #4a4642;  /* Borders, dividers */
+    --color-base-35: #565250;  /* Stronger borders */
+    --color-base-40: #686460;  /* Muted elements */
+    --color-base-50: #888480;  /* Faint text */
+    --color-base-60: #a8a49c;  /* Muted text — warm gray */
+    --color-base-70: #c4c0b8;  /* Secondary text */
+    --color-base-100: #e0dcd4; /* Primary text — soft cream */
 
     /* ─────────────────────────────────────────────────────────────────────────────
-       Accent: Luminous Coral (Dusk)
+       Accent: Warm Coral (Dusk)
 
-       Brighter than light mode to maintain visual weight on dark backgrounds.
-       This coral GLOWS — it's like a campfire in the darkness.
+       Slightly warmer coral for the golden hour aesthetic.
+       Maintains visual warmth against the charcoal backgrounds.
        ───────────────────────────────────────────────────────────────────────────── */
     --accent-h: 358;
-    --accent-s: 62%;
-    --accent-l: 58%;
+    --accent-s: 60%;
+    --accent-l: 53%;
 
-    --color-accent: #e06b6e;
-    --color-accent-1: #e06b6e;
-    --color-accent-2: #e8888a;
-    --color-accent-hover: #e8888a;
+    --color-accent: #d86365;
+    --color-accent-1: #d86365;
+    --color-accent-2: #e07a7c;
+    --color-accent-hover: #e07a7c;
 
     /* RGB for glow effects and transparency */
-    --accent-rgb: 224, 107, 110;
-    --color-accent-rgb: 224, 107, 110;
+    --accent-rgb: 216, 99, 101;
+    --color-accent-rgb: 216, 99, 101;
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Glow Tokens
 
-       These create the magical luminous effects. The coral seems to emit light.
+       Subtle luminous effects for the dusk aesthetic.
        ───────────────────────────────────────────────────────────────────────────── */
-    --glow-accent: 0 0 12px rgba(224, 107, 110, 0.15);
-    --glow-accent-strong: 0 2px 20px rgba(224, 107, 110, 0.3);
-    --glow-accent-text: 0 0 10px rgba(224, 107, 110, 0.3);
+    --glow-accent: 0 0 12px rgba(216, 99, 101, 0.15);
+    --glow-accent-strong: 0 2px 20px rgba(216, 99, 101, 0.3);
+    --glow-accent-text: 0 0 10px rgba(216, 99, 101, 0.3);
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Granular Glow Variables
@@ -462,10 +462,10 @@ body.enable-animations .callout {
        Fine-tuned opacity levels for different glow intensities.
        Use these for backgrounds, borders, and layered effects.
        ───────────────────────────────────────────────────────────────────────────── */
-    --accent-coral-glow-strong: rgba(224, 107, 110, 0.4);
-    --accent-coral-glow-medium: rgba(224, 107, 110, 0.25);
-    --accent-coral-glow-soft: rgba(224, 107, 110, 0.15);
-    --accent-coral-glow-subtle: rgba(224, 107, 110, 0.08);
+    --accent-coral-glow-strong: rgba(216, 99, 101, 0.4);
+    --accent-coral-glow-medium: rgba(216, 99, 101, 0.25);
+    --accent-coral-glow-soft: rgba(216, 99, 101, 0.15);
+    --accent-coral-glow-subtle: rgba(216, 99, 101, 0.08);
 
     /* Composed glow shadows using the granular variables */
     --glow-accent-sm: 0 0 8px var(--accent-coral-glow-soft);
@@ -475,7 +475,7 @@ body.enable-animations .callout {
     /* Layered glows for callouts and special elements */
     --glow-callout:
         -4px 0 24px var(--accent-coral-glow-soft),
-        inset 0 0 32px rgba(224, 107, 110, 0.02);
+        inset 0 0 32px rgba(216, 99, 101, 0.02);
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Semantic Backgrounds
@@ -484,12 +484,12 @@ body.enable-animations .callout {
     --background-primary-alt: var(--color-base-10);
     --background-secondary: var(--color-base-20);
     --background-secondary-alt: var(--color-base-25);
-    --background-modifier-hover: rgba(232, 230, 222, 0.04);
-    --background-modifier-active-hover: rgba(232, 230, 222, 0.08);
-    --background-modifier-border: rgba(232, 230, 222, 0.06);
-    --background-modifier-border-hover: rgba(232, 230, 222, 0.1);
-    --background-modifier-border-focus: rgba(232, 230, 222, 0.15);
-    --background-modifier-error: rgba(224, 107, 110, 0.15);
+    --background-modifier-hover: rgba(224, 220, 212, 0.06);
+    --background-modifier-active-hover: rgba(224, 220, 212, 0.10);
+    --background-modifier-border: rgba(224, 220, 212, 0.08);
+    --background-modifier-border-hover: rgba(224, 220, 212, 0.12);
+    --background-modifier-border-focus: rgba(224, 220, 212, 0.18);
+    --background-modifier-error: rgba(216, 99, 101, 0.15);
     --background-modifier-success: rgba(108, 178, 115, 0.15);
     --background-modifier-message: var(--color-base-25);
     --background-modifier-form-field: var(--color-base-20);
@@ -497,24 +497,23 @@ body.enable-animations .callout {
     /* ─────────────────────────────────────────────────────────────────────────────
        Text Colors
 
-       We use cream-tinted off-whites, NOT pure white.
-       This reduces eye strain dramatically during long sessions.
+       Soft cream tones for comfortable reading in the golden hour.
        ───────────────────────────────────────────────────────────────────────────── */
     --text-normal: var(--color-base-100);
     --text-muted: var(--color-base-60);
     --text-faint: var(--color-base-50);
     --text-on-accent: #ffffff;
     --text-on-accent-inverted: var(--color-accent);
-    --text-error: #e06b6e;
+    --text-error: #d86365;
     --text-success: #6cb273;
     --text-warning: #d4a656;
     --text-accent: var(--color-accent);
     --text-accent-hover: var(--color-accent-hover);
 
     /* Highlights and selection */
-    --text-highlight-bg: rgba(224, 107, 110, 0.25);
-    --text-highlight-bg-active: rgba(224, 107, 110, 0.4);
-    --text-selection: rgba(224, 107, 110, 0.3);
+    --text-highlight-bg: rgba(216, 99, 101, 0.25);
+    --text-highlight-bg-active: rgba(216, 99, 101, 0.4);
+    --text-selection: rgba(216, 99, 101, 0.3);
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Interactive Elements
@@ -523,7 +522,7 @@ body.enable-animations .callout {
     --interactive-hover: var(--color-base-25);
     --interactive-accent: var(--color-accent);
     --interactive-accent-hover: var(--color-accent-hover);
-    --interactive-accent-rgb: 224, 107, 110;
+    --interactive-accent-rgb: 216, 99, 101;
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Code Blocks: Darker Inset
@@ -541,12 +540,12 @@ body.enable-animations .callout {
        • Sky (#6b9fd4) - tags, types
        • Lavender (#a080c8) - special, decorators
        ───────────────────────────────────────────────────────────────────────────── */
-    --code-background: #1a1816;
-    --code-normal: #e8e6de;
+    --code-background: #2a2826;
+    --code-normal: #e0dcd4;
     --code-comment: #6a6a6a;
     --code-function: #e8a5a7;      /* Coral Light - pink */
-    --code-keyword: #e06b6e;       /* Coral - red */
-    --code-operator: #b8b6ae;
+    --code-keyword: #d86365;       /* Coral - red */
+    --code-operator: #c4c0b8;
     --code-property: #a8d08d;      /* Sage - green */
     --code-punctuation: #6a6a6a;
     --code-string: #a8d08d;        /* Sage - green */
@@ -559,8 +558,8 @@ body.enable-animations .callout {
 
        Warm tones that complement the dusk aesthetic.
        ───────────────────────────────────────────────────────────────────────────── */
-    --color-red: #e06b6e;
-    --color-red-rgb: 224, 107, 110;
+    --color-red: #d86365;
+    --color-red-rgb: 216, 99, 101;
     --color-orange: #e0a060;
     --color-orange-rgb: 224, 160, 96;
     --color-yellow: #d4a656;
@@ -573,8 +572,8 @@ body.enable-animations .callout {
     --color-blue-rgb: 107, 159, 212;
     --color-purple: #a080c8;
     --color-purple-rgb: 160, 128, 200;
-    --color-pink: #e06b6e;
-    --color-pink-rgb: 224, 107, 110;
+    --color-pink: #d86365;
+    --color-pink-rgb: 216, 99, 101;
 
     /* ─────────────────────────────────────────────────────────────────────────────
        UI Components
@@ -583,23 +582,23 @@ body.enable-animations .callout {
     /* Tags */
     --tag-color: var(--color-accent);
     --tag-color-hover: var(--color-accent-hover);
-    --tag-background: rgba(224, 107, 110, 0.15);
-    --tag-background-hover: rgba(224, 107, 110, 0.22);
+    --tag-background: rgba(216, 99, 101, 0.15);
+    --tag-background-hover: rgba(216, 99, 101, 0.22);
 
     /* Checkboxes */
     --checkbox-color: var(--color-accent);
     --checkbox-color-hover: var(--color-accent-hover);
-    --checkbox-border-color: rgba(232, 230, 222, 0.25);
+    --checkbox-border-color: rgba(224, 220, 212, 0.25);
     --checkbox-border-color-hover: var(--color-accent);
 
     /* Scrollbar */
     --scrollbar-bg: transparent;
-    --scrollbar-thumb-bg: rgba(232, 230, 222, 0.12);
-    --scrollbar-active-thumb-bg: rgba(232, 230, 222, 0.2);
+    --scrollbar-thumb-bg: rgba(224, 220, 212, 0.12);
+    --scrollbar-active-thumb-bg: rgba(224, 220, 212, 0.2);
 
     /* Dividers */
-    --divider-color: rgba(232, 230, 222, 0.08);
-    --divider-color-hover: rgba(232, 230, 222, 0.12);
+    --divider-color: rgba(224, 220, 212, 0.08);
+    --divider-color-hover: rgba(224, 220, 212, 0.12);
 
     /* Shadows — softer for dusk mode */
     --shadow-s: 0 1px 2px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -607,7 +606,7 @@ body.enable-animations .callout {
     --shadow-l: 0 8px 24px rgba(0, 0, 0, 0.35);
 
     /* Callouts */
-    --callout-default: 224, 107, 110;
+    --callout-default: 216, 99, 101;
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Heading Colors: Warm Spectrum (Dusk)
@@ -735,9 +734,13 @@ body {
     font-size: 1rem;
 }
 
-/* Folder collapse icon */
+/* Folder collapse icon and folder icons — amber warmth */
 .nav-folder-collapse-indicator {
     color: var(--text-faint);
+}
+
+.nav-folder-icon {
+    color: var(--color-yellow);
 }
 
 /* Subtle gradient border on sidebar (dark mode) — the "Claude glow" */
@@ -755,10 +758,10 @@ body {
     width: 1px;
     background: linear-gradient(
         180deg,
-        rgba(224, 107, 110, 0.0) 0%,
-        rgba(224, 107, 110, 0.15) 30%,
-        rgba(224, 107, 110, 0.15) 70%,
-        rgba(224, 107, 110, 0.0) 100%
+        rgba(216, 99, 101, 0.0) 0%,
+        rgba(216, 99, 101, 0.15) 30%,
+        rgba(216, 99, 101, 0.15) 70%,
+        rgba(216, 99, 101, 0.0) 100%
     );
     pointer-events: none;
 }
@@ -782,6 +785,18 @@ body {
 .workspace-tab-header.is-active .workspace-tab-header-inner {
     background: var(--background-modifier-active-hover);
     color: var(--text-normal);
+}
+
+/* Tab close button — coral glow on hover */
+.workspace-tab-header-inner-close-button {
+    color: var(--text-faint);
+    border-radius: 2px;
+    padding: 2px 4px;
+}
+
+.workspace-tab-header-inner-close-button:hover {
+    background: rgba(var(--color-accent-rgb), 0.2);
+    color: var(--color-accent);
 }
 
 
@@ -1346,6 +1361,107 @@ textarea:focus {
 .graph-view.color-text { color: var(--text-normal); }
 .graph-view.color-fill-highlight { color: var(--color-accent); }
 .graph-view.color-line-highlight { color: var(--color-accent); }
+
+
+/* =================================================================================
+   RIGHT SIDEBAR PANELS (Backlinks, Outline, Tags)
+
+   Elevated panels with warm backgrounds, matching the HTML mockup design.
+   ================================================================================= */
+
+/* Panel containers in right sidebar */
+.backlink-pane,
+.outgoing-link-pane {
+    background: var(--background-secondary-alt);
+    border-radius: var(--radius-l);
+    padding: 12px;
+}
+
+/* Backlink result items — coral accent with glow hover */
+.search-result-file-match {
+    color: var(--text-accent);
+}
+
+.theme-dark.enable-glow .search-result-file-match:hover {
+    text-shadow: 0 0 8px var(--accent-coral-glow-soft);
+}
+
+/* Backlink file titles */
+.tree-item-self {
+    border-radius: var(--radius-s);
+    padding: 4px 8px;
+}
+
+.tree-item-self:hover {
+    background: var(--background-modifier-hover);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────────
+   Outline Pane — indented heading levels
+   ───────────────────────────────────────────────────────────────────────────────── */
+
+.outline .tree-item-self {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.outline .tree-item-self:hover {
+    color: var(--text-normal);
+}
+
+/* Pane headers — small uppercase labels like mockup */
+.view-header-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+
+/* =================================================================================
+   IMAGES
+
+   Rounded corners and spacing from the HTML mockup design.
+   ================================================================================= */
+
+.markdown-preview-view img,
+.markdown-rendered img {
+    max-width: 100%;
+    border-radius: var(--radius-m);
+    margin: 24px 0;
+}
+
+
+/* =================================================================================
+   CODE BLOCK LANGUAGE FLAIR
+
+   Language label with coral dot indicator from the HTML mockup.
+   ================================================================================= */
+
+.markdown-preview-view .code-block-flair {
+    font-family: var(--font-monospace-theme);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    background: transparent;
+    padding: 4px 8px;
+}
+
+/* Coral dot before language label in dark mode */
+.theme-dark .markdown-preview-view .code-block-flair::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.theme-dark.enable-glow .markdown-preview-view .code-block-flair::before {
+    box-shadow: 0 0 6px var(--accent-coral-glow-medium);
+}
 
 
 /* =================================================================================
