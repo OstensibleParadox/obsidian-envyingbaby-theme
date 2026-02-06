@@ -215,7 +215,7 @@ body.enable-animations .callout {
        These aren't cold whites — they have subtle yellow/brown undertones
        Think: cream paper, old books, café au lait, sunlit linen
        ───────────────────────────────────────────────────────────────────────────── */
-    --color-base-00: #faf6f2;  /* Lightest — hover states, inputs */
+    --color-base-00: #f5ede5;  /* Lightest — hover states, inputs (still warm) */
     --color-base-05: #f7f0ea;  /* Main background — warm cream */
     --color-base-10: #f4ede6;  /* Slight elevation */
     --color-base-20: #efe8e1;  /* Sidebar — slightly darker cream */
@@ -262,7 +262,7 @@ body.enable-animations .callout {
     --background-modifier-error: rgba(211, 89, 92, 0.1);
     --background-modifier-success: rgba(92, 163, 99, 0.1);
     --background-modifier-message: var(--color-base-25);
-    --background-modifier-form-field: #ffffff;
+    --background-modifier-form-field: var(--color-base-00);
 
     /* ─────────────────────────────────────────────────────────────────────────────
        Text Colors
@@ -1175,7 +1175,7 @@ blockquote,
     top: 1px;
     width: 4px;
     height: 9px;
-    border: solid white;
+    border: solid var(--text-on-accent);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
