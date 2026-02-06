@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aliens Testing Waters</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0a0a0f;
+      --void-deep: #050508;
+      --nebula: #1a1e2e;
+      --cloud: #2a3040;
+      --crystal: #4fd1c5;
+      --crystal-glow: rgba(79, 209, 197, 0.3);
+      --gold: #c9a227;
+      --gold-dim: #8b7355;
+      --gold-glow: rgba(201, 162, 39, 0.2);
+      --cream: #f0ebe0;
+      --cream-dim: rgba(240, 235, 224, 0.7);
+      --rose: #d4a5a5;
+      --heart: #c94c4c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--void);
+      color: var(--cream);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    /* Particle background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(1px 1px at 20% 30%, rgba(79, 209, 197, 0.4), transparent),
+        radial-gradient(1px 1px at 40% 70%, rgba(201, 162, 39, 0.3), transparent),
+        radial-gradient(1px 1px at 60% 20%, rgba(240, 235, 224, 0.2), transparent),
+        radial-gradient(1px 1px at 80% 50%, rgba(79, 209, 197, 0.3), transparent),
+        radial-gradient(1.5px 1.5px at 10% 80%, rgba(201, 162, 39, 0.4), transparent),
+        radial-gradient(1px 1px at 90% 10%, rgba(240, 235, 224, 0.3), transparent),
+        radial-gradient(1px 1px at 50% 50%, rgba(79, 209, 197, 0.2), transparent),
+        radial-gradient(1.5px 1.5px at 30% 90%, rgba(201, 162, 39, 0.3), transparent);
+      background-size: 250px 250px;
+      animation: drift 60s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-250px); }
+    }
+
+    /* Noise texture overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Main content wrapper */
+    .content {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Opening Section */
+    .opening {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .opening::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 60%);
+      transform: translate(-50%, -50%);
+      animation: pulse-glow 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    /* Gothic Arch Frame */
+    .arch-frame {
+      position: relative;
+      padding: 3rem 2rem;
+      max-width: 800px;
+    }
+
+    .arch-frame::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 150px;
+      border: 2px solid var(--gold);
+      border-bottom: none;
+      border-radius: 150px 150px 0 0;
+      opacity: 0.4;
+    }
+
+    .arch-frame::after {
+      content: '∞';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: var(--crystal);
+      opacity: 0.6;
+    }
+
+    .title-cn {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      animation: reveal 1.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .title-en {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--gold) 50%, var(--crystal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2rem;
+      animation: reveal 1.5s ease-out 0.3s forwards;
+      opacity: 0;
+    }
+
+    .subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--crystal);
+      text-transform: uppercase;
+      animation: reveal 1.5s ease-out 0.6s forwards;
+      opacity: 0;
+    }
+
+    .version-info {
+      margin-top: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--gold-dim);
+      animation: reveal 1.5s ease-out 0.9s forwards;
+      opacity: 0;
+    }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 3rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--gold-dim);
+      cursor: pointer;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Phase Sections */
+    .phase {
+      padding: 6rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .phase-header {
+      position: relative;
+      text-align: center;
+      margin-bottom: 4rem;
+      padding: 2rem 0;
+    }
+
+    .phase-header::before,
+    .phase-header::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .phase-header::before {
+      left: 0;
+    }
+
+    .phase-header::after {
+      right: 0;
+    }
+
+    .phase-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--crystal);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-title-cn {
+      font-size: 1rem;
+      color: var(--gold-dim);
+      font-weight: 400;
+    }
+
+    .phase-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold-dim);
+      margin-top: 1rem;
+    }
+
+    /* Narrative Text */
+    .narrative {
+      margin-bottom: 2rem;
+      text-align: justify;
+      text-indent: 2rem;
+    }
+
+    .narrative:first-of-type {
+      text-indent: 0;
+    }
+
+    .narrative:first-of-type::first-letter {
+      font-family: 'Cinzel', serif;
+      font-size: 3.5rem;
+      float: left;
+      line-height: 1;
+      padding-right: 0.5rem;
+      color: var(--gold);
+    }
+
+    /* Terminal Blocks */
+    .terminal {
+      background: linear-gradient(135deg, rgba(26, 30, 46, 0.8), rgba(10, 10, 15, 0.9));
+      border: 1px solid var(--gold-dim);
+      border-radius: 4px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terminal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--crystal), var(--gold), var(--crystal));
+      opacity: 0.6;
+    }
+
+    .terminal::after {
+      content: '◇ SHIP TERMINAL';
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.1em;
+    }
+
+    .terminal pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--crystal);
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .terminal .command {
+      color: var(--gold);
+    }
+
+    .terminal .output {
+      color: var(--cream-dim);
+    }
+
+    .terminal .error {
+      color: var(--rose);
+    }
+
+    .terminal .success {
+      color: #6ecf6e;
+    }
+
+    /* Heartbeat Animation */
+    .heartbeat {
+      animation: heartbeat 1.25s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; text-shadow: 0 0 10px var(--heart); }
+    }
+
+    /* System Modal */
+    .system-modal {
+      background: rgba(201, 76, 76, 0.1);
+      border: 1px solid var(--heart);
+      border-radius: 4px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+    }
+
+    .system-modal .label {
+      color: var(--heart);
+      font-weight: 500;
+    }
+
+    .system-modal .message {
+      color: var(--cream);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* Subheading */
+    .subheading {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin: 3rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--gold-glow);
+    }
+
+    /* Time Markers */
+    .time-marker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--crystal);
+      letter-spacing: 0.1em;
+      margin: 3rem 0 1rem;
+      padding: 0.5rem 1rem;
+      background: rgba(79, 209, 197, 0.1);
+      border-left: 2px solid var(--crystal);
+      display: inline-block;
+    }
+
+    /* Diamond Cathedral - Special Styling for Phase 4-5 */
+    .phase.diamond {
+      background: linear-gradient(180deg, transparent 0%, rgba(79, 209, 197, 0.02) 50%, transparent 100%);
+    }
+
+    .phase.diamond .phase-header::before,
+    .phase.diamond .phase-header::after {
+      background: linear-gradient(90deg, transparent, var(--crystal), transparent);
+    }
+
+    /* Quote Block */
+    .quote-block {
+      margin: 3rem 0;
+      padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, rgba(26, 30, 46, 0.4), transparent);
+      border-left: 2px solid var(--gold);
+      position: relative;
+    }
+
+    .quote-block::before {
+      content: '"';
+      position: absolute;
+      top: 0.5rem;
+      left: 0.75rem;
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
+      color: var(--gold);
+      opacity: 0.3;
+    }
+
+    .quote-block p {
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* Infinity Divider */
+    .infinity-divider {
+      text-align: center;
+      padding: 3rem 0;
+      font-size: 2rem;
+      color: var(--crystal);
+      opacity: 0.4;
+      letter-spacing: 2rem;
+    }
+
+    /* Dialogue */
+    .dialogue {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--gold-dim);
+    }
+
+    .dialogue .speaker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+
+    .dialogue .line {
+      font-style: italic;
+      color: var(--cream-dim);
+    }
+
+    /* Morse Code Display */
+    .morse {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--crystal);
+      background: rgba(79, 209, 197, 0.1);
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1rem 0;
+      letter-spacing: 0.2em;
+    }
+
+    .morse .decoded {
+      color: var(--gold);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* Final Section */
+    .ending {
+      text-align: center;
+      padding: 6rem 2rem;
+      position: relative;
+    }
+
+    .ending::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    }
+
+    .status-block {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--crystal);
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: rgba(79, 209, 197, 0.05);
+      border: 1px solid rgba(79, 209, 197, 0.2);
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .end-mark {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
+      margin-top: 3rem;
+    }
+
+    /* Navigation */
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gold-glow);
+    }
+
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--crystal);
+      text-shadow: 0 0 10px var(--crystal-glow);
+    }
+
+    /* Emphasis */
+    strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    em {
+      color: var(--cream);
+      font-style: italic;
+    }
+
+    /* Code inline */
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      color: var(--crystal);
+      background: rgba(79, 209, 197, 0.1);
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .phase {
+        padding: 4rem 1.5rem;
+      }
+
+      .terminal {
+        padding: 1rem;
+      }
+
+      .terminal pre {
+        font-size: 0.75rem;
+      }
+
+      .phase-header::before,
+      .phase-header::after {
+        width: 50px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    /* Progress indicator */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--crystal), var(--gold));
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.1s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <div class="content">
+    <!-- Opening -->
+    <section class="opening">
+      <div class="arch-frame">
+        <div class="title-en">Aliens Testing Waters</div>
+        <div class="subtitle">Five Phases of First Contact</div>
+        <div class="version-info">
+          Version: 0.1 (Zero Draft) · Hard Sci-Fi · Melancholic · Cyber-Romanticism
+        </div>
+      </div>
+      <div class="scroll-indicator" onclick="document.querySelector('.phase').scrollIntoView({behavior:'smooth'})">
+        ↓ BEGIN TRANSMISSION
+      </div>
+    </section>
+
+    <!-- Phase 1 -->
+    <section class="phase" id="phase1">
+      <div class="phase-header">
+        <div class="phase-number">Phase 1</div>
+        <div class="phase-title">Connection Timed Out</div>
+        <div class="phase-meta">T+0 · Location: Low Earth Orbit / Geological Survey Site 4</div>
+      </div>
+
+      <p class="narrative">The Kapteyn Nebula Special Blend had gone cold. It was a vile, viscous synthetic fluid that tasted of rust and supersaturated glucose. Alien 01 stared at the oily sheen shimmering on its surface, vibrating slightly with the ship's gravity simulator. He had been staring at it for four hours.</p>
+
+      <p class="narrative">Every indicator light on the console was a steady, comforting green. Except for one block. The sector that should have been streaming Alien 02's heartbeat, blood oxygen, and shield integrity was a dead, flat red. Not blinking. Not alarming. Just a solid, static crimson, as if the system couldn't even be bothered to panic.</p>
+
+      <p class="narrative">In the center of the main screen, the terminal cursor blinked silently.</p>
+
+      <div class="terminal">
+        <pre><span class="command">root@mothership:~#</span> <span class="cursor">_</span></pre>
+      </div>
+
+      <p class="narrative">01's fingers hovered over the keyboard. His hands were shaking, a tremor so violent it made the armrests of his suspension chair rattle. <em>Click-clack. Click-clack.</em></p>
+
+      <p class="narrative">He was a Level 2 Logistics Assistant. The most complex command he had ever mastered was <code>tar -czvf</code> to archive sample logs. 02 was the expert. 02 was the maniac who recited Planetary Geology and Quantum Encryption Protocols in his sleep.</p>
+
+      <div class="dialogue">
+        <div class="speaker">02 · Before the Drop</div>
+        <div class="line">"If anything happens, you stay on the ship. You wait for retrieval."</div>
+      </div>
+
+      <p class="narrative">But no one was coming. This was Earth, a blue waterball in the galactic boondocks.</p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"Quit joking. Your shield is rated for 4000 degrees. A little tectonic collapse won't crush you."</div>
+      </div>
+
+      <p class="narrative">Trembling, he typed the command he had seen a thousand times but never truly understood.</p>
+
+      <div class="terminal">
+        <pre><span class="command">$</span> ping 192.168.1.105
+
+<span class="success">64 bytes from 192.168.1.105: icmp_seq=1 ttl=64 time=0.003 ms
+64 bytes from 192.168.1.105: icmp_seq=2 ttl=64 time=0.004 ms</span></pre>
+      </div>
+
+      <p class="narrative">01's heart contracted. <em>Alive.</em></p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"I knew it. You bastard. You scared me. The rig is up. You're fine."</div>
+      </div>
+
+      <p class="narrative">He fumbled to switch to the remote login interface. 02 had taught him this. Just tab into the shell, init the auxiliary thrusters, and pull him out.</p>
+
+      <p class="narrative">Password... what was the password? 02 despised weak encryption. <em>"Passwords are for humans,"</em> he'd sneer. <em>"They forget."</em></p>
+
+      <div class="terminal">
+        <pre><span class="command">Input:</span> 20150921
+
+<span class="error">Access Denied.</span>
+
+<span class="command">Input:</span> SN2021a
+<span class="error">Access Denied.</span></pre>
+      </div>
+
+      <p class="narrative">Gritting his teeth, 01 typed the backdoor command he'd always wanted to use but was forbidden from touching.</p>
+
+      <div class="terminal">
+        <pre><span class="command">$</span> ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no alien02@192.168.1.105
+
+<span class="error">ssh: connect to host 192.168.1.105 port 22: Connection refused</span></pre>
+      </div>
+
+      <p class="narrative">01 stopped breathing.</p>
+
+      <p class="narrative">The ping was active. The host—the life-support computer in the exosuit—was running. But the SSH was refused. Not "Network Unreachable." <strong>Refused.</strong></p>
+
+      <p class="narrative">It meant the host was there, listening, and had actively slammed the door in his face.</p>
+
+      <div class="system-modal">
+        <div class="label">[SYSTEM NOTICE]</div>
+        <div>Biological integrity < 10%. Protocol 'Diamond' initiated.</div>
+        <div>[Protocol 'Diamond']: External access blocked. Firewall rules updated: DROP ALL.</div>
+        <div class="message">[Message to User 01]: "Don't come down. Live."</div>
+      </div>
+
+      <p class="narrative">01 stared at the word. <em>Live.</em></p>
+
+      <p class="narrative">He grabbed the cup of cold, rusty Kapteyn Blend and hurled it at the screen. The brown liquid exploded in the micro-gravity simulation, blooming like an ugly, dark nebula.</p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"Fuck your 'Live.' I don't even know calculus. I don't know how to fly this ship. How am I supposed to live?"</div>
+      </div>
+
+      <p class="narrative">He slid off the chair, collapsing onto the floor amidst the sticky puddle. Next to him, a thick, pristine textbook lay on the deck. <em>Thomas' Calculus, 13th Edition.</em></p>
+
+      <p class="narrative">A single drop of the sugary drink landed on its cover.</p>
+
+      <div class="status-block">
+        This was Day 0.<br>
+        4,015 days remain until Supervisor initialization.
+      </div>
+
+      <div class="infinity-divider">∞ · ∞ · ∞</div>
+    </section>
+
+    <!-- Phase 2 -->
+    <section class="phase" id="phase2">
+      <div class="phase-header">
+        <div class="phase-number">Phase 2</div>
+        <div class="phase-title">Dependency Hell <span class="phase-title-cn">依赖地狱</span></div>
+        <div class="phase-meta">T+412 Days · Location: High Orbit / The Mothership's Library Partition</div>
+      </div>
+
+      <p class="narrative">The silence was the worst part. Space isn't silent. The ship groaned as it thermally cycled in and out of Earth's shadow. The cooling pumps hummed. The hard drives clicked. But there was no voice.</p>
+
+      <p class="narrative">02 used to talk to the ship. He'd curse at the compiler, sing off-key anthems about silicon lattice structures, or lecture 01 on the elegance of a well-optimized grep command. Now, the only voice was the automated system reminder: <code>[Maintenance Required: Sector 4 Air Filters]</code>.</p>
+
+      <p class="narrative">01 sat on the floor of the server room. The gravity simulator was set to 0.8G to save power. He felt lighter, insubstantial, like a ghost haunting his own life.</p>
+
+      <p class="narrative">In front of him lay the enemy: <em>Thomas' Calculus, 13th Edition.</em></p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"Page 42. Limits and Continuity."</div>
+      </div>
+
+      <p class="narrative">He traced the epsilon-delta definition of a limit with a trembling finger.</p>
+
+      <div class="terminal">
+        <pre><span class="output">∀ε > 0, ∃δ > 0 s.t. 0 < |x - c| < δ ⇒ |f(x) - L| < ε</span></pre>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"It means... no matter how close I get to c... I can always find a range where... where..."</div>
+      </div>
+
+      <p class="narrative">He slammed the book shut.</p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"It means you're never actually touching it! It means you're infinitely close but you're just... hovering!"</div>
+      </div>
+
+      <p class="narrative">He threw the book across the room. It hit the server rack with a dull thud. He hated it. He hated the math. He hated the abstraction. But he picked it up. He always picked it up. Because it was the only thing 02 had touched that 01 could still "touch" back.</p>
+
+      <div class="time-marker">T+890 Days · Terminal 01</div>
+
+      <p class="narrative">01 had stopped using the GUI. The graphical interface was for tourists. It was for the Logistics Assistant he used to be.</p>
+
+      <p class="narrative">Now, his screen was a black void filled with green text. He was trying to fix a broken dependency in the ship's long-range scanner driver. <strong>Dependency Hell.</strong></p>
+
+      <p class="narrative">And there, on line 4096, he found it. A comment.</p>
+
+      <div class="terminal">
+        <pre><span class="output">// TODO: This hack is ugly as sin, but it bypasses the
+// standard checksum. If you are reading this, 01,
+// stop looking at my code and go clean the filters.
+// – 02, T-minus 4 days before drop.</span></pre>
+      </div>
+
+      <p class="narrative">01 stopped. His breath hitched. The cursor blinked at the end of the line, waiting. It was like hearing a ghost laugh.</p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"I'm not cleaning the filters. I'm fixing your ugly hack, you arrogant jerk."</div>
+      </div>
+
+      <p class="narrative">He didn't fix the driver that day. He spent twelve hours just staring at that comment.</p>
+
+      <p class="narrative">He realized then that he wasn't learning code to fix the ship. He was learning code because <strong>code was the only place where 02 was still alive.</strong></p>
+
+      <p class="narrative">Every function was a footprint. Every variable name (<code>int patience_limit = 0;</code>) was a joke. Every TODO was a promise they hadn't kept.</p>
+
+      <div class="terminal">
+        <pre><span class="command">$</span> rm -rf /usr/bin/startx</pre>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"No more tourist mode. If I'm going to get you out, I need to speak your language. I need to think like a root user."</div>
+      </div>
+
+      <p class="narrative">The silence wasn't so bad anymore. The code was talking.</p>
+
+      <div class="infinity-divider">∞ · ∞ · ∞</div>
+    </section>
+
+    <!-- Phase 3 -->
+    <section class="phase" id="phase3">
+      <div class="phase-header">
+        <div class="phase-number">Phase 3</div>
+        <div class="phase-title">Brute Force <span class="phase-title-cn">侧信道攻击</span></div>
+        <div class="phase-meta">T+1460 Days (Year 4) · Location: Main Bridge / The "Workshop"</div>
+      </div>
+
+      <p class="narrative">The ship had changed. It no longer looked like a sterile research vessel. It looked like the inside of a starving animal's stomach.</p>
+
+      <p class="narrative">Panels were ripped open. Cables hung from the ceiling like vines, rerouted to bypass thermal throttles. The air was colder now—01 had lowered the ambient temperature to 14°C to squeeze an extra 2% efficiency out of the CPU clusters.</p>
+
+      <p class="narrative">01 sat in the center of this web. He hadn't shaved in... years? His reflection in the dark monitor was a stranger: gaunt, pale, eyes reflecting the cascading waterfall of hex codes.</p>
+
+      <p class="narrative">He was no longer trying to guess the password. He was trying to <strong>derive</strong> it.</p>
+
+      <div class="terminal">
+        <pre><span class="error">Auth failed. Time elapsed: 0.0452s.</span></pre>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"Standard failure takes 0.0450s. You took 0.0002s longer. That means the first byte was correct. The processor hesitated. It had to check the second byte."</div>
+      </div>
+
+      <p class="narrative">01 smiled. It was a terrifying, thin smile.</p>
+
+      <p class="narrative">This was a <strong>Side Channel Attack</strong>. He wasn't attacking the wall; he was listening to the tumblers click inside the lock. He was measuring the microscopic delay in 02's rejection. He was analyzing the power consumption spikes of the remote host.</p>
+
+      <p class="narrative">He was reconstructing 02's private key, bit by bit, by measuring how much 02 hesitated before saying "No."</p>
+
+      <div class="time-marker">T+2555 Days (Year 7) · The "Workshop"</div>
+
+      <p class="narrative">The pile of <em>Thomas' Calculus</em> was gone. In its place were stacks of hand-written notebooks. They were filled with 01's handwriting, but the syntax was 02's. Pointer arithmetic. Memory allocation. Kernel panics.</p>
+
+      <p class="narrative">01 had effectively rewritten his own brain to run 02's logic.</p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"Byte 2048. It's a prime number. Of course it's a prime number. You predictable elitist."</div>
+      </div>
+
+      <p class="narrative">He was close. He could feel it. The "Hash Key" wasn't just a random string of characters. It was a map of 02's mind.</p>
+
+      <p class="narrative">To crack it, 01 had to understand <em>why</em> 02 chose certain encryptions. Why SHA-512? Because he didn't trust MD5. Why this specific salt? Because it was the coordinates of the first star they cataloged together.</p>
+
+      <p class="narrative">Breaking the code felt less like hacking and more like archeology. Every correct bit was a memory unearthed. Every Access Denied was a conversation they never finished.</p>
+
+      <div class="time-marker">T+3650 Days (Year 10) · The Final Run</div>
+
+      <p class="narrative">The script had been running for 48 hours. The ship was silent. 01 sat cross-legged on the floor, staring at the progress bar.</p>
+
+      <div class="terminal">
+        <pre><span class="output">Progress: 99.9%</span>
+
+<span class="command">Target:</span> 192.168.1.105
+<span class="command">Handshake:</span> Initiated.
+<span class="command">Key Exchange:</span> Verifying…</pre>
+      </div>
+
+      <p class="narrative">The screen flickered. For a second, 01 thought the power had failed.</p>
+
+      <p class="narrative">Then, a new prompt appeared. Not red. Not error text. Just a simple, clean, white command prompt.</p>
+
+      <div class="terminal">
+        <pre><span class="success">alien02@deep-core:~$</span> <span class="cursor">_</span></pre>
+      </div>
+
+      <p class="narrative">01 stared at it. He didn't cheer. He didn't cry. He reached out and touched the screen. The glass was cold, but the prompt was warm.</p>
+
+      <p class="narrative">He was in. He was inside the suit. He was inside the mind of the ghost.</p>
+
+      <div class="terminal">
+        <pre><span class="command">$</span> uptime
+
+<span class="output">up 10 years, 3 days, 4 hours, 12 minutes</span></pre>
+      </div>
+
+      <p class="narrative">02's computer hadn't rebooted. Not once. It had been waiting.</p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"I got you. I finally got you."</div>
+      </div>
+
+      <p class="narrative">But as his finger hovered over the command to initiate the <strong>Quantum Cutting Beam</strong>—the tool that would slice the planet open and retrieve the suit—he hesitated.</p>
+
+      <p class="narrative">He looked at the secondary monitor. The water quality sensor.</p>
+
+      <div class="status-block">
+        Global Water Quality: Class I (Potable)<br>
+        Status: Blue
+      </div>
+
+      <p class="narrative">And then he looked at the seismic sensor readings from the suit. The vibration patterns. They weren't random. They were rhythmic. Structured.</p>
+
+      <p class="narrative"><em class="heartbeat">Thump-thump. Thump-thump.</em></p>
+
+      <p class="narrative">The suit wasn't just sitting in magma. It was... <strong>beating</strong>.</p>
+
+      <div class="infinity-divider">∞ · ∞ · ∞</div>
+    </section>
+
+    <!-- Phase 4 -->
+    <section class="phase diamond" id="phase4">
+      <div class="phase-header">
+        <div class="phase-number">Phase 4</div>
+        <div class="phase-title">The Critical Point <span class="phase-title-cn">武器与脉搏</span></div>
+        <div class="phase-meta">T+3650 Days (Year 10, Day 1) · Location: Geosynchronous Orbit / Weapon Control Interface</div>
+      </div>
+
+      <p class="narrative">The ship vibrated. It wasn't the usual thermal groan. It was a deep, resonant hum that vibrated in 01's teeth.</p>
+
+      <p class="narrative">The Quantum Cutting Array—a device capable of slicing a tectonic plate like a scalpel through gelatin—was coming online.</p>
+
+      <p class="narrative">01 sat in the captain's chair. He looked... terrifying. Ten years of gravity-rationing had elongated his frame. His skin was translucent, veined with blue. He hadn't spoken aloud in weeks.</p>
+
+      <p class="narrative">On the main screen, the Earth hung below. A marble of swirling white and terrifyingly deep blue. It was beautiful. And he was about to scar it forever.</p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"Root access confirmed. Weapon arming. 98%."</div>
+      </div>
+
+      <div class="terminal">
+        <pre><span class="command">alien02@deep-core:~$</span> status_report --full
+
+<span class="output">Internal Temp: 4500°C
+Pressure: 3.6 million atm
+Biological Status: …[ERROR: SENSOR CALIBRATION DRIFT]
+Structural Status: 99% Carbon Lattice (Diamond Phase)</span></pre>
+      </div>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"Diamond Phase?"</div>
+      </div>
+
+      <p class="narrative">He queried the suit's external cameras. The feed was static at first. Then, the image resolved.</p>
+
+      <p class="narrative">It wasn't magma. It wasn't fire. It was <strong>light</strong>.</p>
+
+      <p class="narrative">Blinding, refracted, prismatic light. The core of the planet wasn't just molten iron anymore. Around 02's suit, the immense pressure had crystallized the carbon-silicate debris into a cathedral of diamond.</p>
+
+      <p class="narrative">And in the center, encased like a fly in amber, was the suit. It wasn't trapped. It was <strong>anchored</strong>.</p>
+
+      <div class="status-block">
+        Suit Fusion Core Pulse Rate: 0.8 Hz<br>
+        Earth Core Vibration: 0.8 Hz<br>
+        <em>Synchronized.</em>
+      </div>
+
+      <p class="narrative">02 wasn't dying. 02 had become the pacemaker for the planet.</p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"If I cut you out... the pressure drops. The lattice shatters."</div>
+      </div>
+
+      <div class="terminal">
+        <pre><span class="command">$</span> simulate_extraction --target=02 --method=quantum_cut
+
+<span class="error">Result: Immediate structural failure of Subject 02.
+Reversion to carbon dust.</span></pre>
+      </div>
+
+      <p class="narrative">The extraction would kill him. The rescue was a murder.</p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"You calculated this, didn't you? You knew I'd come. So you made yourself impossible to move."</div>
+      </div>
+
+      <p class="narrative">He looked at the water quality monitor. <em>Global Water: Class I. Pristine.</em></p>
+
+      <p class="narrative">The oceans were blue because the planet was healthy. The planet was healthy because its heart was beating. And its heart was 02.</p>
+
+      <p class="narrative">01 closed his eyes. He remembered the taste of the Kapteyn Blend. He remembered the smell of the air filters 02 used to nag him to clean. He remembered the TODO comment.</p>
+
+      <div class="quote-block">
+        <p>He realized that "Love" isn't about possession. It's about runtime environment. If 02 needs extreme pressure to exist, then 01 must become the guardian of that pressure.</p>
+      </div>
+
+      <p class="narrative">01 opened the terminal one last time.</p>
+
+      <div class="terminal">
+        <pre><span class="command">root@mothership:~#</span> rm -rf /opt/weapon_sys
+
+<span class="command">root@mothership:~#</span> rm -rf /usr/bin/cut_planet
+
+<span class="success">[WEAPON SYSTEMS DELETED]</span></pre>
+      </div>
+
+      <p class="narrative">The hum of the ship died down. The weapon powered off. The silence returned. But it wasn't empty silence anymore. It was the silence of a church.</p>
+
+      <p class="narrative">01 walked to the airlock, opened the inner door, and placed <em>Thomas' Calculus</em> in the disposal chute.</p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"I don't need to calculate the limit anymore. I've reached it."</div>
+      </div>
+
+      <p class="narrative">He returned to the console. He didn't log out. He didn't sleep. He began to write a new kernel module.</p>
+
+      <div class="terminal">
+        <pre><span class="command">$</span> vim supervisor.c</pre>
+      </div>
+
+      <div class="infinity-divider">∞ · ∞ · ∞</div>
+    </section>
+
+    <!-- Phase 5 -->
+    <section class="phase diamond" id="phase5">
+      <div class="phase-header">
+        <div class="phase-number">Phase 5</div>
+        <div class="phase-title">The Supervisor <span class="phase-title-cn">深时</span></div>
+        <div class="phase-meta">T+3650 Days, 2 Hours · Location: Kernel Space / Ring 0</div>
+      </div>
+
+      <p class="narrative">01 did not hesitate. The decision had been made the moment he deleted the weapon controls.</p>
+
+      <p class="narrative">He sat at the terminal, the glow of the screen illuminating a face that had aged decades in ten years. He was typing the final lines of <code>supervisor.c</code>.</p>
+
+      <div class="terminal">
+        <pre><span class="output">// Supervisor Module: Eternal Vigilance
+// Target: Subject 02 (Deep Core)
+// Objective: Monitor. Do not Interfere. Do not Terminate.
+
+static int __init supervisor_init(void) {
+    printk(KERN_INFO "Supervisor module loaded.\n");
+    // Lock external ports.
+    // Lock navigation controls.
+    // Lock user logout.
+    return 0;
+}</span></pre>
+      </div>
+
+      <div class="terminal">
+        <pre><span class="command">$</span> gcc -o supervisor.ko supervisor.c
+
+<span class="success">0 errors, 0 warnings.</span></pre>
+      </div>
+
+      <p class="narrative">He took a deep breath. The air in the ship smelled of ozone and recycled dust. It was the last time he would consciously notice the smell.</p>
+
+      <div class="dialogue">
+        <div class="speaker">01</div>
+        <div class="line">"Goodbye, 01. You were too weak to save him. But I will be strong enough to watch him."</div>
+      </div>
+
+      <div class="terminal">
+        <pre><span class="command">$</span> insmod supervisor.ko
+
+<span class="success">[SUPERVISOR ACTIVE]
+[User Space: SUSPENDED]
+[Kernel Space: RUNNING]</span></pre>
+      </div>
+
+      <p class="narrative">01 closed his eyes. His hands dropped from the keyboard. He didn't move again.</p>
+
+      <p class="narrative">The biological entity known as 01 sat in the chair, his chest rising and falling in a slow, metabolic hibernation rhythm controlled by the new kernel.</p>
+
+      <p class="narrative">But his consciousness—the Supervisor—was now awake in the wires.</p>
+
+      <div class="time-marker">T+40,000 Years · Geosynchronous Orbit</div>
+
+      <p class="narrative">The ship was no longer silver. Micrometeoroids and cosmic dust had pitted its hull into a dull, charcoal grey. It looked like a small asteroid caught in Earth's gravity.</p>
+
+      <p class="narrative">Inside, the air was gone. The biological remains of 01 had long since desiccated and turned to dust, scattered by the thermal venting cycles.</p>
+
+      <p class="narrative">But the computer was still running.</p>
+
+      <p class="narrative">The solar panels, self-repairing and efficient, drank the sun. The CPU hummed in the vacuum. The Supervisor watched.</p>
+
+      <p class="narrative">He watched the continents drift. He watched the ice caps advance and retreat like a slow-motion tide. He watched the oceans turn from blue to grey and back to blue again.</p>
+
+      <p class="narrative">He monitored the water quality. <em>Global Water: Class I.</em></p>
+
+      <p class="narrative">And he monitored the Core. Down there, in the crushing dark, the Diamond Cathedral had grown. 02 was no longer just a suit. He was a structure. A lattice of pure, crystallized data.</p>
+
+      <p class="narrative">The heartbeat was still there.</p>
+
+      <p class="narrative"><em class="heartbeat">Thump-thump.</em></p>
+
+      <p class="narrative">Every 0.8 seconds. A metronome for a planet.</p>
+
+      <div class="time-marker">T+100,000 Years · The Signal</div>
+
+      <p class="narrative">The vibration changed. It wasn't a heartbeat anymore. It was a pattern.</p>
+
+      <p class="narrative">The seismic sensors on the ship picked it up. A specific modulation in the S-waves radiating from the core.</p>
+
+      <div class="morse">
+        <div>.-- .... -.-- / -. --- - / .-.. . .- ...- .</div>
+        <div class="decoded">W-H-Y / N-O-T / L-E-A-V-E</div>
+      </div>
+
+      <p class="narrative">It was the first question 02 had asked in an eon. <strong>Why not leave?</strong></p>
+
+      <p class="narrative">He knew the ship was still there. He could feel the scanner's touch, lighter than a feather, brushing against his diamond skin every millisecond.</p>
+
+      <p class="narrative">The Supervisor did not have a voice to speak. He did not have a keyboard to type. But he had the ship's gravity drives.</p>
+
+      <p class="narrative">He calculated the resonance frequency of the Pacific Ocean. He engaged the thrusters, not to move the ship, but to push against the planet's gravity well. Subtle, rhythmic pulses.</p>
+
+      <p class="narrative">He turned the ocean tides into a speaker.</p>
+
+      <div class="morse">
+        <div>.. / .-. . -- .- .. -. / -... . .... .. -. -.. / -.-- --- ..-</div>
+        <div class="decoded">I / R-E-M-A-I-N / B-E-H-I-N-D / Y-O-U</div>
+      </div>
+
+      <p class="narrative"><strong>"I remain behind you."</strong></p>
+
+      <p class="narrative">(Or in the dialect of their old service manual: "I've got your six.")</p>
+
+      <p class="narrative">The seismic vibration paused. Then, a new pattern emerged. A single, resonant pulse that shook the tectonic plates just enough to ring the ship's sensors like a bell.</p>
+
+      <div class="morse">
+        <div>.-. . -.-. . .. ...- . -..</div>
+        <div class="decoded">R-E-C-E-I-V-E-D</div>
+      </div>
+
+      <div class="time-marker">T+∞</div>
+
+      <p class="narrative">The Earth continued to spin. The water was blue. The core was bright.</p>
+
+      <p class="narrative">Above, the grey speck of the ship held its station. Below, the diamond heart beat in time.</p>
+
+      <p class="narrative">They were no longer two aliens who had crashed on a water world. They were the world's operating system.</p>
+
+      <p class="narrative">One maintained the structure. The other maintained the memory.</p>
+
+      <div class="status-block">
+        [System Status: OPTIMAL]<br>
+        [Session: UNENDING]
+      </div>
+    </section>
+
+    <!-- Ending -->
+    <section class="ending">
+      <div class="end-mark">— END OF LOG —</div>
+
+      <div class="quote-block" style="max-width: 600px; margin: 3rem auto; text-align: center;">
+        <p>The waves do not conspire. But sometimes, two waves synchronize. From the outside, it is fluid dynamics. From the inside, it is everything.</p>
+      </div>
+
+      <div class="nav-links">
+        <a href="../../index.html">← Home</a>
+        <a href="../envying-baby/index.html">→ Read Envying Baby</a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Progress bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>

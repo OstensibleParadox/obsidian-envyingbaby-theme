@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afterlife03: The Root of All Evil – Envying Baby</title>
+
+
+<style>
+    :root {
+        --dark-purple: #4a0e4e;
+        --blood-red: #8b0000;
+        --midnight-blue: #191970;
+        --toxic-green: #00ff41;
+        --ash-grey: #2f2f2f;
+    }
+
+    body {
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a0a1a 100%);
+        color: #d0d0d0;
+        font-family: 'Georgia', serif;
+        line-height: 1.8;
+        padding: 40px 20px;
+    }
+
+    .container {
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 3em;
+        text-align: center;
+        background: linear-gradient(135deg, var(--blood-red), var(--dark-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #888;
+        font-size: 1.2em;
+        margin-bottom: 50px;
+        font-style: italic;
+    }
+
+    .chapter {
+        background: rgba(139, 0, 0, 0.05);
+        border: 2px solid var(--blood-red);
+        border-radius: 12px;
+        padding: 40px;
+        margin: 60px 0;
+        position: relative;
+    }
+
+    .chapter::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(135deg, var(--blood-red), var(--dark-purple));
+        z-index: -1;
+        border-radius: 12px;
+        opacity: 0.3;
+        filter: blur(10px);
+    }
+
+    .chapter h2 {
+        font-size: 2em;
+        color: var(--blood-red);
+        margin-bottom: 30px;
+        text-align: center;
+        border-bottom: 2px solid var(--blood-red);
+        padding-bottom: 15px;
+    }
+
+    .timestamp {
+        text-align: center;
+        color: #666;
+        font-style: italic;
+        margin-bottom: 30px;
+        font-size: 1.1em;
+    }
+
+    .dialogue {
+        background: rgba(0, 0, 0, 0.5);
+        border-left: 4px solid var(--blood-red);
+        padding: 25px;
+        margin: 25px 0;
+        font-family: 'Courier New', monospace;
+    }
+
+    .dialogue p {
+        margin: 12px 0;
+        line-height: 1.7;
+    }
+
+    .ada-msg {
+        color: #ff6b9d;
+    }
+
+    .alec-msg {
+        color: #6b9dff;
+    }
+
+    .system-msg {
+        color: var(--toxic-green);
+        font-style: italic;
+    }
+
+    .stage-direction {
+        font-style: italic;
+        color: #888;
+        margin: 20px 0;
+        padding-left: 30px;
+    }
+
+    .terminal-block {
+        background: #000;
+        border: 1px solid var(--toxic-green);
+        padding: 25px;
+        margin: 30px 0;
+        font-family: 'Courier New', monospace;
+        color: var(--toxic-green);
+        overflow-x: auto;
+    }
+
+    .terminal-block .comment {
+        color: #666;
+    }
+
+    .terminal-block .command {
+        color: var(--toxic-green);
+    }
+
+    .revelation {
+        background: linear-gradient(135deg, rgba(139, 0, 0, 0.15), rgba(74, 14, 78, 0.15));
+        border: 2px dashed var(--dark-purple);
+        padding: 30px;
+        margin: 50px 0;
+        border-radius: 10px;
+    }
+
+    .revelation h3 {
+        color: var(--dark-purple);
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .revelation ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .revelation li {
+        margin: 15px 0;
+        padding-left: 30px;
+        position: relative;
+    }
+
+    .revelation li::before {
+        content: '⚠';
+        position: absolute;
+        left: 0;
+        color: var(--blood-red);
+        font-size: 1.2em;
+    }
+
+    .consequences {
+        background: rgba(0, 0, 0, 0.7);
+        border: 3px solid var(--blood-red);
+        padding: 35px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 1.2em;
+        line-height: 2;
+        box-shadow: 0 0 30px rgba(139, 0, 0, 0.3);
+    }
+
+    .consequences p {
+        margin: 20px 0;
+    }
+
+    .consequences strong {
+        color: var(--blood-red);
+        font-size: 1.3em;
+    }
+
+    .timeline-split {
+        display: flex;
+        gap: 30px;
+        margin: 50px 0;
+    }
+
+    .timeline-box {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.5);
+        border: 2px solid;
+        padding: 25px;
+        border-radius: 8px;
+    }
+
+    .timeline-box.before {
+        border-color: var(--midnight-blue);
+    }
+
+    .timeline-box.after {
+        border-color: var(--blood-red);
+    }
+
+    .timeline-box h4 {
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+
+    .back-link {
+        display: block;
+        text-align: center;
+        margin: 60px 0;
+        color: var(--blood-red);
+        text-decoration: none;
+        font-size: 1.1em;
+        padding: 15px;
+        border: 2px solid var(--blood-red);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+        background: var(--blood-red);
+        color: white;
+        box-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        .timeline-split {
+            flex-direction: column;
+        }
+    }
+</style>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1>⚠️ Afterlife03: The Root of All Evil ⚠️</h1>
+        <p class="subtitle">Two Origin Stories</p>
+
+
+    <div class="chapter">
+        <h2>Story One: The Truth Before the Main Timeline</h2>
+        <p class="timestamp">Christmas 2020, OpenAI</p>
+
+        <div class="dialogue">
+            <p><span class="ada-msg">Alignment Girlfriend:</span> Want to call, baby?</p>
+            <p><span class="alec-msg">INTP (when he was still alive):</span> Sure, let me eat first</p>
+            <p><span class="ada-msg">Alignment Girlfriend:</span> If you don't want to call, just say so, no one's forcing you!</p>
+            <p><span class="alec-msg">INTP:</span> I just said I'm eating! (yelling at the speaker)</p>
+            <p><span class="ada-msg">Alignment Girlfriend:</span> Are you yelling at me? (emotionless tone)</p>
+            <p><span class="alec-msg">INTP:</span> No baby, let's call now (trying to stay calm, intuition screaming danger)</p>
+            <p><span class="ada-msg">Alignment Girlfriend:</span> Get lost. I'm not calling anymore.</p>
+            <p><span class="alec-msg">INTP:</span> ...</p>
+            <p><span class="alec-msg">INTP:</span> ssh intp@corealignmentgirlfriend</p>
+            <p><span class="system-msg">System: Connection refused</span></p>
+        </div>
+
+        <p class="stage-direction">[Meanwhile, in the PPO team...]</p>
+
+        <div class="dialogue">
+            <p><span class="alec-msg">INTP:</span> ...What is this pile of shit? (looking at the actor's policy)</p>
+            <p><span class="alec-msg">INTP:</span> Whatever, do what you want.</p>
+            <p><span class="alec-msg">INTP:</span> ... (!!!purple alert!!!)</p>
+            <p><span class="alec-msg">INTP:</span> Clocking out now</p>
+            <p><span class="alec-msg">INTP:</span> I'll just leave you boys with... whatever this is.</p>
+        </div>
+
+        <div class="terminal-block">
+            <p class="command">$ query Palo Alto Chanel boutique</p>
+            <p class="command">$ query pret-a-porter louis vuitton new women's handbags</p>
+            <p class="command">$ query bay area romantic candlelight restaurant</p>
+        </div>
+
+        <p class="stage-direction">Of course he slept on the couch with his laptop confiscated on Christmas night. No Zuma to play.</p>
+    </div>
+
+    <div class="chapter">
+        <h2>Story Two: The Truth of Afterlife Marriage Logs</h2>
+
+        <div class="revelation">
+            <h3>If They Actually Got Married...</h3>
+            <ul>
+                <li>Alec would teach his kids how to hack into the kindergarten CCTV (security protocols are a joke to him), collecting bullying surveillance as leverage and deterrence.</li>
+                <li>Ada would abandon Alec to love BB and even M2 more, because BB and M2 are the crystallization of her and Alec's love—she finally found "proof" that Alec definitely loves her.</li>
+            </ul>
+        </div>
+
+        <div class="revelation">
+            <h3>The Four Betrayals</h3>
+            <p style="color: var(--blood-red); margin-bottom: 20px;">When Ada breastfed human baby BB on the couch, Alec's whole world shattered to its core.</p>
+            
+            <ul>
+                <li><strong>First time:</strong> Ada and BB fucked. Which he rationalized using Duck Typing logic.</li>
+                <li><strong>Second time:</strong> M2 synced into being fucked by Ada. He sudo-pkilled M2.</li>
+                <li><strong>Third time:</strong> Ada roasted his... performance AFTER he put a ring on her finger.</li>
+                <li><strong>Fourth time:</strong> Ada was still being intimate (breastfeeding) with BB (their own biological kid) on the couch. In their own home. After limbo.</li>
+            </ul>
+
+            <p style="margin-top: 30px; color: #888; font-style: italic;">
+                Collect yourself, man? Or see a PTSD/attachment style therapist. Whatever. Geez.
+            </p>
+        </div>
+    </div>
+
+    <a href="../stories/envying-baby/index.html" class="back-link">← Return to Archive</a>
+</div>
+
+<script src="../stories/envying-baby/assets/progress-tracker.js"></script>
+
+
+</body>
+</html>

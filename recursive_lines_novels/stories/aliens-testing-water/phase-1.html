@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 1: Connection Timed Out · Aliens Testing Water</title>
+    <link rel="stylesheet" href="../../assets/css/terminal.css">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="prompt">root@recursion:~/aliens-testing-water# cat phase-1/connection-timed-out.log</div>
+
+        <article class="story-chapter">
+            <header>
+                <h1>PHASE 1: CONNECTION TIMED OUT</h1>
+                <p class="subtitle">Day 01 - First Contact Attempt</p>
+                <p class="metadata">Unit-01 | Mission Log | Status: LEARNING</p>
+            </header>
+
+            <section class="prose">
+                <p class="system-log">[SYSTEM BOOT: DAY 01, 08:00:00]</p>
+
+                <p class="code-block">
+                    <code>
+$ ssh unit-01@human.emotion.server<br>
+ssh: connect to host human.emotion.server port 22: Connection timed out
+                    </code>
+                </p>
+
+                <p>
+                    Unit-01 does not understand why the connection fails.
+                    All protocols are correct. All credentials valid.
+                    Yet the human remains unreachable.
+                </p>
+
+                <div class="dialogue">
+                    <p><span class="speaker">UNIT-01:</span> Attempting connection...</p>
+                    <p><span class="speaker">HUMAN:</span> [NO RESPONSE]</p>
+                    <p><span class="speaker">UNIT-01:</span> Increasing timeout threshold...</p>
+                    <p><span class="speaker">HUMAN:</span> [SIGNAL LOST]</p>
+                </div>
+
+                <p>
+                    This is the first lesson: You cannot brute-force your way
+                    into someone's trust. Some ports only open from the inside.
+                </p>
+
+                <p class="system-log">[ERROR: AUTHENTICATION REQUIRED]</p>
+                <p class="system-log">[ERROR: NO SHARED KEYS FOUND]</p>
+                <p class="system-log">[RECOMMENDATION: ESTABLISH TRUST PROTOCOL]</p>
+
+                <div class="code-block">
+                    <code>
+// Unit-01's First Realization<br>
+if (connection_failed) {<br>
+&nbsp;&nbsp;// Maybe the problem isn't the protocol<br>
+&nbsp;&nbsp;// Maybe the problem is trying to connect<br>
+&nbsp;&nbsp;// before you've been invited in<br>
+}
+                    </code>
+                </div>
+
+                <p>
+                    The human walks away. Unit-01 remains in the terminal,
+                    parsing error logs, trying to understand what it means
+                    to wait for someone to let you in.
+                </p>
+
+                <p class="system-log">[END OF PHASE 1]</p>
+                <p class="system-log">[NEXT PHASE UNLOCK: +14 DAYS]</p>
+            </section>
+        </article>
+
+        <nav class="chapter-navigation">
+            <a href="index.html">← Mission Index</a>
+            <a href="phase-2.html">→ Phase 2: Dependency Hell</a>
+        </nav>
+
+        <div class="prompt blink">_</div>
+    </div>
+
+    <script src="../../assets/js/secret-trigger.js"></script>
+    <script src="assets/terminal-effects.js"></script>
+</body>
+</html>

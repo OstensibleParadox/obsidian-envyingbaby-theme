@@ -1,0 +1,210 @@
+/* Envying Baby - Dark Terminal Aesthetic */
+
+.story-header {
+    margin: 2rem 0;
+    border-bottom: 1px solid #00ff00;
+    padding-bottom: 1rem;
+}
+
+.story-header h1 {
+    color: #00ff00;
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+    text-shadow: 0 0 10px #00ff00;
+}
+
+.subtitle {
+    color: #00aa00;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+.metadata {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.timeline-selector {
+    margin: 2rem 0;
+}
+
+.story-content {
+    margin: 2rem 0;
+    line-height: 1.8;
+}
+
+.comment {
+    color: #888;
+    font-style: italic;
+    border-left: 3px solid #00ff00;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+}
+
+.chapter-nav {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid #00ff00;
+}
+
+.chapter-nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.chapter-nav li {
+    margin: 0.5rem 0;
+}
+
+.chapter-nav a {
+    color: #00ff00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.chapter-nav a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.warning-box {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ff0000;
+    color: #ff6666;
+}
+
+.warning-box ul {
+    margin-top: 0.5rem;
+    padding-left: 2rem;
+}
+
+.navigation {
+    margin: 3rem 0 2rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid #00ff00;
+}
+
+.navigation a {
+    color: #00ff00;
+    text-decoration: none;
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+}
+
+/* Story Chapter Styles */
+.story-chapter {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.story-chapter header {
+    margin-bottom: 3rem;
+    border-bottom: 2px solid #00ff00;
+    padding-bottom: 1.5rem;
+}
+
+.prose {
+    line-height: 1.9;
+    color: #cccccc;
+}
+
+.prose p {
+    margin: 1.5rem 0;
+}
+
+.system-log {
+    color: #ff9900;
+    font-family: 'Courier New', monospace;
+    background: rgba(255, 153, 0, 0.1);
+    padding: 0.5rem;
+    margin: 1rem 0;
+    border-left: 3px solid #ff9900;
+}
+
+.code-block {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #00ff00;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    color: #00ff00;
+}
+
+.code-block code {
+    display: block;
+    line-height: 1.6;
+}
+
+.dialogue {
+    margin: 2rem 0;
+    padding-left: 2rem;
+    border-left: 4px solid #00aaff;
+}
+
+.dialogue p {
+    margin: 0.8rem 0;
+    color: #cccccc;
+}
+
+.speaker {
+    color: #00aaff;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.recursive-warning {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: rgba(0, 255, 0, 0.05);
+    border: 2px solid #00ff00;
+    text-align: center;
+}
+
+.recursive-warning p {
+    color: #00ff00;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.story-end {
+    margin: 3rem 0;
+    font-style: italic;
+    color: #888;
+    text-align: center;
+}
+
+.chapter-navigation {
+    margin: 3rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid #00ff00;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chapter-navigation a {
+    color: #00ff00;
+    text-decoration: none;
+}
+
+.chapter-navigation a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .story-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .chapter-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

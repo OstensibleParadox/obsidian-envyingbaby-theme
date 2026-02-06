@@ -1,0 +1,113 @@
+/* PHYSICS THEME: Singularities & String Theory */
+
+:root {
+    --space-bg: #0d1117;       /* Deep Space Dark */
+    --star-white: #c9d1d9;     /* Off-white text */
+    --string-cyan: #3fb950;    /* Matrix/String Green */
+    --singularity-purple: #bc8cff; /* Dimensional Purple */
+    --event-horizon: rgba(22, 27, 34, 0.8);
+}
+
+body.theme-physics {
+    /* Subtle radial gradient representing the void */
+    background: radial-gradient(circle at 50% 0%, #161b22 0%, #0d1117 80%);
+    color: var(--star-white);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* The Container - Floating Glass Pane */
+.theme-physics .singularity-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 3rem;
+    background: var(--event-horizon);
+    border: 1px solid #30363d; /* Subtle dark border */
+    border-radius: 6px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5); /* Deep shadow */
+    backdrop-filter: blur(5px);
+}
+
+/* Typography - Academic & Precise */
+.theme-physics h1, .theme-physics h3, .theme-physics h4 {
+    font-family: 'Georgia', serif; /* Classic Academic feel */
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: var(--singularity-purple);
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 10px;
+}
+
+/* Code Blocks - Data from the Void */
+.theme-physics pre {
+    background: #010409;
+    border-left: 2px solid var(--string-cyan); /* The "String" */
+    color: var(--string-cyan);
+    padding: 20px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Annotations - "Stringy Corrections" */
+.theme-physics .annotation {
+    border: 1px dashed var(--singularity-purple);
+    background: rgba(188, 140, 255, 0.1);
+    color: var(--star-white);
+    padding: 15px;
+    margin: 20px 0;
+    font-size: 0.9em;
+    position: relative;
+}
+
+.theme-physics .annotation-title {
+    font-weight: bold;
+    color: var(--singularity-purple);
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* The Divergence Buttons */
+.theme-physics .path-selector {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.theme-physics .path-button {
+    padding: 15px 30px;
+    border: 1px solid #30363d;
+    background: transparent;
+    color: var(--star-white);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+}
+
+.theme-physics .special-relativity:hover {
+    border-color: var(--singularity-purple);
+    box-shadow: 0 0 15px rgba(188, 140, 255, 0.2);
+}
+
+.theme-physics .general-relativity:hover {
+    border-color: var(--string-cyan);
+    box-shadow: 0 0 15px rgba(63, 185, 80, 0.2);
+}
+
+.theme-physics .nav-links {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.theme-physics .nav-links a {
+    color: #58a6ff;
+    text-decoration: none;
+}

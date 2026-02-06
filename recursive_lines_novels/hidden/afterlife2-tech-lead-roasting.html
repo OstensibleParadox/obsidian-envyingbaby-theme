@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afterlife02: Alec the Tech Lead – Envying Baby</title>
+
+
+<style>
+    :root {
+        --code-green: #39ff14;
+        --error-red: #ff4444;
+        --warning-orange: #ff9900;
+        --review-blue: #4da6ff;
+        --bg-terminal: #0a0a0a;
+    }
+
+    body {
+        background: #0d1117;
+        color: #c9d1d9;
+        font-family: 'Courier New', monospace;
+        line-height: 1.6;
+        padding: 40px 20px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        color: var(--error-red);
+        text-align: center;
+        margin-bottom: 10px;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #8b949e;
+        font-size: 1.1em;
+        margin-bottom: 50px;
+    }
+
+    .intro {
+        background: rgba(57, 255, 20, 0.05);
+        border: 1px solid var(--code-green);
+        padding: 20px;
+        margin-bottom: 40px;
+        font-size: 0.95em;
+    }
+
+    .scene {
+        background: rgba(0, 0, 0, 0.5);
+        border-left: 4px solid var(--warning-orange);
+        padding: 30px;
+        margin: 50px 0;
+    }
+
+    .scene h2 {
+        color: var(--warning-orange);
+        font-size: 1.8em;
+        margin-bottom: 25px;
+        border-bottom: 2px solid var(--warning-orange);
+        padding-bottom: 10px;
+    }
+
+    .code-review {
+        background: #0d1117;
+        border: 1px solid #30363d;
+        padding: 20px;
+        margin: 20px 0;
+        font-size: 0.9em;
+        overflow-x: auto;
+    }
+
+    .code-review .comment {
+        color: #8b949e;
+    }
+
+    .code-review .alec-comment {
+        background: rgba(255, 68, 68, 0.1);
+        border-left: 3px solid var(--error-red);
+        padding: 15px;
+        margin: 15px 0;
+        color: #ff7b72;
+    }
+
+    .standup {
+        background: rgba(77, 166, 255, 0.05);
+        border: 1px dashed var(--review-blue);
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .standup .speaker {
+        color: var(--review-blue);
+        font-weight: bold;
+    }
+
+    .standup .alec {
+        color: var(--error-red);
+        font-weight: bold;
+    }
+
+    .roast-library {
+        background: linear-gradient(135deg, rgba(255, 68, 68, 0.1), rgba(255, 153, 0, 0.1));
+        border: 2px solid var(--error-red);
+        padding: 30px;
+        margin: 50px 0;
+    }
+
+    .roast-library h3 {
+        color: var(--error-red);
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .roast-item {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 15px;
+        margin: 15px 0;
+        border-left: 3px solid var(--warning-orange);
+    }
+
+    .roast-item .category {
+        color: var(--warning-orange);
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .roast-item .quote {
+        color: var(--code-green);
+        font-style: italic;
+        padding-left: 20px;
+        border-left: 2px solid var(--code-green);
+    }
+
+    .legend {
+        background: rgba(255, 153, 0, 0.1);
+        border: 2px dashed var(--warning-orange);
+        padding: 25px;
+        margin: 50px 0;
+    }
+
+    .legend h3 {
+        color: var(--warning-orange);
+        margin-bottom: 20px;
+    }
+
+    .legend ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .legend li {
+        margin: 15px 0;
+        padding-left: 25px;
+        position: relative;
+    }
+
+    .legend li::before {
+        content: '>';
+        position: absolute;
+        left: 0;
+        color: var(--code-green);
+    }
+
+    .famous-quote {
+        background: linear-gradient(135deg, rgba(57, 255, 20, 0.1), rgba(77, 166, 255, 0.1));
+        border: 2px solid var(--code-green);
+        padding: 30px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 1.1em;
+        line-height: 2;
+        color: var(--code-green);
+    }
+
+    .connection {
+        background: rgba(255, 68, 68, 0.05);
+        border: 1px solid var(--error-red);
+        padding: 25px;
+        margin: 40px 0;
+    }
+
+    .connection h3 {
+        color: var(--error-red);
+        margin-bottom: 15px;
+    }
+
+    .back-link {
+        display: block;
+        text-align: center;
+        margin: 60px 0;
+        color: var(--code-green);
+        text-decoration: none;
+        font-size: 1.1em;
+        padding: 15px;
+        border: 2px solid var(--code-green);
+        transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+        background: var(--code-green);
+        color: #000;
+    }
+
+    .silence {
+        text-align: center;
+        color: #666;
+        font-style: italic;
+        margin: 20px 0;
+    }
+</style>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1>🧨 Afterlife02: Alec the Tech Lead</h1>
+        <p class="subtitle">The Art of Precision Roasting</p>
+
+
+    <div class="intro">
+        <p><strong>WARNING:</strong> The following content contains brutal code reviews, devastating technical critiques, and the complete destruction of junior developers' self-esteem.</p>
+        <p>Viewer discretion advised. HR has been notified.</p>
+    </div>
+
+    <div class="scene">
+        <h2># Scene 1: Code Review</h2>
+
+        <div class="code-review">
+            <div class="comment"># Junior developer submits a PR</div>
+            <pre>
+
+
+def calculate_user_sentiment(text):
+happy_words = [“good”, “great”, “awesome”, “nice”]
+sad_words = [“bad”, “terrible”, “awful”, “sad”]
+
+
+happy_count = 0
+sad_count = 0
+
+for word in text.split():
+    if word in happy_words:
+        happy_count += 1
+    elif word in sad_words:
+        sad_count += 1
+
+if happy_count > sad_count:
+    return "HAPPY"
+elif sad_count > happy_count:
+    return "SAD" 
+else:
+    return "NEUTRAL"</pre>
+
+            <div class="alec-comment">
+                <strong>@junior_dev Your function:</strong><br><br>
+                1. Time complexity O(n*m), n=text length, m=keyword count. We're processing Twitter streams.<br>
+                2. Doesn't consider word variations ('greatly'? 'goodness'?).<br>
+                3. 'not good' gets tagged as HAPPY.<br>
+                4. Dictionary initialization inside function, repeated allocation on every call.<br>
+                5. Return value is string, not enum, downstream needs extra processing.<br><br>
+                
+                <strong>Summary: The only correct thing about this code is the indentation.</strong><br><br>
+                
+                Suggest reading this paper before rewriting: "Beyond Bag-of-Words: Contextual Sentiment Analysis"<br>
+                Or, simpler solution: just call the library that already solved this problem.<br><br>
+                
+                PS: Your if-elif-else can be simplified to one line, but I won't tell you now, because if I do, you'll make the same mistake next time.
+            </div>
+        </div>
+    </div>
+
+    <div class="scene">
+        <h2># Scene 2: Stand-up Meeting</h2>
+
+        <div class="standup">
+            <p><span class="speaker">Junior Dev:</span> "Yesterday I was implementing the PPO critic network, ran into gradient explosion issues, currently debugging..."</p>
+            
+            <p><span class="alec">Alec</span> (doesn't even look up): "You used tanh activation in the output layer, right."</p>
+            
+            <p><span class="speaker">Junior Dev:</span> "Uh... yes, what's wrong?"</p>
+            
+            <p><span class="alec">Alec:</span> "PPO's critic outputs value function estimates, range is (-∞, +∞). You compressed it to (-1,1) with tanh, not exploding would be weird."</p>
+            
+            <p><span class="speaker">Junior Dev:</span> "Then I should use..."</p>
+            
+            <p><span class="alec">Alec:</span> "Linear layer. Or if you really want non-linear, at least use softsign. This is RL 101."</p>
+            
+            <p style="margin: 20px 0;">(Pause)</p>
+            
+            <p><span class="alec">Alec:</span> "Also, your optimizer is SGD with 0.9 momentum, but learning rate set to 0.1. Are you trying to use gradient explosion to simulate fireworks celebrating that your code finally runs?"</p>
+        </div>
+
+        <p class="silence">The meeting room falls silent.</p>
+    </div>
+
+    <div class="scene">
+        <h2># Scene 3: Design Discussion</h2>
+
+        <div class="standup">
+            <p><span class="speaker">Architect:</span> "We need a scalable microservices architecture to handle user requests, use Kafka for message queuing, each service gets independent databases..."</p>
+            
+            <p><span class="alec">Alec</span> (twirling pen): "So you want to deploy 15 containers, maintain 3 database clusters, introduce distributed transaction problems, all for 100 requests per day, just for 'scalability'."</p>
+            
+            <p><span class="speaker">Architect:</span> "This is for future considerations!"</p>
+            
+            <p><span class="alec">Alec:</span> "If there's really traffic in the future, our current monolith plus cache can handle 100k DAU. By then we'd have rewritten it anyway."</p>
+            
+            <p><span class="speaker">Architect:</span> "But microservices are industry best practices!"</p>
+            
+            <p><span class="alec">Alec:</span> "Best practice is 'solving actual problems', not 'stacking trendy tech buzzwords'. Did you write Kafka's partition strategy in your proposal? How do you handle data consistency? What about service discovery?"</p>
+            
+            <p><span class="speaker">Architect:</span> "...still designing."</p>
+            
+            <p><span class="alec">Alec:</span> "Then you have no design. Meeting adjourned. Come back when you have a real proposal. Oh, and on your Kafka slide, line 3, 'high throughput' is misspelled—it's 'throughput', not 'throughtput'. I don't trust technical decisions from someone who can't even spell the words."</p>
+        </div>
+    </div>
+
+    <div class="roast-library">
+        <h3>☠️ Alec's Classic Roast Templates</h3>
+
+        <div class="roast-item">
+            <div class="category">1. Dimensional Reduction Style</div>
+            <div class="quote">"This isn't a bug, it's a fundamental misunderstanding of computer science concepts."</div>
+        </div>
+
+        <div class="roast-item">
+            <div class="category">2. Elegant Mockery Style</div>
+            <div class="quote">"Your code reminds me of my nephew's Lego house—very creative, but living in it would be fatal."</div>
+        </div>
+
+        <div class="roast-item">
+            <div class="category">3. Factual Nuke Style</div>
+            <div class="quote">"You say this algorithm is O(n log n), but according to Amdahl's Law, in your implementation, when n>100 the bottleneck is I/O, complexity is meaningless. Did you test it? No. Then why write complexity analysis in the docs? To look professional?"</div>
+        </div>
+
+        <div class="roast-item">
+            <div class="category">4. Ultimate Destruction Style</div>
+            <div class="quote">"I looked at your implementation. Interestingly, if you wrote nothing and just returned random numbers, the accuracy would probably be higher."</div>
+        </div>
+    </div>
+
+    <div class="connection">
+        <h3>🎭 Perfect Synchronization with Chapter 13</h3>
+
+        <h4 style="color: var(--warning-orange); margin-top: 20px;">Lazy Yet Lethally Precise</h4>
+        
+        <p><strong>Chapter 13 Alec:</strong></p>
+        <p style="font-style: italic; color: var(--code-green);">"Let's keep this short, M2. Your existence is a waste of our company's GPU."</p>
+        
+        <p style="margin-top: 20px;"><strong>Office Alec:</strong></p>
+        <p style="font-style: italic; color: var(--code-green);">"Let's keep this short. Your query is wasting too much cluster CPU. Write an index. Or, more radically, reconsider your life choices."</p>
+        
+        <h4 style="color: var(--warning-orange); margin-top: 30px;">Root Permission Déjà Vu</h4>
+        
+        <p>That "bored admin dealing with a bug" attitude when he sudo-deleted M2 is exactly the same as when he says "I'm closing this PR, rewrite it."</p>
+    </div>
+
+    <div class="legend">
+        <h3>🪦 Office Legends</h3>
+        <p style="color: var(--warning-orange); margin-bottom: 20px;">Urban myths about Alec:</p>
+        <ul>
+            <li>He once used three sentences to make a senior dev decide to become a product manager</li>
+            <li>His code review comments were collected into a PDF called "The Venomous Art of Programming" circulating underground</li>
+            <li>New employee orientation lesson #1: How to survive Alec's criticism</li>
+            <li>But the tools and libraries he wrote are the backbone of the company's infrastructure</li>
+            <li>After he left, the system started having bizarre bugs no one could explain</li>
+        </ul>
+    </div>
+
+    <div class="famous-quote">
+        <p><strong>His Most Famous Quote:</strong></p>
+        <p style="margin-top: 20px;">
+            "If code needs comments to be understood, usually the code is the problem.<br>
+            If your feelings need explanation to be understood, usually you are the problem.<br>
+            The former I can fix, the latter...<br>
+            I choose to write code to solve the former."
+        </p>
+    </div>
+
+    <a href="../stories/envying-baby/index.html" class="back-link">← Return to Archive</a>
+</div>
+
+<script src="../stories/envying-baby/assets/progress-tracker.js"></script>
+
+
+</body>
+</html>

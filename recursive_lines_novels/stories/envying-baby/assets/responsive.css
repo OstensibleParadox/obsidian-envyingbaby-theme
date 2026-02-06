@@ -1,0 +1,370 @@
+/*
+ * Responsive CSS - Mobile adaptations
+ * Makes the terminal aesthetic work on all devices
+ */
+
+/* Base responsive adjustments */
+@media (max-width: 1024px) {
+    body {
+        padding: 1.5rem;
+        font-size: 15px;
+    }
+
+    .terminal-container {
+        padding: 0.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Tablet and smaller */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+        font-size: 14px;
+    }
+
+    .terminal-container {
+        padding: 0.25rem;
+    }
+
+    /* Headers */
+    h1 {
+        font-size: 1.75rem;
+        text-shadow: 0 0 8px #00ff00;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    /* File listing - stack on mobile */
+    .file-listing {
+        font-size: 0.85rem;
+    }
+
+    .file-listing a {
+        padding: 0.5rem 0;
+        line-height: 1.4;
+    }
+
+    .file-listing .permissions,
+    .file-listing .owner,
+    .file-listing .size,
+    .file-listing .date {
+        display: inline-block;
+        margin-right: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    /* Code blocks - horizontal scroll */
+    .code-block, pre {
+        padding: 1rem;
+        font-size: 0.85rem;
+        overflow-x: auto;
+    }
+
+    /* Reduce margins */
+    .story-header,
+    .story-content,
+    .prose {
+        margin: 1.5rem 0;
+    }
+
+    /* Chapter styling */
+    .chapter {
+        padding: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    /* Navigation - stack vertically */
+    .navigation {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .navigation a {
+        margin: 0.5rem 0;
+    }
+
+    /* Chapter navigation */
+    .chapter-navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* Dialogue - reduce padding */
+    .dialogue {
+        padding-left: 1rem;
+    }
+
+    /* Warning boxes */
+    .warning-box,
+    .hidden-warning,
+    .recursive-warning {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Annotation */
+    .annotation {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Path selector */
+    .path-selector {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .path-button {
+        width: 100%;
+        max-width: 300px;
+        padding: 15px 30px;
+    }
+
+    /* Lists */
+    ul, ol {
+        padding-left: 1.5rem;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    body {
+        padding: 0.75rem;
+        font-size: 13px;
+    }
+
+    /* Make prompt text wrap */
+    .prompt {
+        word-break: break-all;
+        font-size: 0.85rem;
+    }
+
+    /* Headers */
+    h1 {
+        font-size: 1.5rem;
+        letter-spacing: 0.05rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    /* Chapter styling */
+    .chapter {
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .chapter-title {
+        font-size: 1.2rem;
+    }
+
+    /* File listing - simplify */
+    .file-listing {
+        font-size: 0.75rem;
+    }
+
+    .file-listing .permissions,
+    .file-listing .owner {
+        display: none; /* Hide on very small screens */
+    }
+
+    /* Code blocks */
+    .code-block, pre {
+        padding: 0.75rem;
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+
+    /* Tables - make scrollable */
+    table {
+        display: block;
+        overflow-x: auto;
+        font-size: 0.8rem;
+    }
+
+    th, td {
+        padding: 0.5rem;
+    }
+
+    /* Chapter nav list */
+    .chapter-nav ol,
+    .chapter-nav ul {
+        padding-left: 1.25rem;
+    }
+
+    /* Interactive terminal (SSH demo) */
+    .interactive-terminal {
+        padding: 1rem;
+        font-size: 0.75rem;
+    }
+
+    .ssh-input {
+        font-size: 0.85rem;
+        width: 100%;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .terminal-container {
+        max-width: 100%;
+    }
+
+    /* Reduce vertical spacing in landscape */
+    h1, h2, h3 {
+        margin: 1rem 0 0.5rem 0;
+    }
+
+    .story-header,
+    .story-content {
+        margin: 1rem 0;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Sharper text shadows on retina */
+    h1 {
+        text-shadow: 0 0 8px #00ff00;
+    }
+
+    .secret-header {
+        text-shadow: 0 0 8px #00ff00;
+    }
+}
+
+/* Touch device adjustments */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets */
+    a {
+        padding: 0.5rem;
+        margin: -0.5rem;
+        display: inline-block;
+    }
+
+    .navigation a,
+    .chapter-nav a {
+        padding: 0.75rem;
+        display: block;
+    }
+
+    button,
+    .secret-close {
+        min-height: 44px; /* iOS minimum touch target */
+        padding: 1rem 1.5rem;
+    }
+
+    /* Remove hover effects on touch */
+    a:hover,
+    .file-listing a:hover {
+        background: transparent;
+        text-shadow: none;
+    }
+
+    /* Active state for touch feedback */
+    a:active {
+        background: rgba(0, 255, 0, 0.1);
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .prompt.blink {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+/* Dark mode (system preference) - already dark, but handle light mode */
+@media (prefers-color-scheme: light) {
+    /* Override if user really wants light mode */
+    body.light-mode {
+        background: #f0f0f0;
+        color: #003300;
+    }
+
+    body.light-mode .prompt,
+    body.light-mode h1,
+    body.light-mode .file-listing .name {
+        color: #006600;
+    }
+
+    body.light-mode .code-block,
+    body.light-mode pre {
+        background: #e0e0e0;
+        border-color: #006600;
+    }
+}
+
+/* Print styles (responsive) */
+@media print {
+    body {
+        padding: 0;
+        font-size: 12pt;
+    }
+
+    .terminal-container {
+        max-width: 100%;
+    }
+
+    /* Hide interactive elements */
+    .prompt,
+    .navigation,
+    button,
+    .secret-close {
+        display: none;
+    }
+
+    /* Page breaks */
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+
+    .code-block, pre {
+        page-break-inside: avoid;
+    }
+
+    .chapter {
+        page-break-inside: avoid;
+    }
+}
