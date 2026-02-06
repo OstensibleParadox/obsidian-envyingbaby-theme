@@ -735,9 +735,13 @@ body {
     font-size: 1rem;
 }
 
-/* Folder collapse icon */
+/* Folder collapse icon and folder icons — amber warmth */
 .nav-folder-collapse-indicator {
     color: var(--text-faint);
+}
+
+.nav-folder-icon {
+    color: var(--color-yellow);
 }
 
 /* Subtle gradient border on sidebar (dark mode) — the "Claude glow" */
@@ -782,6 +786,18 @@ body {
 .workspace-tab-header.is-active .workspace-tab-header-inner {
     background: var(--background-modifier-active-hover);
     color: var(--text-normal);
+}
+
+/* Tab close button — coral glow on hover */
+.workspace-tab-header-inner-close-button {
+    color: var(--text-faint);
+    border-radius: 2px;
+    padding: 2px 4px;
+}
+
+.workspace-tab-header-inner-close-button:hover {
+    background: rgba(var(--color-accent-rgb), 0.2);
+    color: var(--color-accent);
 }
 
 
@@ -1346,6 +1362,107 @@ textarea:focus {
 .graph-view.color-text { color: var(--text-normal); }
 .graph-view.color-fill-highlight { color: var(--color-accent); }
 .graph-view.color-line-highlight { color: var(--color-accent); }
+
+
+/* =================================================================================
+   RIGHT SIDEBAR PANELS (Backlinks, Outline, Tags)
+
+   Elevated panels with warm backgrounds, matching the HTML mockup design.
+   ================================================================================= */
+
+/* Panel containers in right sidebar */
+.backlink-pane,
+.outgoing-link-pane {
+    background: var(--background-secondary-alt);
+    border-radius: var(--radius-l);
+    padding: 12px;
+}
+
+/* Backlink result items — coral accent with glow hover */
+.search-result-file-match {
+    color: var(--text-accent);
+}
+
+.theme-dark.enable-glow .search-result-file-match:hover {
+    text-shadow: 0 0 8px var(--accent-coral-glow-soft);
+}
+
+/* Backlink file titles */
+.tree-item-self {
+    border-radius: var(--radius-s);
+    padding: 4px 8px;
+}
+
+.tree-item-self:hover {
+    background: var(--background-modifier-hover);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────────
+   Outline Pane — indented heading levels
+   ───────────────────────────────────────────────────────────────────────────────── */
+
+.outline .tree-item-self {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.outline .tree-item-self:hover {
+    color: var(--text-normal);
+}
+
+/* Pane headers — small uppercase labels like mockup */
+.view-header-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+
+/* =================================================================================
+   IMAGES
+
+   Rounded corners and spacing from the HTML mockup design.
+   ================================================================================= */
+
+.markdown-preview-view img,
+.markdown-rendered img {
+    max-width: 100%;
+    border-radius: var(--radius-m);
+    margin: 24px 0;
+}
+
+
+/* =================================================================================
+   CODE BLOCK LANGUAGE FLAIR
+
+   Language label with coral dot indicator from the HTML mockup.
+   ================================================================================= */
+
+.markdown-preview-view .code-block-flair {
+    font-family: var(--font-monospace-theme);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    background: transparent;
+    padding: 4px 8px;
+}
+
+/* Coral dot before language label in dark mode */
+.theme-dark .markdown-preview-view .code-block-flair::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.theme-dark.enable-glow .markdown-preview-view .code-block-flair::before {
+    box-shadow: 0 0 6px var(--accent-coral-glow-medium);
+}
 
 
 /* =================================================================================
