@@ -378,6 +378,19 @@ body.enable-animations .callout {
     /* No glow effects in light mode — not needed with bright backgrounds */
     --glow-accent: none;
     --glow-accent-strong: none;
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Heading Colors: Warm Spectrum (Light)
+
+       Deeper variants of the semantic spectrum for contrast on cream.
+       Coral Light → Amber → Sage → Success → Sky → Lavender
+       ───────────────────────────────────────────────────────────────────────────── */
+    --h1-color: #c47a7c;  /* Deep coral light */
+    --h2-color: #b88a2e;  /* Deep amber */
+    --h3-color: #5a8f45;  /* Deep sage */
+    --h4-color: #4a8a50;  /* Deep success */
+    --h5-color: #4a80b5;  /* Deep sky */
+    --h6-color: #7b5eaa;  /* Deep lavender */
 }
 
 
@@ -595,6 +608,19 @@ body.enable-animations .callout {
 
     /* Callouts */
     --callout-default: 224, 107, 110;
+
+    /* ─────────────────────────────────────────────────────────────────────────────
+       Heading Colors: Warm Spectrum (Dusk)
+
+       Directly from the Semantic Colors palette in the concepts design.
+       Coral Light → Amber → Sage → Success → Sky → Lavender
+       ───────────────────────────────────────────────────────────────────────────── */
+    --h1-color: #e8a5a7;  /* Coral Light */
+    --h2-color: #d4a656;  /* Amber */
+    --h3-color: #a8d08d;  /* Sage */
+    --h4-color: #6cb273;  /* Success */
+    --h5-color: #6b9fd4;  /* Sky */
+    --h6-color: #a080c8;  /* Lavender */
 }
 
 
@@ -783,6 +809,9 @@ body {
 
 /* =================================================================================
    HEADINGS
+
+   Layered colors from the Semantic Warm Spectrum palette.
+   Coral Light → Amber → Sage → Success → Sky → Lavender
    ================================================================================= */
 
 .markdown-preview-view h1,
@@ -790,7 +819,7 @@ body {
 .cm-header-1 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--text-normal);
+    color: var(--h1-color);
     margin-top: 2rem;
     margin-bottom: 16px;
 }
@@ -800,7 +829,7 @@ body {
 .cm-header-2 {
     font-size: 1.35rem;
     font-weight: 600;
-    color: var(--text-normal);
+    color: var(--h2-color);
     margin-top: 2rem;
     margin-bottom: 0.8rem;
     padding-bottom: 0.3rem;
@@ -812,16 +841,30 @@ body {
 .cm-header-3 {
     font-size: 1.15rem;
     font-weight: 600;
-    color: var(--text-normal);
+    color: var(--h3-color);
     margin-top: 1.6rem;
     margin-bottom: 0.6rem;
 }
 
 .markdown-preview-view h4,
-.markdown-preview-view h5,
-.markdown-preview-view h6 {
+.markdown-rendered h4,
+.cm-header-4 {
     font-weight: 600;
-    color: var(--text-normal);
+    color: var(--h4-color);
+}
+
+.markdown-preview-view h5,
+.markdown-rendered h5,
+.cm-header-5 {
+    font-weight: 600;
+    color: var(--h5-color);
+}
+
+.markdown-preview-view h6,
+.markdown-rendered h6,
+.cm-header-6 {
+    font-weight: 600;
+    color: var(--h6-color);
 }
 
 
